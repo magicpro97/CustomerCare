@@ -3,5 +3,9 @@
   "app_name": "Customer Care",
   "@app_name": {
     "description": "App's name"
-  }
+  },
+  "customer": "Customer",
+  "@customer": {},
+  "customers": "Customers",
+  "@customers": {}
 }

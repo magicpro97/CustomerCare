@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -56,6 +57,26 @@ class S {
       'Customer Care',
       name: 'app_name',
       desc: 'App\'s name',
+      args: [],
+    );
+  }
+
+  /// `Customer`
+  String get customer {
+    return Intl.message(
+      'Customer',
+      name: 'customer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Customers`
+  String get customers {
+    return Intl.message(
+      'Customers',
+      name: 'customers',
+      desc: '',
       args: [],
     );
   }

@@ -40,6 +40,17 @@ dependencies:
   firebase_core: ^1.12.0
   firebase_auth_oauth: ^1.1.0
   firebase_auth: ^3.3.6
+  cloud_firestore: ^3.1.7
+  freezed_annotation:
+  json_annotation:
+  equatable:
+  flutter_bloc:
+  uuid: ^3.0.5
+  # add injectable to your dependencies
+  injectable:
+  # add get_it
+  get_it:
+  auto_route:
 
 dev_dependencies:
   flutter_test:
@@ -51,6 +62,12 @@ dev_dependencies:
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^1.0.0
+  build_runner:
+  freezed:
+  json_serializable:
+  # add the generator to your dev_dependencies
+  injectable_generator:
+  auto_route_generator:
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec

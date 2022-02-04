@@ -3,5 +3,9 @@
   "app_name": "Chăm sóc khách hàng",
   "@app_name": {
     "description": "App's name"
-  }
+  },
+  "customer": "Khách hàng",
+  "@customer": {},
+  "customers": "Danh sách khách hàng",
+  "@customers": {}
 }

@@ -1,6 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.customercare.customer_care">
-   <application
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
         android:label="customer_care"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
