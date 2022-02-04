@@ -1,0 +1,7 @@
+{
+  "@@locale": "en",
+  "app_name": "Customer Care",
+  "@app_name": {
+    "description": "App's name"
+  }
+}

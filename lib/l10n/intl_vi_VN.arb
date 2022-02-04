@@ -1,0 +1,7 @@
+{
+  "@@locale": "vi-VN",
+  "app_name": "Chăm sóc khách hàng",
+  "@app_name": {
+    "description": "App's name"
+  }
+}
