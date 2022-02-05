@@ -51,6 +51,7 @@ dependencies:
   # add get_it
   get_it:
   auto_route:
+  flutter_screenutil: ^5.1.1
 
 dev_dependencies:
   flutter_test:

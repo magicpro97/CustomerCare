@@ -1,5 +1,6 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:customer_care/pages/home/home_page_bloc.dart';
+import 'package:customer_care/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
@@ -35,7 +36,9 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
         ],
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {
+          context.navigateTo(const AddCustomerRoute());
+        },
         child: const Icon(Icons.add),
       ),
     );

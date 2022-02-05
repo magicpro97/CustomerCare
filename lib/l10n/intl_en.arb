@@ -1,11 +1,33 @@
 {
   "@@locale": "en",
+  "add_new_a_customer": "Add a new customer",
+  "@add_new_a_customer": {},
   "app_name": "Customer Care",
   "@app_name": {
     "description": "App's name"
   },
+  "contract_number": "Contract number",
+  "@contract_number": {},
+  "create": "Create",
+  "@create": {},
   "customer": "Customer",
   "@customer": {},
   "customers": "Customers",
-  "@customers": {}
+  "@customers": {},
+  "date_of_birth": "Date of birth",
+  "@date_of_birth": {},
+  "edit_customer_information": "Edit customer's information",
+  "@edit_customer_information": {},
+  "fullname": "Fullname",
+  "@fullname": {},
+  "hobbies": "Hobbies",
+  "@hobbies": {},
+  "id_number": "ID number",
+  "@id_number": {},
+  "last_contact_date": "Last contact date",
+  "@last_contact_date": {},
+  "required": "Please input some text",
+  "@required": {},
+  "save": "Save",
+  "@save": {}
 }

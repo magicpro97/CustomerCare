@@ -51,12 +51,42 @@ class S {
     return Localizations.of<S>(context, S);
   }
 
+  /// `Add a new customer`
+  String get add_new_a_customer {
+    return Intl.message(
+      'Add a new customer',
+      name: 'add_new_a_customer',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Customer Care`
   String get app_name {
     return Intl.message(
       'Customer Care',
       name: 'app_name',
       desc: 'App\'s name',
+      args: [],
+    );
+  }
+
+  /// `Contract number`
+  String get contract_number {
+    return Intl.message(
+      'Contract number',
+      name: 'contract_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Create`
+  String get create {
+    return Intl.message(
+      'Create',
+      name: 'create',
+      desc: '',
       args: [],
     );
   }
@@ -76,6 +106,86 @@ class S {
     return Intl.message(
       'Customers',
       name: 'customers',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Date of birth`
+  String get date_of_birth {
+    return Intl.message(
+      'Date of birth',
+      name: 'date_of_birth',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Edit customer's information`
+  String get edit_customer_information {
+    return Intl.message(
+      'Edit customer\'s information',
+      name: 'edit_customer_information',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Fullname`
+  String get fullname {
+    return Intl.message(
+      'Fullname',
+      name: 'fullname',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Hobbies`
+  String get hobbies {
+    return Intl.message(
+      'Hobbies',
+      name: 'hobbies',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID number`
+  String get id_number {
+    return Intl.message(
+      'ID number',
+      name: 'id_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Last contact date`
+  String get last_contact_date {
+    return Intl.message(
+      'Last contact date',
+      name: 'last_contact_date',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Please input some text`
+  String get required {
+    return Intl.message(
+      'Please input some text',
+      name: 'required',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Save`
+  String get save {
+    return Intl.message(
+      'Save',
+      name: 'save',
       desc: '',
       args: [],
     );

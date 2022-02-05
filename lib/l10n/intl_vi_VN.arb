@@ -1,11 +1,33 @@
 {
   "@@locale": "vi-VN",
+  "add_new_a_customer": "Thêm khách hàng mới",
+  "@add_new_a_customer": {},
   "app_name": "Chăm sóc khách hàng",
   "@app_name": {
     "description": "App's name"
   },
+  "contract_number": "Số hợp đồng",
+  "@contract_number": {},
+  "create": "Tạo",
+  "@create": {},
   "customer": "Khách hàng",
   "@customer": {},
   "customers": "Danh sách khách hàng",
-  "@customers": {}
+  "@customers": {},
+  "date_of_birth": "Ngày sinh",
+  "@date_of_birth": {},
+  "edit_customer_information": "Sửa thông tin khách hàng",
+  "@edit_customer_information": {},
+  "fullname": "Họ và tên",
+  "@fullname": {},
+  "hobbies": "Sở thích",
+  "@hobbies": {},
+  "id_number": "CMNN/CCCD",
+  "@id_number": {},
+  "last_contact_date": "Ngày liên lạc cuối cùng",
+  "@last_contact_date": {},
+  "required": "Bắt buộc *",
+  "@required": {},
+  "save": "Lưu",
+  "@save": {}
 }
