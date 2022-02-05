@@ -8,7 +8,7 @@ abstract class ICustomerService {
   Query<Customer> startAfter(String userId, String customerId,
       [int limit = 15]);
 
-  Future<void> add(String userId, Customer customer);
+  Future<void> insertOrReplace(String userId, Customer customer);
 
   Future<void> delete(String userId, String customerId);
 }
@@ -22,7 +22,7 @@ class CustomerService implements ICustomerService {
       : _customerRef = _firebaseFirestore.collection('users');
 
   @override
-  Future<void> add(String userId, Customer customer) {
+  Future<void> insertOrReplace(String userId, Customer customer) {
     return _customerRef
         .customerCollection(userId)
         .doc(customer.id)

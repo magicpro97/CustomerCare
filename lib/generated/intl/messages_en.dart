@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_new_a_customer":
             MessageLookupByLibrary.simpleMessage("Add a new customer"),
         "app_name": MessageLookupByLibrary.simpleMessage("Customer Care"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "common_error": MessageLookupByLibrary.simpleMessage(
             "Something when wrong. Please try again."),
         "contract_number":
@@ -40,7 +41,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "id_number": MessageLookupByLibrary.simpleMessage("ID number"),
         "last_contact_date":
             MessageLookupByLibrary.simpleMessage("Last contact date"),
+        "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "phone_number": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "remove_customer":
+            MessageLookupByLibrary.simpleMessage("Remove customer information"),
+        "remove_customer_message": MessageLookupByLibrary.simpleMessage(
+            "Do you want to remove this customer?"),
         "required":
             MessageLookupByLibrary.simpleMessage("Please input some text"),
         "save": MessageLookupByLibrary.simpleMessage("Save")

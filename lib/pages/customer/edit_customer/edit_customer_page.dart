@@ -1,11 +1,14 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:customer_care/common/dialog.dart';
 import 'package:customer_care/dimen.dart';
 import 'package:customer_care/features/customer/customer.dart';
 import 'package:customer_care/generated/l10n.dart';
-import 'package:customer_care/pages/customer/add_customer/add_customer_bloc.dart';
+import 'package:customer_care/pages/customer/edit_customer/edit_customer_bloc.dart';
 import 'package:customer_care/pages/customer/widgets/custom_text_field.dart';
+import 'package:customer_care/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 
@@ -23,7 +26,7 @@ class EditCustomerPage extends StatefulWidget implements AutoRouteWrapper {
   @override
   Widget wrappedRoute(BuildContext context) {
     return BlocProvider(
-      create: (_) => GetIt.I<AddCustomerBloc>(),
+      create: (_) => GetIt.I<EditCustomerBloc>(),
       child: this,
     );
   }
@@ -48,6 +51,7 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
     _fullNameTextEditingController.text = widget.customer.name;
     _hobbiesTextEditingController.text = widget.customer.hobbies ?? '';
     _phoneTextEditingController.text = widget.customer.phone;
+    _idNumberTextEditingController.text = widget.customer.idNumber;
 
     final formatter = DateFormat('dd/MM/yyyy');
     _dateOfBirthTextEditingController.text =
@@ -79,11 +83,11 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
   }
 
   Future<DateTime?> _showDatePicker() => showDatePicker(
-    context: context,
-    initialDate: DateTime.now(),
-    firstDate: DateTime(1930),
-    lastDate: DateTime.now(),
-  );
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1930),
+        lastDate: DateTime.now(),
+      );
 
   @override
   void dispose() {
@@ -114,8 +118,44 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
         lastContactDate: _lastContactDate,
         dateOfBirth: _dateOfBirth,
         hobbies: _hobbiesTextEditingController.text,
+        idNumber: _idNumberTextEditingController.text,
       );
+      context.read<EditCustomerBloc>()
+        ..add(EditCustomerSaveEvent(customer))
+        ..stream.listen((state) {
+          if (state is EditCustomerLoading) {
+            EasyLoading.show();
+          } else if (state is EditCustomerLoadedSuccess) {
+            context.navigateTo(const HomeRoute());
+            EasyLoading.dismiss();
+          } else if (state is EditCustomerLoadedFail) {
+            EasyLoading.showError(S.of(context).common_error);
+          }
+        });
     }
+  }
+
+  void _removeCustomer(String customerId) async {
+    final result = await showDeleteDialog(
+      context,
+      S.of(context).remove_customer,
+      S.of(context).remove_customer_message,
+    );
+
+    if (!result!) return;
+
+    context.read<EditCustomerBloc>()
+      ..add(EditCustomerRemoveCustomerEvent(customerId))
+      ..stream.listen((state) async {
+        if (state is EditCustomerLoading) {
+          EasyLoading.show();
+        } else if (state is EditCustomerLoadedSuccess) {
+          await EasyLoading.dismiss();
+          context.navigateTo(const HomeRoute());
+        } else if (state is EditCustomerLoadedFail) {
+          EasyLoading.showError(S.of(context).common_error);
+        }
+      });
   }
 
   @override
@@ -123,6 +163,12 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
     return Scaffold(
       appBar: AppBar(
         title: Text(S.of(context).edit_customer_information),
+        actions: [
+          IconButton(
+            icon: const Icon(Icons.delete),
+            onPressed: () => _removeCustomer(widget.customer.id),
+          )
+        ],
       ),
       body: SingleChildScrollView(
         padding: EdgeInsets.fromLTRB(

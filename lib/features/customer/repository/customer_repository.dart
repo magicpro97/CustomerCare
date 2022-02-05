@@ -14,6 +14,8 @@ abstract class ICustomerRepository {
   Future<void> add(String userId, Customer customer);
 
   Future<void> delete(String userId, String customerId);
+
+  Future<void> update(String userId, Customer customer);
 }
 
 @Singleton(as: ICustomerRepository)
@@ -31,7 +33,7 @@ class CustomerRepository implements ICustomerRepository {
 
   @override
   Future<void> add(String userId, Customer customer) {
-    return _iCustomerService.add(userId, customer);
+    return _iCustomerService.insertOrReplace(userId, customer);
   }
 
   @override
@@ -54,5 +56,10 @@ class CustomerRepository implements ICustomerRepository {
         .query(userId)
         .snapshots()
         .map((event) => event.docs.map((e) => e.data()).toList());
+  }
+
+  @override
+  Future<void> update(String userId, Customer customer) {
+    return _iCustomerService.insertOrReplace(userId, customer);
   }
 }

@@ -25,6 +25,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_new_a_customer":
             MessageLookupByLibrary.simpleMessage("Thêm khách hàng mới"),
         "app_name": MessageLookupByLibrary.simpleMessage("Chăm sóc khách hàng"),
+        "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
         "common_error": MessageLookupByLibrary.simpleMessage(
             "Đã có lỗi xảy ra. Vui lòng thử lại."),
         "contract_number": MessageLookupByLibrary.simpleMessage("Số hợp đồng"),
@@ -40,7 +41,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "id_number": MessageLookupByLibrary.simpleMessage("CMNN/CCCD"),
         "last_contact_date":
             MessageLookupByLibrary.simpleMessage("Ngày liên lạc cuối cùng"),
+        "ok": MessageLookupByLibrary.simpleMessage("Đồng ý"),
         "phone_number": MessageLookupByLibrary.simpleMessage("Số điện thoại"),
+        "remove_customer":
+            MessageLookupByLibrary.simpleMessage("Xóa thông tin khách hàng"),
+        "remove_customer_message": MessageLookupByLibrary.simpleMessage(
+            "Bạn có chắc rằng muốn xóa khách hàng này?"),
         "required": MessageLookupByLibrary.simpleMessage("Bắt buộc *"),
         "save": MessageLookupByLibrary.simpleMessage("Lưu")
       };

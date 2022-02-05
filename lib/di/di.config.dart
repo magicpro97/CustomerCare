@@ -11,9 +11,10 @@ import 'package:injectable/injectable.dart' as _i2;
 import '../features/customer/repository/customer_repository.dart' as _i6;
 import '../features/customer/service/customer_service.dart' as _i5;
 import '../pages/customer/add_customer/add_customer_bloc.dart' as _i7;
-import '../pages/home/home_page_bloc.dart' as _i8;
+import '../pages/customer/edit_customer/edit_customer_bloc.dart' as _i8;
+import '../pages/home/home_page_bloc.dart' as _i9;
 import '../router/app_router.dart' as _i3;
-import 'register_module.dart' as _i9; // ignore_for_file: unnecessary_lambdas
+import 'register_module.dart' as _i10; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -29,9 +30,11 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i6.CustomerRepository(get<_i5.ICustomerService>()));
   gh.factory<_i7.AddCustomerBloc>(
       () => _i7.AddCustomerBloc(get<_i6.ICustomerRepository>()));
-  gh.factory<_i8.HomePageBloc>(
-      () => _i8.HomePageBloc(get<_i6.ICustomerRepository>()));
+  gh.factory<_i8.EditCustomerBloc>(
+      () => _i8.EditCustomerBloc(get<_i6.ICustomerRepository>()));
+  gh.factory<_i9.HomePageBloc>(
+      () => _i9.HomePageBloc(get<_i6.ICustomerRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i9.RegisterModule {}
+class _$RegisterModule extends _i10.RegisterModule {}

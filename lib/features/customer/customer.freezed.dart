@@ -27,6 +27,7 @@ class _$CustomerTearOff {
       required String name,
       required String phone,
       String? hobbies,
+      @JsonKey(name: 'id_number') required String idNumber,
       @JsonKey(name: 'date_of_birth') required DateTime dateOfBirth,
       @JsonKey(name: 'last_contact_date') required DateTime lastContactDate}) {
     return _Customer(
@@ -34,6 +35,7 @@ class _$CustomerTearOff {
       name: name,
       phone: phone,
       hobbies: hobbies,
+      idNumber: idNumber,
       dateOfBirth: dateOfBirth,
       lastContactDate: lastContactDate,
     );
@@ -57,6 +59,9 @@ mixin _$Customer {
 
   String? get hobbies => throw _privateConstructorUsedError;
 
+  @JsonKey(name: 'id_number')
+  String get idNumber => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'date_of_birth')
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
 
@@ -74,12 +79,12 @@ mixin _$Customer {
 abstract class $CustomerCopyWith<$Res> {
   factory $CustomerCopyWith(Customer value, $Res Function(Customer) then) =
       _$CustomerCopyWithImpl<$Res>;
-
   $Res call(
       {String id,
       String name,
       String phone,
       String? hobbies,
+      @JsonKey(name: 'id_number') String idNumber,
       @JsonKey(name: 'date_of_birth') DateTime dateOfBirth,
       @JsonKey(name: 'last_contact_date') DateTime lastContactDate});
 }
@@ -98,6 +103,7 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
     Object? name = freezed,
     Object? phone = freezed,
     Object? hobbies = freezed,
+    Object? idNumber = freezed,
     Object? dateOfBirth = freezed,
     Object? lastContactDate = freezed,
   }) {
@@ -118,6 +124,10 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
           ? _value.hobbies
           : hobbies // ignore: cast_nullable_to_non_nullable
               as String?,
+      idNumber: idNumber == freezed
+          ? _value.idNumber
+          : idNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       dateOfBirth: dateOfBirth == freezed
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
@@ -134,13 +144,13 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
 abstract class _$CustomerCopyWith<$Res> implements $CustomerCopyWith<$Res> {
   factory _$CustomerCopyWith(_Customer value, $Res Function(_Customer) then) =
       __$CustomerCopyWithImpl<$Res>;
-
   @override
   $Res call(
       {String id,
       String name,
       String phone,
       String? hobbies,
+      @JsonKey(name: 'id_number') String idNumber,
       @JsonKey(name: 'date_of_birth') DateTime dateOfBirth,
       @JsonKey(name: 'last_contact_date') DateTime lastContactDate});
 }
@@ -160,6 +170,7 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
     Object? name = freezed,
     Object? phone = freezed,
     Object? hobbies = freezed,
+    Object? idNumber = freezed,
     Object? dateOfBirth = freezed,
     Object? lastContactDate = freezed,
   }) {
@@ -180,6 +191,10 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
           ? _value.hobbies
           : hobbies // ignore: cast_nullable_to_non_nullable
               as String?,
+      idNumber: idNumber == freezed
+          ? _value.idNumber
+          : idNumber // ignore: cast_nullable_to_non_nullable
+              as String,
       dateOfBirth: dateOfBirth == freezed
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
@@ -193,13 +208,15 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
 }
 
 /// @nodoc
-@JsonSerializable()
+
+@JsonSerializable(explicitToJson: true)
 class _$_Customer implements _Customer {
   _$_Customer(
       {required this.id,
       required this.name,
       required this.phone,
       this.hobbies,
+      @JsonKey(name: 'id_number') required this.idNumber,
       @JsonKey(name: 'date_of_birth') required this.dateOfBirth,
       @JsonKey(name: 'last_contact_date') required this.lastContactDate});
 
@@ -215,6 +232,9 @@ class _$_Customer implements _Customer {
   @override
   final String? hobbies;
   @override
+  @JsonKey(name: 'id_number')
+  final String idNumber;
+  @override
   @JsonKey(name: 'date_of_birth')
   final DateTime dateOfBirth;
   @override
@@ -223,7 +243,7 @@ class _$_Customer implements _Customer {
 
   @override
   String toString() {
-    return 'Customer(id: $id, name: $name, phone: $phone, hobbies: $hobbies, dateOfBirth: $dateOfBirth, lastContactDate: $lastContactDate)';
+    return 'Customer(id: $id, name: $name, phone: $phone, hobbies: $hobbies, idNumber: $idNumber, dateOfBirth: $dateOfBirth, lastContactDate: $lastContactDate)';
   }
 
   @override
@@ -235,6 +255,7 @@ class _$_Customer implements _Customer {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
             const DeepCollectionEquality().equals(other.hobbies, hobbies) &&
+            const DeepCollectionEquality().equals(other.idNumber, idNumber) &&
             const DeepCollectionEquality()
                 .equals(other.dateOfBirth, dateOfBirth) &&
             const DeepCollectionEquality()
@@ -248,6 +269,7 @@ class _$_Customer implements _Customer {
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(phone),
       const DeepCollectionEquality().hash(hobbies),
+      const DeepCollectionEquality().hash(idNumber),
       const DeepCollectionEquality().hash(dateOfBirth),
       const DeepCollectionEquality().hash(lastContactDate));
 
@@ -268,6 +290,8 @@ abstract class _Customer implements Customer {
       required String name,
       required String phone,
       String? hobbies,
+      @JsonKey(name: 'id_number')
+          required String idNumber,
       @JsonKey(name: 'date_of_birth')
           required DateTime dateOfBirth,
       @JsonKey(name: 'last_contact_date')
@@ -286,6 +310,10 @@ abstract class _Customer implements Customer {
 
   @override
   String? get hobbies;
+
+  @override
+  @JsonKey(name: 'id_number')
+  String get idNumber;
 
   @override
   @JsonKey(name: 'date_of_birth')

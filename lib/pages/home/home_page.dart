@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:customer_care/dimen.dart';
 import 'package:customer_care/features/customer/customer.dart';
 import 'package:customer_care/pages/home/home_page_bloc.dart';
 import 'package:customer_care/router/app_router.dart';
@@ -23,36 +24,54 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Expanded(
-              child: BlocConsumer<HomePageBloc, HomePageState>(
-                bloc: context.read<HomePageBloc>(),
-                listener: (BuildContext context, HomePageState state) {},
-                builder: (_, state) {
-                  return StreamBuilder<List<Customer>>(
-                    stream: context.read<HomePageBloc>().customer$,
-                    builder: (context, snapshot) {
-                      if (!snapshot.hasData) {
-                        return const CircularProgressIndicator.adaptive();
-                      }
+            BlocConsumer<HomePageBloc, HomePageState>(
+              bloc: context.read<HomePageBloc>(),
+              listener: (BuildContext context, HomePageState state) {},
+              builder: (_, state) {
+                return StreamBuilder<List<Customer>>(
+                  stream: context.read<HomePageBloc>().customer$,
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return const CircularProgressIndicator.adaptive();
+                    }
 
-                      return CustomerListWidget(
+                    return Expanded(
+                      child: CustomerListWidget(
+                        padding: EdgeInsets.fromLTRB(
+                          kPaddingLeft,
+                          kPaddingTop,
+                          kPaddingRight,
+                          0,
+                        ),
                         customers: snapshot.data!,
-                      );
-                    },
-                  );
-                },
-              ),
+                        onTap: (index) => _onCustomerItemTapped(
+                            context, snapshot.data!, index),
+                      ),
+                    );
+                  },
+                );
+              },
             ),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.navigateTo(const AddCustomerRoute());
-        },
+        onPressed: () => _navigateToAddCustomerPage(context),
         child: const Icon(Icons.add),
       ),
     );
+  }
+
+  void _navigateToAddCustomerPage(BuildContext context) {
+    context.navigateTo(const AddCustomerRoute());
+  }
+
+  void _onCustomerItemTapped(
+    BuildContext context,
+    List<Customer> customers,
+    int index,
+  ) {
+    context.navigateTo(EditCustomerRoute(customer: customers[index]));
   }
 
   @override

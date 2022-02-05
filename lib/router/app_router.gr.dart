@@ -34,8 +34,7 @@ class _$AppRouter extends RootStackRouter {
   };
 
   @override
-  List<RouteConfig> get routes =>
-      [
+  List<RouteConfig> get routes => [
         RouteConfig(HomeRoute.name, path: '/'),
         RouteConfig(AddCustomerRoute.name, path: '/add-customer-page'),
         RouteConfig(EditCustomerRoute.name, path: '/edit-customer-page')

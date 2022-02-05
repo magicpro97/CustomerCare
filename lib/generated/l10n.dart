@@ -71,6 +71,16 @@ class S {
     );
   }
 
+  /// `Cancel`
+  String get cancel {
+    return Intl.message(
+      'Cancel',
+      name: 'cancel',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Something when wrong. Please try again.`
   String get common_error {
     return Intl.message(
@@ -181,11 +191,41 @@ class S {
     );
   }
 
+  /// `OK`
+  String get ok {
+    return Intl.message(
+      'OK',
+      name: 'ok',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Phone number`
   String get phone_number {
     return Intl.message(
       'Phone number',
       name: 'phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remove customer information`
+  String get remove_customer {
+    return Intl.message(
+      'Remove customer information',
+      name: 'remove_customer',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Do you want to remove this customer?`
+  String get remove_customer_message {
+    return Intl.message(
+      'Do you want to remove this customer?',
+      name: 'remove_customer_message',
       desc: '',
       args: [],
     );

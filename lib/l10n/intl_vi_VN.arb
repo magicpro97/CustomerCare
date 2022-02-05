@@ -6,6 +6,8 @@
   "@app_name": {
     "description": "App's name"
   },
+  "cancel": "Hủy",
+  "@cancel": {},
   "common_error": "Đã có lỗi xảy ra. Vui lòng thử lại.",
   "@common_error": {},
   "contract_number": "Số hợp đồng",
@@ -28,8 +30,14 @@
   "@id_number": {},
   "last_contact_date": "Ngày liên lạc cuối cùng",
   "@last_contact_date": {},
+  "ok": "Đồng ý",
+  "@ok": {},
   "phone_number": "Số điện thoại",
   "@phone_number": {},
+  "remove_customer": "Xóa thông tin khách hàng",
+  "@remove_customer": {},
+  "remove_customer_message": "Bạn có chắc rằng muốn xóa khách hàng này?",
+  "@remove_customer_message": {},
   "required": "Bắt buộc *",
   "@required": {},
   "save": "Lưu",

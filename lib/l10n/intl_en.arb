@@ -6,6 +6,8 @@
   "@app_name": {
     "description": "App's name"
   },
+  "cancel": "Cancel",
+  "@cancel": {},
   "common_error": "Something when wrong. Please try again.",
   "@common_error": {},
   "contract_number": "Contract number",
@@ -28,8 +30,14 @@
   "@id_number": {},
   "last_contact_date": "Last contact date",
   "@last_contact_date": {},
+  "ok": "OK",
+  "@ok": {},
   "phone_number": "Phone number",
   "@phone_number": {},
+  "remove_customer": "Remove customer information",
+  "@remove_customer": {},
+  "remove_customer_message": "Do you want to remove this customer?",
+  "@remove_customer_message": {},
   "required": "Please input some text",
   "@required": {},
   "save": "Save",

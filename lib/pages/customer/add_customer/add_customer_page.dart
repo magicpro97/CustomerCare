@@ -109,6 +109,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
         lastContactDate: _lastContactDate,
         dateOfBirth: _dateOfBirth,
         hobbies: _hobbiesTextEditingController.text,
+        idNumber: _idNumberTextEditingController.text,
       );
       context.read<AddCustomerBloc>()
         ..add(AddCustomerCreateEvent(customer))
