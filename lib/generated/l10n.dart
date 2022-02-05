@@ -171,6 +171,16 @@ class S {
     );
   }
 
+  /// `Phone number`
+  String get phone_number {
+    return Intl.message(
+      'Phone number',
+      name: 'phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Please input some text`
   String get required {
     return Intl.message(

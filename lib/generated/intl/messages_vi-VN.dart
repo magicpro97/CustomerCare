@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "id_number": MessageLookupByLibrary.simpleMessage("CMNN/CCCD"),
         "last_contact_date":
             MessageLookupByLibrary.simpleMessage("Ngày liên lạc cuối cùng"),
+        "phone_number": MessageLookupByLibrary.simpleMessage("Số điện thoại"),
         "required": MessageLookupByLibrary.simpleMessage("Bắt buộc *"),
         "save": MessageLookupByLibrary.simpleMessage("Lưu")
       };

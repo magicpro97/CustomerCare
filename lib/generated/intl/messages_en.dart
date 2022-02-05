@@ -38,6 +38,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "id_number": MessageLookupByLibrary.simpleMessage("ID number"),
         "last_contact_date":
             MessageLookupByLibrary.simpleMessage("Last contact date"),
+        "phone_number": MessageLookupByLibrary.simpleMessage("Phone number"),
         "required":
             MessageLookupByLibrary.simpleMessage("Please input some text"),
         "save": MessageLookupByLibrary.simpleMessage("Save")

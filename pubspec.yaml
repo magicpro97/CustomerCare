@@ -52,6 +52,8 @@ dependencies:
   get_it:
   auto_route:
   flutter_screenutil: ^5.1.1
+  flutter_easyloading: ^3.0.3
+  flutter_spinkit: ^5.1.0
 
 dev_dependencies:
   flutter_test:

@@ -1,36 +1,66 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:customer_care/dimen.dart';
+import 'package:customer_care/features/customer/customer.dart';
 import 'package:customer_care/generated/l10n.dart';
+import 'package:customer_care/pages/customer/add_customer/add_customer_bloc.dart';
 import 'package:customer_care/pages/customer/widgets/custom_text_field.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 
-class AddCustomerPage extends StatefulWidget {
-  const AddCustomerPage({Key? key}) : super(key: key);
+class EditCustomerPage extends StatefulWidget implements AutoRouteWrapper {
+  const EditCustomerPage({
+    Key? key,
+    required this.customer,
+  }) : super(key: key);
+
+  final Customer customer;
 
   @override
-  State<AddCustomerPage> createState() => _AddCustomerPageState();
+  State<EditCustomerPage> createState() => _EditCustomerPageState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider(
+      create: (_) => GetIt.I<AddCustomerBloc>(),
+      child: this,
+    );
+  }
 }
 
-class _AddCustomerPageState extends State<AddCustomerPage> {
+class _EditCustomerPageState extends State<EditCustomerPage> {
   final _dateOfBirthFocusNode = FocusNode();
   final _lastContactDateFocusNode = FocusNode();
   final _formKey = GlobalKey<FormState>();
   final _dateOfBirthTextEditingController = TextEditingController();
   final _lastContactDateTextEditingController = TextEditingController();
+  final _hobbiesTextEditingController = TextEditingController();
+  final _fullNameTextEditingController = TextEditingController();
+  final _phoneTextEditingController = TextEditingController();
+  final _idNumberTextEditingController = TextEditingController();
+  var _dateOfBirth = DateTime.now();
+  var _lastContactDate = DateTime.now();
 
   @override
   void initState() {
     super.initState();
-    final today = DateTime.now();
+    _fullNameTextEditingController.text = widget.customer.name;
+    _hobbiesTextEditingController.text = widget.customer.hobbies ?? '';
+    _phoneTextEditingController.text = widget.customer.phone;
+
     final formatter = DateFormat('dd/MM/yyyy');
-    _dateOfBirthTextEditingController.text = formatter.format(today);
-    _lastContactDateTextEditingController.text = formatter.format(today);
+    _dateOfBirthTextEditingController.text =
+        formatter.format(widget.customer.dateOfBirth);
+    _lastContactDateTextEditingController.text =
+        formatter.format(widget.customer.lastContactDate);
 
     _dateOfBirthFocusNode.addListener(() async {
       if (_dateOfBirthFocusNode.hasFocus) {
         final date = await _showDatePicker();
         if (date != null) {
           _dateOfBirthTextEditingController.text = formatter.format(date);
+          _dateOfBirth = date;
         }
         FocusScope.of(context).requestFocus(FocusNode());
       }
@@ -41,6 +71,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
         final date = await _showDatePicker();
         if (date != null) {
           _lastContactDateTextEditingController.text = formatter.format(date);
+          _lastContactDate = date;
         }
         FocusScope.of(context).requestFocus(FocusNode());
       }
@@ -48,11 +79,11 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
   }
 
   Future<DateTime?> _showDatePicker() => showDatePicker(
-        context: context,
-        initialDate: DateTime.now(),
-        firstDate: DateTime(1930),
-        lastDate: DateTime.now(),
-      );
+    context: context,
+    initialDate: DateTime.now(),
+    firstDate: DateTime(1930),
+    lastDate: DateTime.now(),
+  );
 
   @override
   void dispose() {
@@ -61,6 +92,10 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
     _lastContactDateFocusNode.dispose();
     _dateOfBirthTextEditingController.dispose();
     _lastContactDateTextEditingController.dispose();
+    _hobbiesTextEditingController.dispose();
+    _fullNameTextEditingController.dispose();
+    _phoneTextEditingController.dispose();
+    _idNumberTextEditingController.dispose();
   }
 
   String? _emptyValidator(String? value) {
@@ -72,7 +107,15 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
   }
 
   void _submitForm() {
-    if (_formKey.currentState!.validate()) {}
+    if (_formKey.currentState!.validate()) {
+      final customer = widget.customer.copyWith(
+        name: _fullNameTextEditingController.text,
+        phone: _phoneTextEditingController.text,
+        lastContactDate: _lastContactDate,
+        dateOfBirth: _dateOfBirth,
+        hobbies: _hobbiesTextEditingController.text,
+      );
+    }
   }
 
   @override
@@ -94,6 +137,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
           child: Column(
             children: [
               CustomTextField(
+                controller: _fullNameTextEditingController,
                 labelText: S.of(context).fullname,
                 validator: _emptyValidator,
               ),
@@ -107,11 +151,17 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                 suffixIcon: const Icon(Icons.calendar_today),
               ),
               CustomTextField(
+                controller: _idNumberTextEditingController,
                 validator: _emptyValidator,
                 labelText: S.of(context).id_number,
               ),
               CustomTextField(
+                controller: _phoneTextEditingController,
                 validator: _emptyValidator,
+                labelText: S.of(context).phone_number,
+              ),
+              CustomTextField(
+                controller: _hobbiesTextEditingController,
                 labelText: S.of(context).hobbies,
               ),
               CustomTextField(
@@ -128,7 +178,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
                 width: double.infinity,
                 height: kButtonHeight,
                 child: ElevatedButton(
-                  child: Text(S.of(context).create),
+                  child: Text(S.of(context).save),
                   onPressed: _submitForm,
                 ),
               )

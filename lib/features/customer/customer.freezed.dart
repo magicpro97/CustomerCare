@@ -23,11 +23,19 @@ class _$CustomerTearOff {
   const _$CustomerTearOff();
 
   _Customer call(
-      {required String id, required String name, required String phone}) {
+      {required String id,
+      required String name,
+      required String phone,
+      String? hobbies,
+      @JsonKey(name: 'date_of_birth') required DateTime dateOfBirth,
+      @JsonKey(name: 'last_contact_date') required DateTime lastContactDate}) {
     return _Customer(
       id: id,
       name: name,
       phone: phone,
+      hobbies: hobbies,
+      dateOfBirth: dateOfBirth,
+      lastContactDate: lastContactDate,
     );
   }
 
@@ -47,6 +55,14 @@ mixin _$Customer {
 
   String get phone => throw _privateConstructorUsedError;
 
+  String? get hobbies => throw _privateConstructorUsedError;
+
+  @JsonKey(name: 'date_of_birth')
+  DateTime get dateOfBirth => throw _privateConstructorUsedError;
+
+  @JsonKey(name: 'last_contact_date')
+  DateTime get lastContactDate => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -59,7 +75,13 @@ abstract class $CustomerCopyWith<$Res> {
   factory $CustomerCopyWith(Customer value, $Res Function(Customer) then) =
       _$CustomerCopyWithImpl<$Res>;
 
-  $Res call({String id, String name, String phone});
+  $Res call(
+      {String id,
+      String name,
+      String phone,
+      String? hobbies,
+      @JsonKey(name: 'date_of_birth') DateTime dateOfBirth,
+      @JsonKey(name: 'last_contact_date') DateTime lastContactDate});
 }
 
 /// @nodoc
@@ -67,7 +89,6 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
   _$CustomerCopyWithImpl(this._value, this._then);
 
   final Customer _value;
-
   // ignore: unused_field
   final $Res Function(Customer) _then;
 
@@ -76,6 +97,9 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
     Object? id = freezed,
     Object? name = freezed,
     Object? phone = freezed,
+    Object? hobbies = freezed,
+    Object? dateOfBirth = freezed,
+    Object? lastContactDate = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -90,6 +114,18 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      hobbies: hobbies == freezed
+          ? _value.hobbies
+          : hobbies // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateOfBirth: dateOfBirth == freezed
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      lastContactDate: lastContactDate == freezed
+          ? _value.lastContactDate
+          : lastContactDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -100,7 +136,13 @@ abstract class _$CustomerCopyWith<$Res> implements $CustomerCopyWith<$Res> {
       __$CustomerCopyWithImpl<$Res>;
 
   @override
-  $Res call({String id, String name, String phone});
+  $Res call(
+      {String id,
+      String name,
+      String phone,
+      String? hobbies,
+      @JsonKey(name: 'date_of_birth') DateTime dateOfBirth,
+      @JsonKey(name: 'last_contact_date') DateTime lastContactDate});
 }
 
 /// @nodoc
@@ -117,6 +159,9 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
     Object? id = freezed,
     Object? name = freezed,
     Object? phone = freezed,
+    Object? hobbies = freezed,
+    Object? dateOfBirth = freezed,
+    Object? lastContactDate = freezed,
   }) {
     return _then(_Customer(
       id: id == freezed
@@ -131,6 +176,18 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
           ? _value.phone
           : phone // ignore: cast_nullable_to_non_nullable
               as String,
+      hobbies: hobbies == freezed
+          ? _value.hobbies
+          : hobbies // ignore: cast_nullable_to_non_nullable
+              as String?,
+      dateOfBirth: dateOfBirth == freezed
+          ? _value.dateOfBirth
+          : dateOfBirth // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      lastContactDate: lastContactDate == freezed
+          ? _value.lastContactDate
+          : lastContactDate // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -138,7 +195,13 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_Customer implements _Customer {
-  _$_Customer({required this.id, required this.name, required this.phone});
+  _$_Customer(
+      {required this.id,
+      required this.name,
+      required this.phone,
+      this.hobbies,
+      @JsonKey(name: 'date_of_birth') required this.dateOfBirth,
+      @JsonKey(name: 'last_contact_date') required this.lastContactDate});
 
   factory _$_Customer.fromJson(Map<String, dynamic> json) =>
       _$$_CustomerFromJson(json);
@@ -149,10 +212,18 @@ class _$_Customer implements _Customer {
   final String name;
   @override
   final String phone;
+  @override
+  final String? hobbies;
+  @override
+  @JsonKey(name: 'date_of_birth')
+  final DateTime dateOfBirth;
+  @override
+  @JsonKey(name: 'last_contact_date')
+  final DateTime lastContactDate;
 
   @override
   String toString() {
-    return 'Customer(id: $id, name: $name, phone: $phone)';
+    return 'Customer(id: $id, name: $name, phone: $phone, hobbies: $hobbies, dateOfBirth: $dateOfBirth, lastContactDate: $lastContactDate)';
   }
 
   @override
@@ -162,7 +233,12 @@ class _$_Customer implements _Customer {
             other is _Customer &&
             const DeepCollectionEquality().equals(other.id, id) &&
             const DeepCollectionEquality().equals(other.name, name) &&
-            const DeepCollectionEquality().equals(other.phone, phone));
+            const DeepCollectionEquality().equals(other.phone, phone) &&
+            const DeepCollectionEquality().equals(other.hobbies, hobbies) &&
+            const DeepCollectionEquality()
+                .equals(other.dateOfBirth, dateOfBirth) &&
+            const DeepCollectionEquality()
+                .equals(other.lastContactDate, lastContactDate));
   }
 
   @override
@@ -170,7 +246,10 @@ class _$_Customer implements _Customer {
       runtimeType,
       const DeepCollectionEquality().hash(id),
       const DeepCollectionEquality().hash(name),
-      const DeepCollectionEquality().hash(phone));
+      const DeepCollectionEquality().hash(phone),
+      const DeepCollectionEquality().hash(hobbies),
+      const DeepCollectionEquality().hash(dateOfBirth),
+      const DeepCollectionEquality().hash(lastContactDate));
 
   @JsonKey(ignore: true)
   @override
@@ -187,7 +266,12 @@ abstract class _Customer implements Customer {
   factory _Customer(
       {required String id,
       required String name,
-      required String phone}) = _$_Customer;
+      required String phone,
+      String? hobbies,
+      @JsonKey(name: 'date_of_birth')
+          required DateTime dateOfBirth,
+      @JsonKey(name: 'last_contact_date')
+          required DateTime lastContactDate}) = _$_Customer;
 
   factory _Customer.fromJson(Map<String, dynamic> json) = _$_Customer.fromJson;
 
@@ -199,6 +283,17 @@ abstract class _Customer implements Customer {
 
   @override
   String get phone;
+
+  @override
+  String? get hobbies;
+
+  @override
+  @JsonKey(name: 'date_of_birth')
+  DateTime get dateOfBirth;
+
+  @override
+  @JsonKey(name: 'last_contact_date')
+  DateTime get lastContactDate;
 
   @override
   @JsonKey(ignore: true)

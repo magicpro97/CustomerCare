@@ -24,13 +24,21 @@ class _$AppRouter extends RootStackRouter {
     AddCustomerRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const AddCustomerPage());
+    },
+    EditCustomerRoute.name: (routeData) {
+      final args = routeData.argsAs<EditCustomerRouteArgs>();
+      return MaterialPageX<dynamic>(
+          routeData: routeData,
+          child: EditCustomerPage(key: args.key, customer: args.customer));
     }
   };
 
   @override
-  List<RouteConfig> get routes => [
+  List<RouteConfig> get routes =>
+      [
         RouteConfig(HomeRoute.name, path: '/'),
-        RouteConfig(AddCustomerRoute.name, path: '/add-customer-page')
+        RouteConfig(AddCustomerRoute.name, path: '/add-customer-page'),
+        RouteConfig(EditCustomerRoute.name, path: '/edit-customer-page')
       ];
 }
 
@@ -49,4 +57,28 @@ class AddCustomerRoute extends PageRouteInfo<void> {
       : super(AddCustomerRoute.name, path: '/add-customer-page');
 
   static const String name = 'AddCustomerRoute';
+}
+
+/// generated route for
+/// [EditCustomerPage]
+class EditCustomerRoute extends PageRouteInfo<EditCustomerRouteArgs> {
+  EditCustomerRoute({Key? key, required Customer customer})
+      : super(EditCustomerRoute.name,
+            path: '/edit-customer-page',
+            args: EditCustomerRouteArgs(key: key, customer: customer));
+
+  static const String name = 'EditCustomerRoute';
+}
+
+class EditCustomerRouteArgs {
+  const EditCustomerRouteArgs({this.key, required this.customer});
+
+  final Key? key;
+
+  final Customer customer;
+
+  @override
+  String toString() {
+    return 'EditCustomerRouteArgs{key: $key, customer: $customer}';
+  }
 }

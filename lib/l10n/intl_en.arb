@@ -26,6 +26,8 @@
   "@id_number": {},
   "last_contact_date": "Last contact date",
   "@last_contact_date": {},
+  "phone_number": "Phone number",
+  "@phone_number": {},
   "required": "Please input some text",
   "@required": {},
   "save": "Save",
