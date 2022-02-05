@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_new_a_customer":
             MessageLookupByLibrary.simpleMessage("Add a new customer"),
         "app_name": MessageLookupByLibrary.simpleMessage("Customer Care"),
+        "common_error": MessageLookupByLibrary.simpleMessage(
+            "Something when wrong. Please try again."),
         "contract_number":
             MessageLookupByLibrary.simpleMessage("Contract number"),
         "create": MessageLookupByLibrary.simpleMessage("Create"),

@@ -71,6 +71,16 @@ class S {
     );
   }
 
+  /// `Something when wrong. Please try again.`
+  String get common_error {
+    return Intl.message(
+      'Something when wrong. Please try again.',
+      name: 'common_error',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Contract number`
   String get contract_number {
     return Intl.message(

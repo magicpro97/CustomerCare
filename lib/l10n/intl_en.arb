@@ -6,6 +6,8 @@
   "@app_name": {
     "description": "App's name"
   },
+  "common_error": "Something when wrong. Please try again.",
+  "@common_error": {},
   "contract_number": "Contract number",
   "@contract_number": {},
   "create": "Create",

@@ -73,11 +73,11 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
   }
 
   Future<DateTime?> _showDatePicker() => showDatePicker(
-    context: context,
-    initialDate: DateTime.now(),
-    firstDate: DateTime(1930),
-    lastDate: DateTime.now(),
-  );
+        context: context,
+        initialDate: DateTime.now(),
+        firstDate: DateTime(1930),
+        lastDate: DateTime.now(),
+      );
 
   @override
   void dispose() {
@@ -119,7 +119,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
             context.navigateTo(const HomeRoute());
             EasyLoading.dismiss();
           } else if (state is AddCustomerLoadedFail) {
-            EasyLoading.dismiss();
+            EasyLoading.showError(S.of(context).common_error);
           }
         });
     }

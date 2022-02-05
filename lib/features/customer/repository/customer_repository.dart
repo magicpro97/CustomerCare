@@ -6,6 +6,8 @@ import '../customer.dart';
 abstract class ICustomerRepository {
   Future<List<Customer>> query(String userId, [int limit = 15]);
 
+  Stream<List<Customer>> queryStream(String userId);
+
   Future<List<Customer>> startAfter(String userId, String customerId,
       [int limit = 15]);
 
@@ -44,5 +46,13 @@ class CustomerRepository implements ICustomerRepository {
         .startAfter(userId, customerId, limit)
         .get()
         .then((value) => value.docs.map((e) => e.data()).toList());
+  }
+
+  @override
+  Stream<List<Customer>> queryStream(String userId) {
+    return _iCustomerService
+        .query(userId)
+        .snapshots()
+        .map((event) => event.docs.map((e) => e.data()).toList());
   }
 }

@@ -1,4 +1,5 @@
 import 'package:auto_route/auto_route.dart';
+import 'package:customer_care/features/customer/customer.dart';
 import 'package:customer_care/pages/home/home_page_bloc.dart';
 import 'package:customer_care/router/app_router.dart';
 import 'package:flutter/material.dart';
@@ -17,23 +18,33 @@ class HomePage extends StatelessWidget implements AutoRouteWrapper {
       appBar: AppBar(
         title: Text(S.of(context).customers),
       ),
-      body: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          BlocConsumer<HomePageBloc, HomePageState>(
-            listener: (BuildContext context, HomePageState state) {},
-            builder: (_, state) {
-              if (state is HomePageLoading) {
-                return const CircularProgressIndicator.adaptive();
-              } else if (state is HomePageLoaded) {
-                return CustomerListWidget(
-                  customers: state.customers,
-                );
-              }
-              return Container();
-            },
-          ),
-        ],
+      body: SizedBox(
+        width: double.infinity,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Expanded(
+              child: BlocConsumer<HomePageBloc, HomePageState>(
+                bloc: context.read<HomePageBloc>(),
+                listener: (BuildContext context, HomePageState state) {},
+                builder: (_, state) {
+                  return StreamBuilder<List<Customer>>(
+                    stream: context.read<HomePageBloc>().customer$,
+                    builder: (context, snapshot) {
+                      if (!snapshot.hasData) {
+                        return const CircularProgressIndicator.adaptive();
+                      }
+
+                      return CustomerListWidget(
+                        customers: snapshot.data!,
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
+          ],
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {

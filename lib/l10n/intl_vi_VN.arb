@@ -6,6 +6,8 @@
   "@app_name": {
     "description": "App's name"
   },
+  "common_error": "Đã có lỗi xảy ra. Vui lòng thử lại.",
+  "@common_error": {},
   "contract_number": "Số hợp đồng",
   "@contract_number": {},
   "create": "Tạo",

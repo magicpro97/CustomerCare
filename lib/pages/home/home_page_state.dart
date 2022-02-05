@@ -15,10 +15,10 @@ class HomePageLoading extends HomePageState {
 }
 
 class HomePageLoaded extends HomePageState {
-  final List<Customer> customers;
+  final Stream<List<Customer>> customers$;
 
-  const HomePageLoaded(this.customers);
+  const HomePageLoaded(this.customers$);
 
   @override
-  List<Object> get props => [customers];
+  List<Object> get props => [customers$];
 }

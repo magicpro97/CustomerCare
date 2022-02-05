@@ -25,6 +25,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "add_new_a_customer":
             MessageLookupByLibrary.simpleMessage("Thêm khách hàng mới"),
         "app_name": MessageLookupByLibrary.simpleMessage("Chăm sóc khách hàng"),
+        "common_error": MessageLookupByLibrary.simpleMessage(
+            "Đã có lỗi xảy ra. Vui lòng thử lại."),
         "contract_number": MessageLookupByLibrary.simpleMessage("Số hợp đồng"),
         "create": MessageLookupByLibrary.simpleMessage("Tạo"),
         "customer": MessageLookupByLibrary.simpleMessage("Khách hàng"),
