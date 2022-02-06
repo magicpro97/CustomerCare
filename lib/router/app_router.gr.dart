@@ -30,21 +30,27 @@ class _$AppRouter extends RootStackRouter {
       return MaterialPageX<dynamic>(
           routeData: routeData,
           child: EditCustomerPage(key: args.key, customer: args.customer));
+    },
+    SignInRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const SignInPage());
     }
   };
 
   @override
-  List<RouteConfig> get routes => [
-        RouteConfig(HomeRoute.name, path: '/'),
+  List<RouteConfig> get routes =>
+      [
+        RouteConfig(HomeRoute.name, path: '/home-page'),
         RouteConfig(AddCustomerRoute.name, path: '/add-customer-page'),
-        RouteConfig(EditCustomerRoute.name, path: '/edit-customer-page')
+        RouteConfig(EditCustomerRoute.name, path: '/edit-customer-page'),
+        RouteConfig(SignInRoute.name, path: '/')
       ];
 }
 
 /// generated route for
 /// [HomePage]
 class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute() : super(HomeRoute.name, path: '/');
+  const HomeRoute() : super(HomeRoute.name, path: '/home-page');
 
   static const String name = 'HomeRoute';
 }
@@ -80,4 +86,12 @@ class EditCustomerRouteArgs {
   String toString() {
     return 'EditCustomerRouteArgs{key: $key, customer: $customer}';
   }
+}
+
+/// generated route for
+/// [SignInPage]
+class SignInRoute extends PageRouteInfo<void> {
+  const SignInRoute() : super(SignInRoute.name, path: '/');
+
+  static const String name = 'SignInRoute';
 }

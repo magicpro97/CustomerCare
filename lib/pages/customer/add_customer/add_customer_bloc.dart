@@ -5,7 +5,6 @@ import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
 part 'add_customer_event.dart';
-
 part 'add_customer_state.dart';
 
 @injectable
@@ -17,7 +16,7 @@ class AddCustomerBloc extends Bloc<AddCustomerEvent, AddCustomerState> {
       if (event is AddCustomerCreateEvent) {
         emit(AddCustomerLoading());
         try {
-          await _customerRepository.add('1', event.customer);
+          await _customerRepository.add(event.customer);
           emit(AddCustomerLoadedSuccess());
         } catch (e) {
           emit(AddCustomerLoadedFail());

@@ -15,5 +15,5 @@ class HomePageBloc extends Bloc<HomePageEvent, HomePageState> {
     on<HomePageEvent>((event, emit) {});
   }
 
-  Stream<List<Customer>> get customer$ => _customerRepository.queryStream('1');
+  Stream<List<Customer>> get customer$ => _customerRepository.queryStream();
 }

@@ -1,28 +1,35 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:customer_care/common/service.dart';
+import 'package:customer_care/features/authentication/user_session.dart';
 import 'package:customer_care/features/customer/customer.dart';
 import 'package:injectable/injectable.dart';
 
-abstract class ICustomerService {
-  Query<Customer> query(String userId, [int limit = 15]);
+abstract class ICustomerService extends Service {
+  ICustomerService(UserSession userSession) : super(userSession);
 
-  Query<Customer> startAfter(String userId, String customerId,
-      [int limit = 15]);
+  Query<Customer> query([int limit = 15]);
 
-  Future<void> insertOrReplace(String userId, Customer customer);
+  Query<Customer> startAfter(String customerId, [int limit = 15]);
 
-  Future<void> delete(String userId, String customerId);
+  Future<void> insertOrReplace(Customer customer);
+
+  Future<void> delete(String customerId);
 }
 
 @Singleton(as: ICustomerService)
-class CustomerService implements ICustomerService {
+class CustomerService extends ICustomerService {
   final FirebaseFirestore _firebaseFirestore;
+  final UserSession _userSession;
   final CollectionReference _customerRef;
 
-  CustomerService(this._firebaseFirestore)
-      : _customerRef = _firebaseFirestore.collection('users');
+  CustomerService(
+    this._firebaseFirestore,
+    this._userSession,
+  )   : _customerRef = _firebaseFirestore.collection('users'),
+        super(_userSession);
 
   @override
-  Future<void> insertOrReplace(String userId, Customer customer) {
+  Future<void> insertOrReplace(Customer customer) {
     return _customerRef
         .customerCollection(userId)
         .doc(customer.id)
@@ -30,19 +37,18 @@ class CustomerService implements ICustomerService {
   }
 
   @override
-  Future<void> delete(String userId, String customerId) {
+  Future<void> delete(String customerId) {
     return _customerRef.customerCollection(userId).doc(customerId).delete();
   }
 
   @override
-  Query<Customer> query(String userId, [int limit = 15]) {
+  Query<Customer> query([int limit = 15]) {
     return _customerRef.customerCollection(userId).orderBy('id').limit(limit);
   }
 
   @override
-  Query<Customer> startAfter(String userId, String customerId,
-      [int limit = 15]) {
-    return query(userId).startAfter([customerId]);
+  Query<Customer> startAfter(String customerId, [int limit = 15]) {
+    return query(limit).startAfter([customerId]);
   }
 }
 

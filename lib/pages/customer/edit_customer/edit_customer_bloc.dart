@@ -5,7 +5,6 @@ import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
 part 'edit_customer_event.dart';
-
 part 'edit_customer_state.dart';
 
 @injectable
@@ -17,7 +16,7 @@ class EditCustomerBloc extends Bloc<EditCustomerEvent, EditCustomerState> {
       if (event is EditCustomerSaveEvent) {
         emit(EditCustomerLoading());
         try {
-          await _customerRepository.update('1', event.customer);
+          await _customerRepository.update(event.customer);
           emit(EditCustomerLoadedSuccess());
         } catch (e) {
           emit(EditCustomerLoadedFail());
@@ -25,7 +24,7 @@ class EditCustomerBloc extends Bloc<EditCustomerEvent, EditCustomerState> {
       } else if (event is EditCustomerRemoveCustomerEvent) {
         emit(EditCustomerLoading());
         try {
-          await _customerRepository.delete('1', event.customerId);
+          await _customerRepository.delete(event.customerId);
           emit(EditCustomerLoadedSuccess());
         } catch (e) {
           emit(EditCustomerLoadedFail());

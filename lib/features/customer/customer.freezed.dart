@@ -56,30 +56,21 @@ const $Customer = _$CustomerTearOff();
 /// @nodoc
 mixin _$Customer {
   String get id => throw _privateConstructorUsedError;
-
   String get name => throw _privateConstructorUsedError;
-
   String get phone => throw _privateConstructorUsedError;
-
   String? get hobbies => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'id_number')
   String get idNumber => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'date_of_birth')
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'last_contact_date')
   DateTime get lastContactDate => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
-
   @JsonKey(ignore: true)
   $CustomerCopyWith<Customer> get copyWith =>
       throw _privateConstructorUsedError;
@@ -89,7 +80,6 @@ mixin _$Customer {
 abstract class $CustomerCopyWith<$Res> {
   factory $CustomerCopyWith(Customer value, $Res Function(Customer) then) =
       _$CustomerCopyWithImpl<$Res>;
-
   $Res call(
       {String id,
       String name,
@@ -167,7 +157,6 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
 abstract class _$CustomerCopyWith<$Res> implements $CustomerCopyWith<$Res> {
   factory _$CustomerCopyWith(_Customer value, $Res Function(_Customer) then) =
       __$CustomerCopyWithImpl<$Res>;
-
   @override
   $Res call(
       {String id,
@@ -354,27 +343,21 @@ abstract class _Customer implements Customer {
   String get phone;
   @override
   String? get hobbies;
-
   @override
   @JsonKey(name: 'id_number')
   String get idNumber;
-
   @override
   @JsonKey(name: 'date_of_birth')
   DateTime get dateOfBirth;
-
   @override
   @JsonKey(name: 'last_contact_date')
   DateTime get lastContactDate;
-
   @override
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt;
-
   @override
   @JsonKey(name: 'created_at')
   DateTime get createdAt;
-
   @override
   @JsonKey(ignore: true)
   _$CustomerCopyWith<_Customer> get copyWith =>

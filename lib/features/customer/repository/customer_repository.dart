@@ -4,18 +4,17 @@ import 'package:injectable/injectable.dart';
 import '../customer.dart';
 
 abstract class ICustomerRepository {
-  Future<List<Customer>> query(String userId, [int limit = 15]);
+  Future<List<Customer>> query([int limit = 15]);
 
-  Stream<List<Customer>> queryStream(String userId);
+  Stream<List<Customer>> queryStream();
 
-  Future<List<Customer>> startAfter(String userId, String customerId,
-      [int limit = 15]);
+  Future<List<Customer>> startAfter(String customerId, [int limit = 15]);
 
-  Future<void> add(String userId, Customer customer);
+  Future<void> add(Customer customer);
 
-  Future<void> delete(String userId, String customerId);
+  Future<void> delete(String customerId);
 
-  Future<void> update(String userId, Customer customer);
+  Future<void> update(Customer customer);
 }
 
 @Singleton(as: ICustomerRepository)
@@ -25,41 +24,40 @@ class CustomerRepository implements ICustomerRepository {
   CustomerRepository(this._iCustomerService);
 
   @override
-  Future<List<Customer>> query(String userId, [int limit = 15]) {
-    return _iCustomerService.query(userId, limit).get().then((snapshot) {
+  Future<List<Customer>> query([int limit = 15]) {
+    return _iCustomerService.query(limit).get().then((snapshot) {
       return snapshot.docs.map((e) => e.data()).toList();
     });
   }
 
   @override
-  Future<void> add(String userId, Customer customer) {
-    return _iCustomerService.insertOrReplace(userId, customer);
+  Future<void> add(Customer customer) {
+    return _iCustomerService.insertOrReplace(customer);
   }
 
   @override
-  Future<void> delete(String userId, String customerId) {
-    return _iCustomerService.delete(userId, customerId);
+  Future<void> delete(String customerId) {
+    return _iCustomerService.delete(customerId);
   }
 
   @override
-  Future<List<Customer>> startAfter(String userId, String customerId,
-      [int limit = 15]) {
+  Future<List<Customer>> startAfter(String customerId, [int limit = 15]) {
     return _iCustomerService
-        .startAfter(userId, customerId, limit)
+        .startAfter(customerId, limit)
         .get()
         .then((value) => value.docs.map((e) => e.data()).toList());
   }
 
   @override
-  Stream<List<Customer>> queryStream(String userId) {
+  Stream<List<Customer>> queryStream() {
     return _iCustomerService
-        .query(userId)
+        .query()
         .snapshots()
         .map((event) => event.docs.map((e) => e.data()).toList());
   }
 
   @override
-  Future<void> update(String userId, Customer customer) {
-    return _iCustomerService.insertOrReplace(userId, customer);
+  Future<void> update(Customer customer) {
+    return _iCustomerService.insertOrReplace(customer);
   }
 }
