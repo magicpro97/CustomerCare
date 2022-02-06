@@ -250,6 +250,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Sign in with`
+  String get sign_in_with {
+    return Intl.message(
+      'Sign in with',
+      name: 'sign_in_with',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

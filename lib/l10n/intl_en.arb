@@ -41,5 +41,7 @@
   "required": "Please input some text",
   "@required": {},
   "save": "Save",
-  "@save": {}
+  "@save": {},
+  "sign_in_with": "Sign in with",
+  "@sign_in_with": {}
 }

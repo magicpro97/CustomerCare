@@ -48,6 +48,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "remove_customer_message": MessageLookupByLibrary.simpleMessage(
             "Bạn có chắc rằng muốn xóa khách hàng này?"),
         "required": MessageLookupByLibrary.simpleMessage("Bắt buộc *"),
-        "save": MessageLookupByLibrary.simpleMessage("Lưu")
+        "save": MessageLookupByLibrary.simpleMessage("Lưu"),
+        "sign_in_with": MessageLookupByLibrary.simpleMessage("Đăng nhập bằng")
       };
 }

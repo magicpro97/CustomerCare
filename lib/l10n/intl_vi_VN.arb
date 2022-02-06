@@ -41,5 +41,7 @@
   "required": "Bắt buộc *",
   "@required": {},
   "save": "Lưu",
-  "@save": {}
+  "@save": {},
+  "sign_in_with": "Đăng nhập bằng",
+  "@sign_in_with": {}
 }

@@ -44,7 +44,7 @@ class SignInPage extends StatelessWidget with AutoRouteWrapper {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     Text(
-                      'Sign in with',
+                      S.of(context).sign_in_with,
                       style: Theme.of(context).textTheme.headline6,
                     ),
                     SignInButton(

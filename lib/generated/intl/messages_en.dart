@@ -49,6 +49,7 @@ class MessageLookup extends MessageLookupByLibrary {
             "Do you want to remove this customer?"),
         "required":
             MessageLookupByLibrary.simpleMessage("Please input some text"),
-        "save": MessageLookupByLibrary.simpleMessage("Save")
+        "save": MessageLookupByLibrary.simpleMessage("Save"),
+        "sign_in_with": MessageLookupByLibrary.simpleMessage("Sign in with")
       };
 }
