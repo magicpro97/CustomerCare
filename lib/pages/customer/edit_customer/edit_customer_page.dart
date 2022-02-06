@@ -119,6 +119,7 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
         dateOfBirth: _dateOfBirth,
         hobbies: _hobbiesTextEditingController.text,
         idNumber: _idNumberTextEditingController.text,
+        updatedAt: DateTime.now(),
       );
       context.read<EditCustomerBloc>()
         ..add(EditCustomerSaveEvent(customer))

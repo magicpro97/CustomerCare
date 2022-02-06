@@ -110,6 +110,8 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
         dateOfBirth: _dateOfBirth,
         hobbies: _hobbiesTextEditingController.text,
         idNumber: _idNumberTextEditingController.text,
+        createdAt: DateTime.now(),
+        updatedAt: DateTime.now(),
       );
       context.read<AddCustomerBloc>()
         ..add(AddCustomerCreateEvent(customer))

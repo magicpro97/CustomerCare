@@ -29,7 +29,9 @@ class _$CustomerTearOff {
       String? hobbies,
       @JsonKey(name: 'id_number') required String idNumber,
       @JsonKey(name: 'date_of_birth') required DateTime dateOfBirth,
-      @JsonKey(name: 'last_contact_date') required DateTime lastContactDate}) {
+      @JsonKey(name: 'last_contact_date') required DateTime lastContactDate,
+      @JsonKey(name: 'updated_at') required DateTime updatedAt,
+      @JsonKey(name: 'created_at') required DateTime createdAt}) {
     return _Customer(
       id: id,
       name: name,
@@ -38,6 +40,8 @@ class _$CustomerTearOff {
       idNumber: idNumber,
       dateOfBirth: dateOfBirth,
       lastContactDate: lastContactDate,
+      updatedAt: updatedAt,
+      createdAt: createdAt,
     );
   }
 
@@ -68,6 +72,12 @@ mixin _$Customer {
   @JsonKey(name: 'last_contact_date')
   DateTime get lastContactDate => throw _privateConstructorUsedError;
 
+  @JsonKey(name: 'updated_at')
+  DateTime get updatedAt => throw _privateConstructorUsedError;
+
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt => throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -79,6 +89,7 @@ mixin _$Customer {
 abstract class $CustomerCopyWith<$Res> {
   factory $CustomerCopyWith(Customer value, $Res Function(Customer) then) =
       _$CustomerCopyWithImpl<$Res>;
+
   $Res call(
       {String id,
       String name,
@@ -86,7 +97,9 @@ abstract class $CustomerCopyWith<$Res> {
       String? hobbies,
       @JsonKey(name: 'id_number') String idNumber,
       @JsonKey(name: 'date_of_birth') DateTime dateOfBirth,
-      @JsonKey(name: 'last_contact_date') DateTime lastContactDate});
+      @JsonKey(name: 'last_contact_date') DateTime lastContactDate,
+      @JsonKey(name: 'updated_at') DateTime updatedAt,
+      @JsonKey(name: 'created_at') DateTime createdAt});
 }
 
 /// @nodoc
@@ -106,6 +119,8 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
     Object? idNumber = freezed,
     Object? dateOfBirth = freezed,
     Object? lastContactDate = freezed,
+    Object? updatedAt = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -136,6 +151,14 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
           ? _value.lastContactDate
           : lastContactDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      updatedAt: updatedAt == freezed
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -144,6 +167,7 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
 abstract class _$CustomerCopyWith<$Res> implements $CustomerCopyWith<$Res> {
   factory _$CustomerCopyWith(_Customer value, $Res Function(_Customer) then) =
       __$CustomerCopyWithImpl<$Res>;
+
   @override
   $Res call(
       {String id,
@@ -152,7 +176,9 @@ abstract class _$CustomerCopyWith<$Res> implements $CustomerCopyWith<$Res> {
       String? hobbies,
       @JsonKey(name: 'id_number') String idNumber,
       @JsonKey(name: 'date_of_birth') DateTime dateOfBirth,
-      @JsonKey(name: 'last_contact_date') DateTime lastContactDate});
+      @JsonKey(name: 'last_contact_date') DateTime lastContactDate,
+      @JsonKey(name: 'updated_at') DateTime updatedAt,
+      @JsonKey(name: 'created_at') DateTime createdAt});
 }
 
 /// @nodoc
@@ -173,6 +199,8 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
     Object? idNumber = freezed,
     Object? dateOfBirth = freezed,
     Object? lastContactDate = freezed,
+    Object? updatedAt = freezed,
+    Object? createdAt = freezed,
   }) {
     return _then(_Customer(
       id: id == freezed
@@ -203,6 +231,14 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
           ? _value.lastContactDate
           : lastContactDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      updatedAt: updatedAt == freezed
+          ? _value.updatedAt
+          : updatedAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
+      createdAt: createdAt == freezed
+          ? _value.createdAt
+          : createdAt // ignore: cast_nullable_to_non_nullable
+              as DateTime,
     ));
   }
 }
@@ -218,7 +254,9 @@ class _$_Customer implements _Customer {
       this.hobbies,
       @JsonKey(name: 'id_number') required this.idNumber,
       @JsonKey(name: 'date_of_birth') required this.dateOfBirth,
-      @JsonKey(name: 'last_contact_date') required this.lastContactDate});
+      @JsonKey(name: 'last_contact_date') required this.lastContactDate,
+      @JsonKey(name: 'updated_at') required this.updatedAt,
+      @JsonKey(name: 'created_at') required this.createdAt});
 
   factory _$_Customer.fromJson(Map<String, dynamic> json) =>
       _$$_CustomerFromJson(json);
@@ -240,10 +278,16 @@ class _$_Customer implements _Customer {
   @override
   @JsonKey(name: 'last_contact_date')
   final DateTime lastContactDate;
+  @override
+  @JsonKey(name: 'updated_at')
+  final DateTime updatedAt;
+  @override
+  @JsonKey(name: 'created_at')
+  final DateTime createdAt;
 
   @override
   String toString() {
-    return 'Customer(id: $id, name: $name, phone: $phone, hobbies: $hobbies, idNumber: $idNumber, dateOfBirth: $dateOfBirth, lastContactDate: $lastContactDate)';
+    return 'Customer(id: $id, name: $name, phone: $phone, hobbies: $hobbies, idNumber: $idNumber, dateOfBirth: $dateOfBirth, lastContactDate: $lastContactDate, updatedAt: $updatedAt, createdAt: $createdAt)';
   }
 
   @override
@@ -259,7 +303,9 @@ class _$_Customer implements _Customer {
             const DeepCollectionEquality()
                 .equals(other.dateOfBirth, dateOfBirth) &&
             const DeepCollectionEquality()
-                .equals(other.lastContactDate, lastContactDate));
+                .equals(other.lastContactDate, lastContactDate) &&
+            const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
+            const DeepCollectionEquality().equals(other.createdAt, createdAt));
   }
 
   @override
@@ -271,7 +317,9 @@ class _$_Customer implements _Customer {
       const DeepCollectionEquality().hash(hobbies),
       const DeepCollectionEquality().hash(idNumber),
       const DeepCollectionEquality().hash(dateOfBirth),
-      const DeepCollectionEquality().hash(lastContactDate));
+      const DeepCollectionEquality().hash(lastContactDate),
+      const DeepCollectionEquality().hash(updatedAt),
+      const DeepCollectionEquality().hash(createdAt));
 
   @JsonKey(ignore: true)
   @override
@@ -290,24 +338,20 @@ abstract class _Customer implements Customer {
       required String name,
       required String phone,
       String? hobbies,
-      @JsonKey(name: 'id_number')
-          required String idNumber,
-      @JsonKey(name: 'date_of_birth')
-          required DateTime dateOfBirth,
-      @JsonKey(name: 'last_contact_date')
-          required DateTime lastContactDate}) = _$_Customer;
+      @JsonKey(name: 'id_number') required String idNumber,
+      @JsonKey(name: 'date_of_birth') required DateTime dateOfBirth,
+      @JsonKey(name: 'last_contact_date') required DateTime lastContactDate,
+      @JsonKey(name: 'updated_at') required DateTime updatedAt,
+      @JsonKey(name: 'created_at') required DateTime createdAt}) = _$_Customer;
 
   factory _Customer.fromJson(Map<String, dynamic> json) = _$_Customer.fromJson;
 
   @override
   String get id;
-
   @override
   String get name;
-
   @override
   String get phone;
-
   @override
   String? get hobbies;
 
@@ -322,6 +366,14 @@ abstract class _Customer implements Customer {
   @override
   @JsonKey(name: 'last_contact_date')
   DateTime get lastContactDate;
+
+  @override
+  @JsonKey(name: 'updated_at')
+  DateTime get updatedAt;
+
+  @override
+  @JsonKey(name: 'created_at')
+  DateTime get createdAt;
 
   @override
   @JsonKey(ignore: true)
