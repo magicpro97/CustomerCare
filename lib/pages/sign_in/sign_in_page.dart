@@ -18,7 +18,7 @@ class SignInPage extends StatelessWidget with AutoRouteWrapper {
 
   void _stateListener(BuildContext context, SignInState state) {
     if (state is SignInSuccess) {
-      context.navigateTo(const HomeRoute());
+      context.navigateNamedTo(const HomeRoute().path);
     } else if (state is SignInFail) {
       EasyLoading.showError(S.of(context).common_error);
     }

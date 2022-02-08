@@ -120,7 +120,7 @@ class _AddCustomerPageState extends State<AddCustomerPage> {
             EasyLoading.show();
           } else if (state is AddCustomerLoadedSuccess) {
             EasyLoading.dismiss();
-            context.navigateTo(const HomeRoute());
+            context.navigateNamedTo(const HomeRoute().path);
           } else if (state is AddCustomerLoadedFail) {
             EasyLoading.showError(S.of(context).common_error);
           }

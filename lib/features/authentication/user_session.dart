@@ -14,6 +14,11 @@ class UserSession {
     this._firebaseAuth,
     this._userRepository,
   ) {
+    final email = _firebaseAuth.currentUser?.email;
+    if (email != null) {
+      _userRepository.findByEmail(email).then((value) => _user = value);
+    }
+
     _firebaseAuth.authStateChanges().listen((firebaseUser) async {
       if (firebaseUser != null &&
           firebaseUser.email != null &&

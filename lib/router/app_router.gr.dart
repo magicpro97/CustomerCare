@@ -17,6 +17,10 @@ class _$AppRouter extends RootStackRouter {
 
   @override
   final Map<String, PageFactory> pagesMap = {
+    SplashRoute.name: (routeData) {
+      return MaterialPageX<dynamic>(
+          routeData: routeData, child: const SplashPage());
+    },
     HomeRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
           routeData: routeData, child: const HomePage());
@@ -38,13 +42,21 @@ class _$AppRouter extends RootStackRouter {
   };
 
   @override
-  List<RouteConfig> get routes =>
-      [
+  List<RouteConfig> get routes => [
+        RouteConfig(SplashRoute.name, path: '/'),
         RouteConfig(HomeRoute.name, path: '/home-page'),
         RouteConfig(AddCustomerRoute.name, path: '/add-customer-page'),
         RouteConfig(EditCustomerRoute.name, path: '/edit-customer-page'),
-        RouteConfig(SignInRoute.name, path: '/')
+        RouteConfig(SignInRoute.name, path: '/sign-in-page')
       ];
+}
+
+/// generated route for
+/// [SplashPage]
+class SplashRoute extends PageRouteInfo<void> {
+  const SplashRoute() : super(SplashRoute.name, path: '/');
+
+  static const String name = 'SplashRoute';
 }
 
 /// generated route for
@@ -91,7 +103,7 @@ class EditCustomerRouteArgs {
 /// generated route for
 /// [SignInPage]
 class SignInRoute extends PageRouteInfo<void> {
-  const SignInRoute() : super(SignInRoute.name, path: '/');
+  const SignInRoute() : super(SignInRoute.name, path: '/sign-in-page');
 
   static const String name = 'SignInRoute';
 }

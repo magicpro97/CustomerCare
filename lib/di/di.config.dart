@@ -11,16 +11,17 @@ import 'package:injectable/injectable.dart' as _i2;
 
 import '../features/authentication/google_provider.dart' as _i6;
 import '../features/authentication/user_session.dart' as _i10;
-import '../features/customer/repository/customer_repository.dart' as _i12;
+import '../features/customer/repository/customer_repository.dart' as _i13;
 import '../features/customer/service/customer_service.dart' as _i11;
 import '../features/user/repository/user_repository.dart' as _i8;
 import '../features/user/service/user_service.dart' as _i7;
-import '../pages/customer/add_customer/add_customer_bloc.dart' as _i13;
-import '../pages/customer/edit_customer/edit_customer_bloc.dart' as _i14;
-import '../pages/home/home_page_bloc.dart' as _i15;
+import '../pages/customer/add_customer/add_customer_bloc.dart' as _i14;
+import '../pages/customer/edit_customer/edit_customer_bloc.dart' as _i15;
+import '../pages/home/home_page_bloc.dart' as _i16;
 import '../pages/sign_in/sign_in_bloc.dart' as _i9;
+import '../pages/splash/splash_bloc.dart' as _i12;
 import '../router/app_router.dart' as _i3;
-import 'register_module.dart' as _i16; // ignore_for_file: unnecessary_lambdas
+import 'register_module.dart' as _i17; // ignore_for_file: unnecessary_lambdas
 
 // ignore_for_file: lines_longer_than_80_chars
 /// initializes the registration of provided dependencies inside of [GetIt]
@@ -41,15 +42,16 @@ _i1.GetIt $initGetIt(_i1.GetIt get,
       _i10.UserSession(get<_i4.FirebaseAuth>(), get<_i8.IUserRepository>()));
   gh.singleton<_i11.ICustomerService>(_i11.CustomerService(
       get<_i5.FirebaseFirestore>(), get<_i10.UserSession>()));
-  gh.singleton<_i12.ICustomerRepository>(
-      _i12.CustomerRepository(get<_i11.ICustomerService>()));
-  gh.factory<_i13.AddCustomerBloc>(
-      () => _i13.AddCustomerBloc(get<_i12.ICustomerRepository>()));
-  gh.factory<_i14.EditCustomerBloc>(
-      () => _i14.EditCustomerBloc(get<_i12.ICustomerRepository>()));
-  gh.factory<_i15.HomePageBloc>(
-      () => _i15.HomePageBloc(get<_i12.ICustomerRepository>()));
+  gh.factory<_i12.SplashBloc>(() => _i12.SplashBloc(get<_i10.UserSession>()));
+  gh.singleton<_i13.ICustomerRepository>(
+      _i13.CustomerRepository(get<_i11.ICustomerService>()));
+  gh.factory<_i14.AddCustomerBloc>(
+      () => _i14.AddCustomerBloc(get<_i13.ICustomerRepository>()));
+  gh.factory<_i15.EditCustomerBloc>(
+      () => _i15.EditCustomerBloc(get<_i13.ICustomerRepository>()));
+  gh.factory<_i16.HomePageBloc>(
+      () => _i16.HomePageBloc(get<_i13.ICustomerRepository>()));
   return get;
 }
 
-class _$RegisterModule extends _i16.RegisterModule {}
+class _$RegisterModule extends _i17.RegisterModule {}
