@@ -24,6 +24,10 @@
   "@edit_customer_information": {},
   "fullname": "Họ và tên",
   "@fullname": {},
+  "hello": "Chào {username},",
+  "@hello": {
+    "description": "Message for greeting user"
+  },
   "hobbies": "Sở thích",
   "@hobbies": {},
   "id_number": "CMNN/CCCD",

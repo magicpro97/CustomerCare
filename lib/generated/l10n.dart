@@ -1,7 +1,6 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -158,6 +157,16 @@ class S {
       name: 'fullname',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Hello {username},`
+  String hello(Object username) {
+    return Intl.message(
+      'Hello $username,',
+      name: 'hello',
+      desc: 'Message for greeting user',
+      args: [username],
     );
   }
 

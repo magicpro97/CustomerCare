@@ -42,7 +42,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyBsiq95qJDfJeWZy4P-9WcDHhVE1CLJ5rA',
-    appId: '1:799738723094:android:28eabec7d3b2a5b2afae37',
+    appId: '1:799738723094:android:b604bd2f54f2e1f8afae37',
     messagingSenderId: '799738723094',
     projectId: 'customer-care-83b73',
     storageBucket: 'customer-care-83b73.appspot.com',
@@ -50,12 +50,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyA4Yi5LbVlACewwxRHfui27D1EEyrnD6nU',
-    appId: '1:799738723094:ios:5cfa8a593b74ba66afae37',
+    appId: '1:799738723094:ios:0bbc7f5d406372eaafae37',
     messagingSenderId: '799738723094',
     projectId: 'customer-care-83b73',
     storageBucket: 'customer-care-83b73.appspot.com',
-    iosClientId:
-        '799738723094-1mhbhmirrmsrn03g22h9dm18jtr6i6t3.apps.googleusercontent.com',
-    iosBundleId: 'com.customercare',
+    androidClientId: '799738723094-9d5j50tcm7slaf9nic05baupg0k907l0.apps.googleusercontent.com',
+    iosClientId: '799738723094-nfso6cp7kb40qdbev54s2naof379hvmd.apps.googleusercontent.com',
+    iosBundleId: 'com.customercare.app',
   );
 }

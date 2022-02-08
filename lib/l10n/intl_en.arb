@@ -24,6 +24,10 @@
   "@edit_customer_information": {},
   "fullname": "Fullname",
   "@fullname": {},
+  "hello": "Hello {username},",
+  "@hello": {
+    "description": "Message for greeting user"
+  },
   "hobbies": "Hobbies",
   "@hobbies": {},
   "id_number": "ID number",
