@@ -1,3 +1,4 @@
+import 'package:customer_care/features/user/setting.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'user.freezed.dart';
@@ -14,6 +15,7 @@ class User with _$User {
     @JsonKey(name: 'is_active') required bool isActive,
     @JsonKey(name: 'updated_at') required DateTime updatedAt,
     @JsonKey(name: 'created_at') required DateTime createdAt,
+    required Setting setting,
   }) = _User;
 
   factory User.fromJson(Map<String, dynamic> json) => _$UserFromJson(json);

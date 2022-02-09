@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:customer_care/features/authentication/google_provider.dart';
+import 'package:customer_care/features/user/setting.dart';
 import 'package:customer_care/features/user/repository/user_repository.dart';
 import 'package:customer_care/features/user/user.dart';
 import 'package:equatable/equatable.dart';
@@ -45,13 +46,16 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
 
   Future<void> _createUser(UserCredential userCredential) {
     final user = User(
-      id: const Uuid().v1(),
-      name: userCredential.user!.displayName ?? '',
-      email: userCredential.user!.email ?? '',
-      isActive: true,
-      updatedAt: DateTime.now(),
-      createdAt: DateTime.now(),
-    );
+        id: const Uuid().v1(),
+        name: userCredential.user!.displayName ?? '',
+        email: userCredential.user!.email ?? '',
+        isActive: true,
+        updatedAt: DateTime.now(),
+        createdAt: DateTime.now(),
+        setting: Setting(
+          enableRemindContact: true,
+          remindContactDayAfterNumber: 3,
+        ));
     return _userRepository.create(user);
   }
 }

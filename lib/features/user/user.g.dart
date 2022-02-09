@@ -13,6 +13,7 @@ _$_User _$$_UserFromJson(Map<String, dynamic> json) => _$_User(
       isActive: json['is_active'] as bool,
       updatedAt: DateTime.parse(json['updated_at'] as String),
       createdAt: DateTime.parse(json['created_at'] as String),
+      setting: Setting.fromJson(json['setting'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
@@ -22,4 +23,5 @@ Map<String, dynamic> _$$_UserToJson(_$_User instance) => <String, dynamic>{
       'is_active': instance.isActive,
       'updated_at': instance.updatedAt.toIso8601String(),
       'created_at': instance.createdAt.toIso8601String(),
+      'setting': instance.setting.toJson(),
     };

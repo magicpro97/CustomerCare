@@ -28,7 +28,8 @@ class _$UserTearOff {
       required String email,
       @JsonKey(name: 'is_active') required bool isActive,
       @JsonKey(name: 'updated_at') required DateTime updatedAt,
-      @JsonKey(name: 'created_at') required DateTime createdAt}) {
+      @JsonKey(name: 'created_at') required DateTime createdAt,
+      required Setting setting}) {
     return _User(
       id: id,
       name: name,
@@ -36,6 +37,7 @@ class _$UserTearOff {
       isActive: isActive,
       updatedAt: updatedAt,
       createdAt: createdAt,
+      setting: setting,
     );
   }
 
@@ -58,6 +60,7 @@ mixin _$User {
   DateTime get updatedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
+  Setting get setting => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -74,7 +77,10 @@ abstract class $UserCopyWith<$Res> {
       String email,
       @JsonKey(name: 'is_active') bool isActive,
       @JsonKey(name: 'updated_at') DateTime updatedAt,
-      @JsonKey(name: 'created_at') DateTime createdAt});
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      Setting setting});
+
+  $SettingCopyWith<$Res> get setting;
 }
 
 /// @nodoc
@@ -93,6 +99,7 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
     Object? isActive = freezed,
     Object? updatedAt = freezed,
     Object? createdAt = freezed,
+    Object? setting = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -119,7 +126,18 @@ class _$UserCopyWithImpl<$Res> implements $UserCopyWith<$Res> {
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      setting: setting == freezed
+          ? _value.setting
+          : setting // ignore: cast_nullable_to_non_nullable
+              as Setting,
     ));
+  }
+
+  @override
+  $SettingCopyWith<$Res> get setting {
+    return $SettingCopyWith<$Res>(_value.setting, (value) {
+      return _then(_value.copyWith(setting: value));
+    });
   }
 }
 
@@ -134,7 +152,11 @@ abstract class _$UserCopyWith<$Res> implements $UserCopyWith<$Res> {
       String email,
       @JsonKey(name: 'is_active') bool isActive,
       @JsonKey(name: 'updated_at') DateTime updatedAt,
-      @JsonKey(name: 'created_at') DateTime createdAt});
+      @JsonKey(name: 'created_at') DateTime createdAt,
+      Setting setting});
+
+  @override
+  $SettingCopyWith<$Res> get setting;
 }
 
 /// @nodoc
@@ -154,6 +176,7 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
     Object? isActive = freezed,
     Object? updatedAt = freezed,
     Object? createdAt = freezed,
+    Object? setting = freezed,
   }) {
     return _then(_User(
       id: id == freezed
@@ -180,6 +203,10 @@ class __$UserCopyWithImpl<$Res> extends _$UserCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      setting: setting == freezed
+          ? _value.setting
+          : setting // ignore: cast_nullable_to_non_nullable
+              as Setting,
     ));
   }
 }
@@ -194,7 +221,8 @@ class _$_User implements _User {
       required this.email,
       @JsonKey(name: 'is_active') required this.isActive,
       @JsonKey(name: 'updated_at') required this.updatedAt,
-      @JsonKey(name: 'created_at') required this.createdAt});
+      @JsonKey(name: 'created_at') required this.createdAt,
+      required this.setting});
 
   factory _$_User.fromJson(Map<String, dynamic> json) => _$$_UserFromJson(json);
 
@@ -213,10 +241,12 @@ class _$_User implements _User {
   @override
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
+  @override
+  final Setting setting;
 
   @override
   String toString() {
-    return 'User(id: $id, name: $name, email: $email, isActive: $isActive, updatedAt: $updatedAt, createdAt: $createdAt)';
+    return 'User(id: $id, name: $name, email: $email, isActive: $isActive, updatedAt: $updatedAt, createdAt: $createdAt, setting: $setting)';
   }
 
   @override
@@ -229,7 +259,8 @@ class _$_User implements _User {
             const DeepCollectionEquality().equals(other.email, email) &&
             const DeepCollectionEquality().equals(other.isActive, isActive) &&
             const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt));
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality().equals(other.setting, setting));
   }
 
   @override
@@ -240,7 +271,8 @@ class _$_User implements _User {
       const DeepCollectionEquality().hash(email),
       const DeepCollectionEquality().hash(isActive),
       const DeepCollectionEquality().hash(updatedAt),
-      const DeepCollectionEquality().hash(createdAt));
+      const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(setting));
 
   @JsonKey(ignore: true)
   @override
@@ -260,7 +292,8 @@ abstract class _User implements User {
       required String email,
       @JsonKey(name: 'is_active') required bool isActive,
       @JsonKey(name: 'updated_at') required DateTime updatedAt,
-      @JsonKey(name: 'created_at') required DateTime createdAt}) = _$_User;
+      @JsonKey(name: 'created_at') required DateTime createdAt,
+      required Setting setting}) = _$_User;
 
   factory _User.fromJson(Map<String, dynamic> json) = _$_User.fromJson;
 
@@ -279,6 +312,8 @@ abstract class _User implements User {
   @override
   @JsonKey(name: 'created_at')
   DateTime get createdAt;
+  @override
+  Setting get setting;
   @override
   @JsonKey(ignore: true)
   _$UserCopyWith<_User> get copyWith => throw _privateConstructorUsedError;

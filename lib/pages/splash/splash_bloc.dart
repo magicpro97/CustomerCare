@@ -1,5 +1,3 @@
-import 'dart:async';
-
 import 'package:bloc/bloc.dart';
 import 'package:customer_care/features/authentication/user_session.dart';
 import 'package:equatable/equatable.dart';

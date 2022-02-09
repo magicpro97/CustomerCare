@@ -18,15 +18,13 @@ abstract class ICustomerService extends Service {
 
 @Singleton(as: ICustomerService)
 class CustomerService extends ICustomerService {
-  final FirebaseFirestore _firebaseFirestore;
-  final UserSession _userSession;
   final CollectionReference _customerRef;
 
   CustomerService(
-    this._firebaseFirestore,
-    this._userSession,
-  )   : _customerRef = _firebaseFirestore.collection('users'),
-        super(_userSession);
+    FirebaseFirestore firebaseFirestore,
+    UserSession userSession,
+  )   : _customerRef = firebaseFirestore.collection('users'),
+        super(userSession);
 
   @override
   Future<void> insertOrReplace(Customer customer) {

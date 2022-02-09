@@ -60,12 +60,32 @@ class S {
     );
   }
 
+  /// `After`
+  String get after {
+    return Intl.message(
+      'After',
+      name: 'after',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Customer Care`
   String get app_name {
     return Intl.message(
       'Customer Care',
       name: 'app_name',
       desc: 'App\'s name',
+      args: [],
+    );
+  }
+
+  /// `Have a good day!`
+  String get blessing {
+    return Intl.message(
+      'Have a good day!',
+      name: 'blessing',
+      desc: '',
       args: [],
     );
   }
@@ -140,6 +160,19 @@ class S {
     );
   }
 
+  /// `{count, plural, zero{day} one{{count} day} other{{count} days}}`
+  String day(num count) {
+    return Intl.plural(
+      count,
+      zero: 'day',
+      one: '$count day',
+      other: '$count days',
+      name: 'day',
+      desc: '',
+      args: [count],
+    );
+  }
+
   /// `Edit customer's information`
   String get edit_customer_information {
     return Intl.message(
@@ -180,6 +213,16 @@ class S {
     );
   }
 
+  /// `Home`
+  String get home {
+    return Intl.message(
+      'Home',
+      name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `ID number`
   String get id_number {
     return Intl.message(
@@ -200,6 +243,16 @@ class S {
     );
   }
 
+  /// `To make a phone call to them by pressing phone icon next to customer's name`
+  String get make_phone_call_instruction {
+    return Intl.message(
+      'To make a phone call to them by pressing phone icon next to customer\'s name',
+      name: 'make_phone_call_instruction',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `OK`
   String get ok {
     return Intl.message(
@@ -215,6 +268,16 @@ class S {
     return Intl.message(
       'Phone number',
       name: 'phone_number',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Remind contact to customer`
+  String get remind_contact_to_customer {
+    return Intl.message(
+      'Remind contact to customer',
+      name: 'remind_contact_to_customer',
       desc: '',
       args: [],
     );
@@ -260,6 +323,16 @@ class S {
     );
   }
 
+  /// `Setting`
+  String get setting {
+    return Intl.message(
+      'Setting',
+      name: 'setting',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Sign in with`
   String get sign_in_with {
     return Intl.message(
@@ -267,6 +340,19 @@ class S {
       name: 'sign_in_with',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `{count, plural, zero{Great, you don't miss any customer, keep going!} one{You have {count} customer need to contact} other{You have {count} customers need to contact}}`
+  String you_have_n_customer_need_to_contact_today(num count) {
+    return Intl.plural(
+      count,
+      zero: 'Great, you don\'t miss any customer, keep going!',
+      one: 'You have $count customer need to contact',
+      other: 'You have $count customers need to contact',
+      name: 'you_have_n_customer_need_to_contact_today',
+      desc: '',
+      args: [count],
     );
   }
 }

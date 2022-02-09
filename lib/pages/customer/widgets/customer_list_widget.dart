@@ -1,6 +1,6 @@
+import 'package:customer_care/features/customer/customer.dart';
 import 'package:flutter/material.dart';
 
-import '../customer.dart';
 import 'customer_item_widget.dart';
 
 class CustomerListWidget extends StatelessWidget {

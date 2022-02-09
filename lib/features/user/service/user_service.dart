@@ -15,11 +15,10 @@ abstract class IUserService {
 
 @Singleton(as: IUserService)
 class UserService implements IUserService {
-  final FirebaseFirestore _firebaseFirestore;
   final CollectionReference _userCollectionRef;
 
-  UserService(this._firebaseFirestore)
-      : _userCollectionRef = _firebaseFirestore.collection('users');
+  UserService(FirebaseFirestore firebaseFirestore)
+      : _userCollectionRef = firebaseFirestore.collection('users');
 
   @override
   Future<void> deactivate(String userId) {
