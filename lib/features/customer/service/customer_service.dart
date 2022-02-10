@@ -2,6 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:customer_care/common/service.dart';
 import 'package:customer_care/features/authentication/user_session.dart';
 import 'package:customer_care/features/customer/customer.dart';
+import 'package:customer_care/features/user/user.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class ICustomerService extends Service {
@@ -18,12 +19,16 @@ abstract class ICustomerService extends Service {
 
 @Singleton(as: ICustomerService)
 class CustomerService extends ICustomerService {
-  final CollectionReference _customerRef;
+  final CollectionReference<User> _customerRef;
 
   CustomerService(
     FirebaseFirestore firebaseFirestore,
     UserSession userSession,
-  )   : _customerRef = firebaseFirestore.collection('users'),
+  )   : _customerRef = firebaseFirestore
+            .collection('users')
+            .withConverter<User>(
+                fromFirestore: (snapshot, _) => User.fromJson(snapshot.data()!),
+                toFirestore: (user, _) => user.toJson()),
         super(userSession);
 
   @override

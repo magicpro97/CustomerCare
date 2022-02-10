@@ -16,12 +16,17 @@ abstract class ISettingService extends Service {
 
 @Singleton(as: ISettingService)
 class SettingService extends ISettingService {
-  final CollectionReference _customerRef;
+  final CollectionReference<User> _customerRef;
 
   SettingService(
     UserSession userSession,
     FirebaseFirestore firebaseFirestore,
-  )   : _customerRef = firebaseFirestore.collection('users'),
+  )   : _customerRef = firebaseFirestore
+            .collection('users')
+            .withConverter<User>(
+                fromFirestore: (snapshot, _) =>
+                    User.fromJson(snapshot.data()!),
+                toFirestore: (user, _) => user.toJson()),
         super(userSession);
 
   @override
@@ -31,9 +36,8 @@ class SettingService extends ISettingService {
 
   @override
   Stream<Setting> settingStream() {
-    return _customerRef
-        .doc(userId)
-        .snapshots()
-        .map((user) => (user.data() as User).setting);
+    return _customerRef.doc(userId).snapshots().map((user) {
+      return (user.data() as User).setting;
+    });
   }
 }

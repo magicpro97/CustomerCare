@@ -28,23 +28,24 @@ class _SettingViewWidgetState extends State<SettingViewWidget> {
   @override
   void initState() {
     super.initState();
-    settingBloc = context.read<SettingViewBloc>()..stream.listen((state) {
-      if (state is SettingViewLoading) {
-        EasyLoading.show();
-      } else if (state is SettingViewLoadedSuccess) {
-        EasyLoading.dismiss();
-      } else if (state is SettingViewLoadedFailure) {
-        EasyLoading.showError(S.of(context).common_error);
-      } else if (state is SettingViewSignOutSuccess) {
-        EasyLoading.dismiss();
-        context.router.replaceAll([const SignInRoute()]);
-      } else if (state is SettingViewSignOutFailure) {
-        EasyLoading.showError(S.of(context).common_error);
-      }
-    });
+    settingBloc = context.read<SettingViewBloc>()
+      ..stream.listen((state) {
+        if (state is SettingViewLoading) {
+          EasyLoading.show();
+        } else if (state is SettingViewLoadedSuccess) {
+          EasyLoading.dismiss();
+        } else if (state is SettingViewLoadedFailure) {
+          EasyLoading.showError(S.of(context).common_error);
+        } else if (state is SettingViewSignOutSuccess) {
+          EasyLoading.dismiss();
+          context.router.replaceAll([const SignInRoute()]);
+        } else if (state is SettingViewSignOutFailure) {
+          EasyLoading.showError(S.of(context).common_error);
+        }
+      });
     reminderDayNumberDropdownMenuItems = reminderDayNumber
         .map((number) => DropdownMenuItem<int>(
-              child: Text('$num'),
+              child: Text('$number'),
               value: number,
             ))
         .toList();
@@ -84,18 +85,18 @@ class _SettingViewWidgetState extends State<SettingViewWidget> {
       child: Column(
         children: [
           Card(
-            child: Padding(
-              padding: EdgeInsets.all(kPaddingTop),
-              child: StreamBuilder<RemindContactCustomerSetting>(
-                  stream: settingBloc.reminderContactCustomerSetting$,
-                  builder: (context, snapshot) {
-                    if (!snapshot.hasData) {
-                      return Container();
-                    }
+            child: StreamBuilder<RemindContactCustomerSetting>(
+                stream: settingBloc.reminderContactCustomerSetting$,
+                builder: (context, snapshot) {
+                  if (!snapshot.hasData) {
+                    return Container();
+                  }
 
-                    return Column(
-                      children: [
-                        Row(
+                  return Column(
+                    children: [
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: kPaddingTop),
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(S.of(context).remind_contact_to_customer),
@@ -107,26 +108,36 @@ class _SettingViewWidgetState extends State<SettingViewWidget> {
                             ),
                           ],
                         ),
-                        Row(
+                      ),
+                      Container(
+                        color: snapshot.data!.enableRemindContact
+                            ? Colors.transparent
+                            : Colors.grey[100],
+                        padding: EdgeInsets.symmetric(horizontal: kPaddingTop),
+                        child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             Text(S.of(context).after),
-                            DropdownButtonHideUnderline(
-                                child: DropdownButton<int>(
-                              onChanged: (value) =>
-                                  _onRemindContactCustomerDropdownChange(
-                                      snapshot.data!, value),
-                              value: snapshot.data!.remindContactDayAfterNumber,
-                              items: reminderDayNumberDropdownMenuItems,
-                              selectedItemBuilder: (_) =>
-                                  selectedReminderDayNumberDropdownMenuItems,
-                            )),
+                            IgnorePointer(
+                              ignoring: !snapshot.data!.enableRemindContact,
+                              child: DropdownButtonHideUnderline(
+                                  child: DropdownButton<int>(
+                                onChanged: (value) =>
+                                    _onRemindContactCustomerDropdownChange(
+                                        snapshot.data!, value),
+                                value:
+                                    snapshot.data!.remindContactDayAfterNumber,
+                                items: reminderDayNumberDropdownMenuItems,
+                                selectedItemBuilder: (_) =>
+                                    selectedReminderDayNumberDropdownMenuItems,
+                              )),
+                            ),
                           ],
                         ),
-                      ],
-                    );
-                  }),
-            ),
+                      ),
+                    ],
+                  );
+                }),
           ),
           ElevatedButton(
             onPressed: _signOut,
