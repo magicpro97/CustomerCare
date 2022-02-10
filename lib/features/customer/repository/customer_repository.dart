@@ -68,7 +68,6 @@ class CustomerRepository implements ICustomerRepository {
     return _customerService
         .query()
         .orderBy('last_date_contact')
-        .where('last_date_contact', isLessThan: DateTime.now())
         .snapshots()
         .map((event) => event.docs.map((e) => e.data()).toList());
   }

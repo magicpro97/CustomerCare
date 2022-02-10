@@ -12,3 +12,8 @@ class SettingViewUpdateRemindContactCustomerEvent extends SettingViewEvent {
   @override
   List<Object?> get props => [remindContactCustomerSetting];
 }
+
+class SettingViewSignOutEvent extends SettingViewEvent {
+  @override
+  List<Object?> get props => [];
+}

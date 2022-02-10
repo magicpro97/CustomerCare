@@ -4,11 +4,13 @@ import 'package:bloc/bloc.dart';
 import 'package:customer_care/features/customer/customer.dart';
 import 'package:customer_care/features/customer/repository/customer_repository.dart';
 import 'package:equatable/equatable.dart';
+import 'package:injectable/injectable.dart';
 
 part 'home_view_event.dart';
 
 part 'home_view_state.dart';
 
+@injectable
 class HomeViewBloc extends Bloc<HomeViewEvent, HomeViewState> {
   final ICustomerRepository _customerRepository;
 

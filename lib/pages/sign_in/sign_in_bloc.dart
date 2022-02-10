@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:customer_care/features/authentication/google_provider.dart';
+import 'package:customer_care/features/authentication/user_session.dart';
 import 'package:customer_care/features/user/setting.dart';
 import 'package:customer_care/features/user/repository/user_repository.dart';
 import 'package:customer_care/features/user/user.dart';
@@ -16,17 +16,16 @@ part 'sign_in_state.dart';
 
 @injectable
 class SignInBloc extends Bloc<SignInEvent, SignInState> {
-  final GoogleProvider _googleProvider;
   final IUserRepository _userRepository;
+  final UserSession _userSession;
 
   SignInBloc(
-    this._googleProvider,
-    this._userRepository,
+    this._userRepository, this._userSession,
   ) : super(SignInInitial()) {
     on<SignInEvent>((event, emit) async {
       if (event is SignInWithGoogleEvent) {
         try {
-          final userCredential = await _googleProvider.signIn();
+          final userCredential = await _userSession.signInWithGoogle();
           final email = userCredential.user?.email;
           if (email != null) {
             if (!(await _userRepository.isExist(email))) {
@@ -56,6 +55,7 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
           enableRemindContact: true,
           remindContactDayAfterNumber: 3,
         ));
+    _userSession.user = user;
     return _userRepository.create(user);
   }
 }

@@ -1,9 +1,13 @@
+import 'package:auto_route/auto_route.dart';
 import 'package:customer_care/dimen.dart';
 import 'package:customer_care/features/setting/remind_contact_customer_setting.dart';
 import 'package:customer_care/generated/l10n.dart';
 import 'package:customer_care/pages/home/setting/setting_view_bloc.dart';
+import 'package:customer_care/pages/home/setting/widgets/selected_reminder_day_number_dropdown_menu_item_widget.dart';
+import 'package:customer_care/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class SettingViewWidget extends StatefulWidget {
   const SettingViewWidget({Key? key}) : super(key: key);
@@ -24,7 +28,20 @@ class _SettingViewWidgetState extends State<SettingViewWidget> {
   @override
   void initState() {
     super.initState();
-    settingBloc = context.read<SettingViewBloc>();
+    settingBloc = context.read<SettingViewBloc>()..stream.listen((state) {
+      if (state is SettingViewLoading) {
+        EasyLoading.show();
+      } else if (state is SettingViewLoadedSuccess) {
+        EasyLoading.dismiss();
+      } else if (state is SettingViewLoadedFailure) {
+        EasyLoading.showError(S.of(context).common_error);
+      } else if (state is SettingViewSignOutSuccess) {
+        EasyLoading.dismiss();
+        context.router.replaceAll([const SignInRoute()]);
+      } else if (state is SettingViewSignOutFailure) {
+        EasyLoading.showError(S.of(context).common_error);
+      }
+    });
     reminderDayNumberDropdownMenuItems = reminderDayNumber
         .map((number) => DropdownMenuItem<int>(
               child: Text('$num'),
@@ -32,7 +49,8 @@ class _SettingViewWidgetState extends State<SettingViewWidget> {
             ))
         .toList();
     selectedReminderDayNumberDropdownMenuItems = reminderDayNumber
-        .map((number) => Center(child: Text(S.of(context).day(number))))
+        .map((number) =>
+            SelectedReminderDayNumberDropdownMenuItemWidget(number: number))
         .toList();
   }
 
@@ -52,6 +70,10 @@ class _SettingViewWidgetState extends State<SettingViewWidget> {
         setting.copyWith(
             remindContactDayAfterNumber:
                 value ?? setting.remindContactDayAfterNumber)));
+  }
+
+  void _signOut() {
+    settingBloc.add(SettingViewSignOutEvent());
   }
 
   @override
@@ -105,7 +127,11 @@ class _SettingViewWidgetState extends State<SettingViewWidget> {
                     );
                   }),
             ),
-          )
+          ),
+          ElevatedButton(
+            onPressed: _signOut,
+            child: Text(S.of(context).sign_out),
+          ),
         ],
       ),
     );

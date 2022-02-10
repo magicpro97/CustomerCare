@@ -62,6 +62,8 @@
   "@setting": {},
   "sign_in_with": "Đăng nhập bằng",
   "@sign_in_with": {},
+  "sign_out": "Đăng Xuất",
+  "@sign_out": {},
   "you_have_n_customer_need_to_contact_today": "{count, plural, zero{Tuyệt vời, bạn đã không quên khách hàng của mình, hãy tiếp tục liên lạc với họ nhé!} other{Bạn có {count} khách hàng cần liên hệ ngay}}",
   "@you_have_n_customer_need_to_contact_today": {}
 }

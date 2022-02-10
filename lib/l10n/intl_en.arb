@@ -62,6 +62,8 @@
   "@setting": {},
   "sign_in_with": "Sign in with",
   "@sign_in_with": {},
+  "sign_out": "Sign Out",
+  "@sign_out": {},
   "you_have_n_customer_need_to_contact_today": "{count, plural, zero{Great, you don't miss any customer, keep going!} one{You have {count} customer need to contact} other{You have {count} customers need to contact}}",
   "@you_have_n_customer_need_to_contact_today": {}
 }

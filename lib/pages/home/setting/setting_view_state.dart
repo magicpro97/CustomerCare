@@ -22,3 +22,13 @@ class SettingViewLoadedFailure extends SettingViewState {
   @override
   List<Object?> get props => [];
 }
+
+class SettingViewSignOutSuccess extends SettingViewState {
+  @override
+  List<Object?> get props => [];
+}
+
+class SettingViewSignOutFailure extends SettingViewState {
+  @override
+  List<Object?> get props => [];
+}

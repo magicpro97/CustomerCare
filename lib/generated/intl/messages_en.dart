@@ -69,6 +69,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "sign_in_with": MessageLookupByLibrary.simpleMessage("Sign in with"),
+        "sign_out": MessageLookupByLibrary.simpleMessage("Sign Out"),
         "you_have_n_customer_need_to_contact_today": m2
       };
 }

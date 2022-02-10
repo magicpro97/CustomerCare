@@ -343,6 +343,16 @@ class S {
     );
   }
 
+  /// `Sign Out`
+  String get sign_out {
+    return Intl.message(
+      'Sign Out',
+      name: 'sign_out',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `{count, plural, zero{Great, you don't miss any customer, keep going!} one{You have {count} customer need to contact} other{You have {count} customers need to contact}}`
   String you_have_n_customer_need_to_contact_today(num count) {
     return Intl.plural(

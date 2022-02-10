@@ -1,3 +1,4 @@
+import 'package:customer_care/features/authentication/google_provider.dart';
 import 'package:customer_care/features/user/repository/user_repository.dart';
 import 'package:customer_care/features/user/user.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
@@ -7,25 +8,29 @@ import 'package:injectable/injectable.dart';
 class UserSession {
   final FirebaseAuth _firebaseAuth;
   final IUserRepository _userRepository;
+  final GoogleProvider _googleProvider;
 
-  User? _user;
+  User? user;
+
+  AuthProvider? authProvider;
 
   UserSession(
     this._firebaseAuth,
     this._userRepository,
+    this._googleProvider,
   ) {
     final email = _firebaseAuth.currentUser?.email;
     if (email != null) {
-      _userRepository.findByEmail(email).then((value) => _user = value);
+      _userRepository.findByEmail(email).then((value) => user = value);
     }
 
     _firebaseAuth.authStateChanges().listen((firebaseUser) async {
       if (firebaseUser != null &&
           firebaseUser.email != null &&
           firebaseUser.email!.isNotEmpty) {
-        _user = await _userRepository.findByEmail(firebaseUser.email!);
+        user = await _userRepository.findByEmail(firebaseUser.email!);
       } else {
-        _user = null;
+        user = null;
       }
     });
 
@@ -33,12 +38,28 @@ class UserSession {
       if (firebaseUser != null &&
           firebaseUser.email != null &&
           firebaseUser.email!.isNotEmpty) {
-        _user = await _userRepository.findByEmail(firebaseUser.email!);
+        user = await _userRepository.findByEmail(firebaseUser.email!);
       } else {
-        _user = null;
+        user = null;
       }
     });
   }
 
-  User? get user => _user;
+  Future<UserCredential> signInWithGoogle() async {
+    final credential = await _googleProvider.signIn();
+    authProvider = AuthProvider.google;
+    return credential;
+  }
+
+  Future<void> signOut() async {
+    if (authProvider == AuthProvider.google) {
+      await _googleProvider.signOut();
+    }
+    user = null;
+    authProvider = null;
+  }
+}
+
+enum AuthProvider {
+  google,
 }
