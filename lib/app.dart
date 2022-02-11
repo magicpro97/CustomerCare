@@ -8,6 +8,7 @@ import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get_it/get_it.dart';
+import 'package:timezone/data/latest.dart';
 
 class App extends StatefulWidget {
   const App({Key? key}) : super(key: key);
@@ -22,6 +23,8 @@ class _AppState extends State<App> {
   @override
   void initState() {
     super.initState();
+    initializeTimeZones();
+
     AppNotification.configure(
       onDidReceiveLocalNotification: _onDidReceiveLocalNotification,
       onSelectNotification: _onSelectNotification,

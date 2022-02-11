@@ -1,6 +1,7 @@
 import 'package:customer_care/features/customer/customer.dart';
 import 'package:customer_care/generated/l10n.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter_native_timezone/flutter_native_timezone.dart';
 import 'package:timezone/timezone.dart' as tz;
 
 class AppNotification {
@@ -29,8 +30,10 @@ class AppNotification {
       iOS: initializationSettingsIOS,
     );
 
-    await _flutterLocalNotificationsPlugin.initialize(initializationSettings,
-        onSelectNotification: onSelectNotification);
+    await _flutterLocalNotificationsPlugin.initialize(
+      initializationSettings,
+      onSelectNotification: onSelectNotification,
+    );
 
     await _flutterLocalNotificationsPlugin
         .resolvePlatformSpecificImplementation<
@@ -74,18 +77,20 @@ class AppNotification {
     );
   }
 
-  static Future<void> createReminderContactCustomerNotification(
-    int id,
+  static Future<int> createReminderContactCustomerNotification(
     Customer customer,
     DateTime remindDate,
-  ) {
+  ) async {
+    final locationName = await FlutterNativeTimezone.getLocalTimezone();
+    final id = customer.id.hashCode;
+
     return createScheduleNotification(
       id,
       S.current.remind,
       S.current.remind_contact_to_customer_message(customer.name),
-      tz.TZDateTime.from(remindDate, tz.local),
+      tz.TZDateTime.from(remindDate, tz.getLocation(locationName)),
       _channelId,
-    );
+    ).then((value) => id);
   }
 
   static Future<void> cancel(int id) {

@@ -9,7 +9,7 @@ class CacheNotification {
 
   void add(String id) {
     if (!_sharedPreferences.containsKey(id)) {
-      _sharedPreferences.setInt(id, DateTime.now().millisecondsSinceEpoch);
+      _sharedPreferences.setInt(id, id.hashCode);
     }
   }
 
