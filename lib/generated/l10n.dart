@@ -273,6 +273,16 @@ class S {
     );
   }
 
+  /// `Remind`
+  String get remind {
+    return Intl.message(
+      'Remind',
+      name: 'remind',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Remind contact to customer`
   String get remind_contact_to_customer {
     return Intl.message(
@@ -280,6 +290,16 @@ class S {
       name: 'remind_contact_to_customer',
       desc: '',
       args: [],
+    );
+  }
+
+  /// `Don't forget to make a call to {customerName}!`
+  String remind_contact_to_customer_message(Object customerName) {
+    return Intl.message(
+      'Don\'t forget to make a call to $customerName!',
+      name: 'remind_contact_to_customer_message',
+      desc: '',
+      args: [customerName],
     );
   }
 

@@ -27,7 +27,7 @@ class CustomerViewWidget extends StatelessWidget {
           bloc: context.read<CustomerViewBloc>(),
           builder: (_, state) {
             return StreamBuilder<List<Customer>>(
-              stream: context.read<CustomerViewBloc>().customer$,
+              stream: context.read<CustomerViewBloc>().customers$,
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return const CircularProgressIndicator.adaptive();

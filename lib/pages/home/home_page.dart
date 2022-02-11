@@ -13,7 +13,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it/get_it.dart';
 
 class HomePage extends StatefulWidget implements AutoRouteWrapper {
-  const HomePage({Key? key}) : super(key: key);
+  final int tabIndex;
+
+  const HomePage({Key? key, this.tabIndex = 0}) : super(key: key);
 
   @override
   State<HomePage> createState() => _HomePageState();
@@ -51,6 +53,12 @@ class _HomePageState extends State<HomePage> {
       default:
         return '';
     }
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    tabIndex = widget.tabIndex;
   }
 
   @override

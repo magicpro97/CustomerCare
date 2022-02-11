@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:auto_route/auto_route.dart';
 import 'package:customer_care/generated/l10n.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -57,4 +58,30 @@ Future<bool?> showDeleteDialog(
           ],
         );
       });
+}
+
+Future showRedirectDialog(
+  BuildContext context,
+  String title,
+  String body,
+  List<PageRouteInfo> routes,
+  String? payload,
+) {
+  return showDialog(
+    context: context,
+    builder: (BuildContext context) => CupertinoAlertDialog(
+      title: Text(title),
+      content: Text(body),
+      actions: [
+        CupertinoDialogAction(
+          isDefaultAction: true,
+          child: Text(S.of(context).ok),
+          onPressed: () async {
+            Navigator.of(context, rootNavigator: true).pop();
+            await context.router.replaceAll(routes);
+          },
+        )
+      ],
+    ),
+  );
 }

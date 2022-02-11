@@ -22,8 +22,11 @@ class _$AppRouter extends RootStackRouter {
           routeData: routeData, child: const SplashPage());
     },
     HomeRoute.name: (routeData) {
+      final args =
+          routeData.argsAs<HomeRouteArgs>(orElse: () => const HomeRouteArgs());
       return MaterialPageX<dynamic>(
-          routeData: routeData, child: const HomePage());
+          routeData: routeData,
+          child: HomePage(key: args.key, tabIndex: args.tabIndex));
     },
     AddCustomerRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -61,10 +64,26 @@ class SplashRoute extends PageRouteInfo<void> {
 
 /// generated route for
 /// [HomePage]
-class HomeRoute extends PageRouteInfo<void> {
-  const HomeRoute() : super(HomeRoute.name, path: '/home-page');
+class HomeRoute extends PageRouteInfo<HomeRouteArgs> {
+  HomeRoute({Key? key, int tabIndex = 0})
+      : super(HomeRoute.name,
+            path: '/home-page',
+            args: HomeRouteArgs(key: key, tabIndex: tabIndex));
 
   static const String name = 'HomeRoute';
+}
+
+class HomeRouteArgs {
+  const HomeRouteArgs({this.key, this.tabIndex = 0});
+
+  final Key? key;
+
+  final int tabIndex;
+
+  @override
+  String toString() {
+    return 'HomeRouteArgs{key: $key, tabIndex: $tabIndex}';
+  }
 }
 
 /// generated route for

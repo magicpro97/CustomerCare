@@ -128,7 +128,7 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
             EasyLoading.show();
           } else if (state is EditCustomerLoadedSuccess) {
             EasyLoading.dismiss();
-            context.navigateNamedTo(const HomeRoute().path);
+            context.navigateNamedTo(HomeRoute().path);
           } else if (state is EditCustomerLoadedFail) {
             EasyLoading.showError(S.of(context).common_error);
           }
@@ -152,7 +152,7 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
           EasyLoading.show();
         } else if (state is EditCustomerLoadedSuccess) {
           await EasyLoading.dismiss();
-          context.navigateTo(const HomeRoute());
+          context.navigateTo(HomeRoute());
         } else if (state is EditCustomerLoadedFail) {
           EasyLoading.showError(S.of(context).common_error);
         }

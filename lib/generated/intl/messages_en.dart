@@ -25,7 +25,10 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(username) => "Hello ${username},";
 
-  static String m2(count) =>
+  static String m2(customerName) =>
+      "Don\'t forget to make a call to ${customerName}!";
+
+  static String m3(count) =>
       "${Intl.plural(count, zero: 'Great, you don\'t miss any customer, keep going!', one: 'You have ${count} customer need to contact', other: 'You have ${count} customers need to contact')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -58,8 +61,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "To make a phone call to them by pressing phone icon next to customer\'s name"),
         "ok": MessageLookupByLibrary.simpleMessage("OK"),
         "phone_number": MessageLookupByLibrary.simpleMessage("Phone number"),
+        "remind": MessageLookupByLibrary.simpleMessage("Remind"),
         "remind_contact_to_customer":
             MessageLookupByLibrary.simpleMessage("Remind contact to customer"),
+        "remind_contact_to_customer_message": m2,
         "remove_customer":
             MessageLookupByLibrary.simpleMessage("Remove customer information"),
         "remove_customer_message": MessageLookupByLibrary.simpleMessage(
@@ -70,6 +75,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "setting": MessageLookupByLibrary.simpleMessage("Setting"),
         "sign_in_with": MessageLookupByLibrary.simpleMessage("Sign in with"),
         "sign_out": MessageLookupByLibrary.simpleMessage("Sign Out"),
-        "you_have_n_customer_need_to_contact_today": m2
+        "you_have_n_customer_need_to_contact_today": m3
       };
 }

@@ -34,7 +34,7 @@ class _SplashPageState extends State<SplashPage> {
       ..add(const SplashUserSessionCheckEvent())
       ..stream.listen((state) {
         if (state is SplashUserSignedIn) {
-          context.replaceRoute(const HomeRoute());
+          context.replaceRoute(HomeRoute());
         } else if (state is SplashUserUnsignedIn) {
           context.replaceRoute(const SignInRoute());
         }

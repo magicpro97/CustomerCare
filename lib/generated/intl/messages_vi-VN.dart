@@ -25,7 +25,9 @@ class MessageLookup extends MessageLookupByLibrary {
 
   static String m1(username) => "Chào ${username},";
 
-  static String m2(count) =>
+  static String m2(customerName) => "Đừng quên gọi cho ${customerName} nhé!";
+
+  static String m3(count) =>
       "${Intl.plural(count, zero: 'Tuyệt vời, bạn đã không quên khách hàng của mình, hãy tiếp tục liên lạc với họ nhé!', other: 'Bạn có ${count} khách hàng cần liên hệ ngay')}";
 
   final messages = _notInlinedMessages(_notInlinedMessages);
@@ -59,8 +61,10 @@ class MessageLookup extends MessageLookupByLibrary {
             "Tạo cuộc gọi bằng cách nhấp vào icon cuộc gọi bên cạnh khách hàng của bạn"),
         "ok": MessageLookupByLibrary.simpleMessage("Đồng ý"),
         "phone_number": MessageLookupByLibrary.simpleMessage("Số điện thoại"),
+        "remind": MessageLookupByLibrary.simpleMessage("Lời nhắc"),
         "remind_contact_to_customer":
             MessageLookupByLibrary.simpleMessage("Liên lạc với khách hàng"),
+        "remind_contact_to_customer_message": m2,
         "remove_customer":
             MessageLookupByLibrary.simpleMessage("Xóa thông tin khách hàng"),
         "remove_customer_message": MessageLookupByLibrary.simpleMessage(
@@ -70,6 +74,6 @@ class MessageLookup extends MessageLookupByLibrary {
         "setting": MessageLookupByLibrary.simpleMessage("Cài đặt"),
         "sign_in_with": MessageLookupByLibrary.simpleMessage("Đăng nhập bằng"),
         "sign_out": MessageLookupByLibrary.simpleMessage("Đăng Xuất"),
-        "you_have_n_customer_need_to_contact_today": m2
+        "you_have_n_customer_need_to_contact_today": m3
       };
 }
