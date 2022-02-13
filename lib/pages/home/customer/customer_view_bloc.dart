@@ -39,8 +39,8 @@ class CustomerViewBloc extends Bloc<CustomerViewEvent, CustomerViewState> {
         if (_user.setting.enableRemindContact &&
             lastContactDateDiff > remindContactDayAfterNumber) {
           final notificationId = _cacheNotification.get(customer.id);
-          final remindDate = customer.lastContactDate
-              .add(Duration(days: remindContactDayAfterNumber));
+          final remindDate = customer.lastContactDate.add(Duration(
+              days: lastContactDateDiff - remindContactDayAfterNumber));
           if (notificationId != null) {
             AppNotification.cancel(notificationId);
           }
