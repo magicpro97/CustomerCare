@@ -1,13 +1,14 @@
-import 'package:customer_care/features/customer/customer.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
+import 'customer_contact_item.dart';
+
 class CustomerContactItemWidget extends StatelessWidget {
-  final Customer customer;
+  final CustomerContactItem item;
 
   const CustomerContactItemWidget({
     Key? key,
-    required this.customer,
+    required this.item,
   }) : super(key: key);
 
   void _onPhoneCallPressed() {}
@@ -16,8 +17,8 @@ class CustomerContactItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListTile(
       contentPadding: EdgeInsets.zero,
-      title: Text(customer.name),
-      subtitle: Text(timeago.format(customer.lastContactDate)),
+      title: Text(item.name),
+      subtitle: Text(timeago.format(item.lastContactDate)),
       trailing: IconButton(
         onPressed: _onPhoneCallPressed,
         icon: const Icon(Icons.phone),

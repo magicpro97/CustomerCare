@@ -1,9 +1,9 @@
 import 'package:customer_care/dimen.dart';
 import 'package:customer_care/features/authentication/user_session.dart';
-import 'package:customer_care/features/customer/customer.dart';
 import 'package:customer_care/features/user/user.dart';
 import 'package:customer_care/generated/l10n.dart';
 import 'package:customer_care/pages/home/home/home_view_bloc.dart';
+import 'package:customer_care/pages/home/home/widgets/customer_contact_item.dart';
 import 'package:customer_care/pages/home/home/widgets/customer_contact_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -45,7 +45,7 @@ class HomeViewWidget extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  StreamBuilder<List<Customer>>(
+                  StreamBuilder<List<CustomerContactItem>>(
                       stream: context.read<HomeViewBloc>().remindCustomer$(
                           user.setting.remindContactDayAfterNumber),
                       builder: (context, snapshot) {
@@ -65,15 +65,14 @@ class HomeViewWidget extends StatelessWidget {
                     S.of(context).make_phone_call_instruction,
                     style: textTheme.bodySmall,
                   ),
-                  StreamBuilder<List<Customer>>(
+                  StreamBuilder<List<CustomerContactItem>>(
                     stream: context.read<HomeViewBloc>().remindCustomer$(3),
                     builder: (_, snapshot) {
                       if (!snapshot.hasData) {
                         return Container();
                       }
 
-                      return CustomerContactListWidget(
-                          customers: snapshot.data!);
+                      return CustomerContactListWidget(items: snapshot.data!);
                     },
                   ),
                 ],

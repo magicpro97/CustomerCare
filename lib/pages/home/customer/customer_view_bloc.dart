@@ -6,6 +6,8 @@ import 'package:customer_care/features/customer/customer.dart';
 import 'package:customer_care/features/customer/repository/customer_repository.dart';
 import 'package:customer_care/features/notification/app_notification.dart';
 import 'package:customer_care/features/notification/cache_notification.dart';
+import 'package:customer_care/pages/customer/customer_factory.dart';
+import 'package:customer_care/pages/customer/widgets/customer_item_page/customer_input.dart';
 import 'package:equatable/equatable.dart';
 import 'package:get_it/get_it.dart';
 import 'package:injectable/injectable.dart';
@@ -19,12 +21,14 @@ part 'customer_view_state.dart';
 class CustomerViewBloc extends Bloc<CustomerViewEvent, CustomerViewState> {
   final ICustomerRepository _customerRepository;
   final CacheNotification _cacheNotification;
+  final CustomerFactory _customerFactory;
 
   final _user = GetIt.I<UserSession>().user!;
 
   CustomerViewBloc(
     this._customerRepository,
     this._cacheNotification,
+    this._customerFactory,
   ) : super(CustomerViewInitial()) {
     on<CustomerViewEvent>((event, emit) {});
 
@@ -55,4 +59,9 @@ class CustomerViewBloc extends Bloc<CustomerViewEvent, CustomerViewState> {
   }
 
   Stream<List<Customer>> get customers$ => _customerRepository.queryStream();
+
+  Stream<List<CustomerInput>> get customerInputs$ =>
+      customers$.map((customers) => customers
+          .map((customer) => _customerFactory.generateCustomerInput(customer))
+          .toList());
 }

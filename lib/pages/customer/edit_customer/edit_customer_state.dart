@@ -19,7 +19,7 @@ class EditCustomerLoadedSuccess extends EditCustomerState {
   List<Object> get props => [];
 }
 
-class EditCustomerLoadedFail extends EditCustomerState {
+class EditCustomerLoadedFailure extends EditCustomerState {
   @override
   List<Object> get props => [];
 }

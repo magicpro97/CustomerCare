@@ -5,7 +5,7 @@ abstract class AddCustomerEvent extends Equatable {
 }
 
 class AddCustomerCreateEvent extends AddCustomerEvent {
-  final Customer customer;
+  final CustomerInput customer;
 
   const AddCustomerCreateEvent(this.customer);
 

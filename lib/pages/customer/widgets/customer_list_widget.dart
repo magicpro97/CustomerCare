@@ -1,10 +1,10 @@
-import 'package:customer_care/features/customer/customer.dart';
+import 'package:customer_care/pages/customer/widgets/customer_item_page/customer_input.dart';
 import 'package:flutter/material.dart';
 
 import 'customer_item_widget.dart';
 
 class CustomerListWidget extends StatelessWidget {
-  final List<Customer> customers;
+  final List<CustomerInput> customers;
   final EdgeInsets padding;
   final Function(int) onTap;
 
@@ -20,7 +20,7 @@ class CustomerListWidget extends StatelessWidget {
     return ListView.builder(
       padding: padding,
       itemBuilder: (context, index) => CustomerItemWidget(
-        customer: customers[index],
+        customerInput: customers[index],
         onTap: () => onTap(index),
       ),
       itemCount: customers.length,
