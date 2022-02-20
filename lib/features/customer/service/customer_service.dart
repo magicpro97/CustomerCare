@@ -1,65 +1,64 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:customer_care/common/service.dart';
-import 'package:customer_care/features/authentication/user_session.dart';
 import 'package:customer_care/features/customer/customer.dart';
-import 'package:customer_care/features/user/user.dart';
+import 'package:customer_care/features/file_remote_storage/file_remote_storage_service.dart';
 import 'package:injectable/injectable.dart';
 
-abstract class ICustomerService extends Service {
-  ICustomerService(UserSession userSession) : super(userSession);
-
-  Query<Customer> query([int limit = 15]);
-
+abstract class ICustomerService {
   Query<Customer> startAfter(String customerId, [int limit = 15]);
 
-  Future<void> insertOrReplace(Customer customer);
+  Future<void> delete(String id);
 
-  Future<void> delete(String customerId);
+  Future<void> insertOrReplace(Customer data);
+
+  Future<void> update(Customer data);
+
+  Query<Customer> query([int limit = 15]);
 }
 
 @Singleton(as: ICustomerService)
-class CustomerService extends ICustomerService {
-  final CollectionReference<User> _customerRef;
-
+class CustomerService extends CRUDService<Customer>
+    with FileRemoteStorageService
+    implements ICustomerService {
   CustomerService(
     FirebaseFirestore firebaseFirestore,
-    UserSession userSession,
-  )   : _customerRef = firebaseFirestore
-            .collection('users')
-            .withConverter<User>(
-                fromFirestore: (snapshot, _) => User.fromJson(snapshot.data()!),
-                toFirestore: (user, _) => user.toJson()),
-        super(userSession);
+  ) : super(firebaseFirestore);
 
   @override
-  Future<void> insertOrReplace(Customer customer) {
-    return _customerRef
-        .customerCollection(userId)
-        .doc(customer.id)
-        .set(customer);
+  Future<void> insertOrReplace(Customer data) {
+    return collectionReference.doc(data.id).set(data);
   }
 
   @override
-  Future<void> delete(String customerId) {
-    return _customerRef.customerCollection(userId).doc(customerId).delete();
+  Future<void> delete(String id) {
+    return collectionReference.doc(id).delete();
   }
 
   @override
   Query<Customer> query([int limit = 15]) {
-    return _customerRef.customerCollection(userId).orderBy('id').limit(limit);
+    return collectionReference.orderBy('id').limit(limit);
   }
 
   @override
   Query<Customer> startAfter(String customerId, [int limit = 15]) {
     return query(limit).startAfter([customerId]);
   }
-}
 
-extension CollectionRefX on CollectionReference {
-  CollectionReference<Customer> customerCollection(String userId) {
-    return doc(userId).collection('customers').withConverter<Customer>(
-          fromFirestore: (snapshot, _) => Customer.fromJson(snapshot.data()!),
-          toFirestore: (customer, _) => customer.toJson(),
-        );
+  @override
+  String get collection => "customers";
+
+  @override
+  Customer fromJson(Map<String, dynamic> json) {
+    return Customer.fromJson(json);
+  }
+
+  @override
+  Map<String, dynamic> toJson(Customer data) {
+    return data.toJson();
+  }
+
+  @override
+  Future<void> update(Customer data) {
+    return collectionReference.doc(data.id).update(data.toJson());
   }
 }
