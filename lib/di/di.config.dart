@@ -63,8 +63,11 @@ Future<_i1.GetIt> $initGetIt(_i1.GetIt get,
       _i16.SettingRepository(get<_i11.ISettingService>()));
   gh.singleton<_i17.IUserRepository>(
       _i17.UserRepository(get<_i12.IUserService>()));
-  gh.singleton<_i18.UserSession>(_i18.UserSession(get<_i6.FirebaseAuth>(),
-      get<_i17.IUserRepository>(), get<_i9.GoogleProvider>()));
+  gh.singleton<_i18.UserSession>(_i18.UserSession(
+      get<_i6.FirebaseAuth>(),
+      get<_i17.IUserRepository>(),
+      get<_i9.GoogleProvider>(),
+      get<_i13.SharedPreferences>()));
   gh.factory<_i19.AddCustomerBloc>(() => _i19.AddCustomerBloc(
       get<_i15.ICustomerRepository>(), get<_i5.CustomerFactory>()));
   gh.factory<_i20.CustomerViewBloc>(() => _i20.CustomerViewBloc(

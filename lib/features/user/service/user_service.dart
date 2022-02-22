@@ -37,6 +37,6 @@ class UserService extends AppService implements IUserService {
 
   @override
   Future<QuerySnapshot<User>> findByEmail(String email) {
-    return userReference.parent.where('email', isEqualTo: email).get();
+    return userCollectionReference.where('email', isEqualTo: email).get();
   }
 }

@@ -48,7 +48,6 @@ mixin _$FileRemoteStorageTask {
     required TResult Function(String code, String message) failure,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(double progress)? processing,
@@ -56,7 +55,6 @@ mixin _$FileRemoteStorageTask {
     TResult Function(String code, String message)? failure,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(double progress)? processing,
@@ -65,7 +63,6 @@ mixin _$FileRemoteStorageTask {
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_ProcessingTask value) processing,
@@ -73,7 +70,6 @@ mixin _$FileRemoteStorageTask {
     required TResult Function(_FailureTask value) failure,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_ProcessingTask value)? processing,
@@ -81,7 +77,6 @@ mixin _$FileRemoteStorageTask {
     TResult Function(_FailureTask value)? failure,
   }) =>
       throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_ProcessingTask value)? processing,
@@ -105,7 +100,6 @@ class _$FileRemoteStorageTaskCopyWithImpl<$Res>
   _$FileRemoteStorageTaskCopyWithImpl(this._value, this._then);
 
   final FileRemoteStorageTask _value;
-
   // ignore: unused_field
   final $Res Function(FileRemoteStorageTask) _then;
 }
@@ -115,7 +109,6 @@ abstract class _$ProcessingTaskCopyWith<$Res> {
   factory _$ProcessingTaskCopyWith(
           _ProcessingTask value, $Res Function(_ProcessingTask) then) =
       __$ProcessingTaskCopyWithImpl<$Res>;
-
   $Res call({double progress});
 }
 
@@ -246,7 +239,6 @@ abstract class _ProcessingTask implements FileRemoteStorageTask {
   factory _ProcessingTask({required double progress}) = _$_ProcessingTask;
 
   double get progress;
-
   @JsonKey(ignore: true)
   _$ProcessingTaskCopyWith<_ProcessingTask> get copyWith =>
       throw _privateConstructorUsedError;
@@ -368,7 +360,6 @@ abstract class _$FailureTaskCopyWith<$Res> {
   factory _$FailureTaskCopyWith(
           _FailureTask value, $Res Function(_FailureTask) then) =
       __$FailureTaskCopyWithImpl<$Res>;
-
   $Res call({String code, String message});
 }
 
@@ -510,9 +501,7 @@ abstract class _FailureTask implements FileRemoteStorageTask {
       _$_FailureTask;
 
   String get code;
-
   String get message;
-
   @JsonKey(ignore: true)
   _$FailureTaskCopyWith<_FailureTask> get copyWith =>
       throw _privateConstructorUsedError;

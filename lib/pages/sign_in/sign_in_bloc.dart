@@ -2,8 +2,8 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:customer_care/features/authentication/user_session.dart';
-import 'package:customer_care/features/user/setting.dart';
 import 'package:customer_care/features/user/repository/user_repository.dart';
+import 'package:customer_care/features/user/setting.dart';
 import 'package:customer_care/features/user/user.dart';
 import 'package:equatable/equatable.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
@@ -11,7 +11,6 @@ import 'package:injectable/injectable.dart';
 import 'package:uuid/uuid.dart';
 
 part 'sign_in_event.dart';
-
 part 'sign_in_state.dart';
 
 @injectable
@@ -31,7 +30,6 @@ class SignInBloc extends Bloc<SignInEvent, SignInState> {
             if (!(await _userRepository.isExist(email))) {
               await _createUser(userCredential);
             }
-
             emit(SignInSuccess());
           } else {
             emit(SignInFail());

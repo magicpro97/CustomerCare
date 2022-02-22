@@ -1,16 +1,33 @@
+import 'dart:convert';
+
 import 'package:customer_care/features/authentication/google_provider.dart';
 import 'package:customer_care/features/user/repository/user_repository.dart';
 import 'package:customer_care/features/user/user.dart';
 import 'package:firebase_auth/firebase_auth.dart' hide User;
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @singleton
 class UserSession {
   final FirebaseAuth _firebaseAuth;
   final IUserRepository _userRepository;
   final GoogleProvider _googleProvider;
+  final SharedPreferences _sharedPreferences;
 
-  User? user;
+  User? _user;
+
+  User? get user {
+    final userString = _sharedPreferences.getString("user");
+    if (userString != null) {
+      user = User.fromJson(jsonDecode(userString));
+    }
+    return _user;
+  }
+
+  set user(User? user) {
+    _sharedPreferences.setString("user", jsonEncode(user!.toJson()));
+    _user = user;
+  }
 
   AuthProvider? authProvider;
 
@@ -18,6 +35,7 @@ class UserSession {
     this._firebaseAuth,
     this._userRepository,
     this._googleProvider,
+    this._sharedPreferences,
   ) {
     final email = _firebaseAuth.currentUser?.email;
     if (email != null) {
