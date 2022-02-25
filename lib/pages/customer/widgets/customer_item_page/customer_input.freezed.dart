@@ -26,6 +26,10 @@ class _$CustomerInputTearOff {
       String? hobbies,
       required DateTime lastContactDate,
       Color? tagColor,
+      String? email,
+      String? emailPassword,
+      String? idCardFrontUrl,
+      String? idCardBackUrl,
       DateTime? createdAt,
       DateTime? updatedAt}) {
     return _CustomerInput(
@@ -36,6 +40,10 @@ class _$CustomerInputTearOff {
       hobbies: hobbies,
       lastContactDate: lastContactDate,
       tagColor: tagColor,
+      email: email,
+      emailPassword: emailPassword,
+      idCardFrontUrl: idCardFrontUrl,
+      idCardBackUrl: idCardBackUrl,
       createdAt: createdAt,
       updatedAt: updatedAt,
     );
@@ -48,13 +56,29 @@ const $CustomerInput = _$CustomerInputTearOff();
 /// @nodoc
 mixin _$CustomerInput {
   String? get id => throw _privateConstructorUsedError;
+
   String get fullname => throw _privateConstructorUsedError;
+
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
+
   String get phone => throw _privateConstructorUsedError;
+
   String? get hobbies => throw _privateConstructorUsedError;
+
   DateTime get lastContactDate => throw _privateConstructorUsedError;
+
   Color? get tagColor => throw _privateConstructorUsedError;
+
+  String? get email => throw _privateConstructorUsedError;
+
+  String? get emailPassword => throw _privateConstructorUsedError;
+
+  String? get idCardFrontUrl => throw _privateConstructorUsedError;
+
+  String? get idCardBackUrl => throw _privateConstructorUsedError;
+
   DateTime? get createdAt => throw _privateConstructorUsedError;
+
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -75,6 +99,10 @@ abstract class $CustomerInputCopyWith<$Res> {
       String? hobbies,
       DateTime lastContactDate,
       Color? tagColor,
+      String? email,
+      String? emailPassword,
+      String? idCardFrontUrl,
+      String? idCardBackUrl,
       DateTime? createdAt,
       DateTime? updatedAt});
 }
@@ -97,6 +125,10 @@ class _$CustomerInputCopyWithImpl<$Res>
     Object? hobbies = freezed,
     Object? lastContactDate = freezed,
     Object? tagColor = freezed,
+    Object? email = freezed,
+    Object? emailPassword = freezed,
+    Object? idCardFrontUrl = freezed,
+    Object? idCardBackUrl = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -129,6 +161,22 @@ class _$CustomerInputCopyWithImpl<$Res>
           ? _value.tagColor
           : tagColor // ignore: cast_nullable_to_non_nullable
               as Color?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailPassword: emailPassword == freezed
+          ? _value.emailPassword
+          : emailPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
+      idCardFrontUrl: idCardFrontUrl == freezed
+          ? _value.idCardFrontUrl
+          : idCardFrontUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      idCardBackUrl: idCardBackUrl == freezed
+          ? _value.idCardBackUrl
+          : idCardBackUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -156,6 +204,10 @@ abstract class _$CustomerInputCopyWith<$Res>
       String? hobbies,
       DateTime lastContactDate,
       Color? tagColor,
+      String? email,
+      String? emailPassword,
+      String? idCardFrontUrl,
+      String? idCardBackUrl,
       DateTime? createdAt,
       DateTime? updatedAt});
 }
@@ -180,6 +232,10 @@ class __$CustomerInputCopyWithImpl<$Res>
     Object? hobbies = freezed,
     Object? lastContactDate = freezed,
     Object? tagColor = freezed,
+    Object? email = freezed,
+    Object? emailPassword = freezed,
+    Object? idCardFrontUrl = freezed,
+    Object? idCardBackUrl = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
   }) {
@@ -212,6 +268,22 @@ class __$CustomerInputCopyWithImpl<$Res>
           ? _value.tagColor
           : tagColor // ignore: cast_nullable_to_non_nullable
               as Color?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailPassword: emailPassword == freezed
+          ? _value.emailPassword
+          : emailPassword // ignore: cast_nullable_to_non_nullable
+              as String?,
+      idCardFrontUrl: idCardFrontUrl == freezed
+          ? _value.idCardFrontUrl
+          : idCardFrontUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      idCardBackUrl: idCardBackUrl == freezed
+          ? _value.idCardBackUrl
+          : idCardBackUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
       createdAt: createdAt == freezed
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
@@ -235,6 +307,10 @@ class _$_CustomerInput implements _CustomerInput {
       this.hobbies,
       required this.lastContactDate,
       this.tagColor,
+      this.email,
+      this.emailPassword,
+      this.idCardFrontUrl,
+      this.idCardBackUrl,
       this.createdAt,
       this.updatedAt});
 
@@ -253,13 +329,21 @@ class _$_CustomerInput implements _CustomerInput {
   @override
   final Color? tagColor;
   @override
+  final String? email;
+  @override
+  final String? emailPassword;
+  @override
+  final String? idCardFrontUrl;
+  @override
+  final String? idCardBackUrl;
+  @override
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
 
   @override
   String toString() {
-    return 'CustomerInput(id: $id, fullname: $fullname, dateOfBirth: $dateOfBirth, phone: $phone, hobbies: $hobbies, lastContactDate: $lastContactDate, tagColor: $tagColor, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'CustomerInput(id: $id, fullname: $fullname, dateOfBirth: $dateOfBirth, phone: $phone, hobbies: $hobbies, lastContactDate: $lastContactDate, tagColor: $tagColor, email: $email, emailPassword: $emailPassword, idCardFrontUrl: $idCardFrontUrl, idCardBackUrl: $idCardBackUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
   }
 
   @override
@@ -276,6 +360,13 @@ class _$_CustomerInput implements _CustomerInput {
             const DeepCollectionEquality()
                 .equals(other.lastContactDate, lastContactDate) &&
             const DeepCollectionEquality().equals(other.tagColor, tagColor) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.emailPassword, emailPassword) &&
+            const DeepCollectionEquality()
+                .equals(other.idCardFrontUrl, idCardFrontUrl) &&
+            const DeepCollectionEquality()
+                .equals(other.idCardBackUrl, idCardBackUrl) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
             const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
   }
@@ -290,6 +381,10 @@ class _$_CustomerInput implements _CustomerInput {
       const DeepCollectionEquality().hash(hobbies),
       const DeepCollectionEquality().hash(lastContactDate),
       const DeepCollectionEquality().hash(tagColor),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(emailPassword),
+      const DeepCollectionEquality().hash(idCardFrontUrl),
+      const DeepCollectionEquality().hash(idCardBackUrl),
       const DeepCollectionEquality().hash(createdAt),
       const DeepCollectionEquality().hash(updatedAt));
 
@@ -308,6 +403,10 @@ abstract class _CustomerInput implements CustomerInput {
       String? hobbies,
       required DateTime lastContactDate,
       Color? tagColor,
+      String? email,
+      String? emailPassword,
+      String? idCardFrontUrl,
+      String? idCardBackUrl,
       DateTime? createdAt,
       DateTime? updatedAt}) = _$_CustomerInput;
 
@@ -315,20 +414,40 @@ abstract class _CustomerInput implements CustomerInput {
   String? get id;
   @override
   String get fullname;
+
   @override
   DateTime get dateOfBirth;
+
   @override
   String get phone;
+
   @override
   String? get hobbies;
+
   @override
   DateTime get lastContactDate;
+
   @override
   Color? get tagColor;
+
+  @override
+  String? get email;
+
+  @override
+  String? get emailPassword;
+
+  @override
+  String? get idCardFrontUrl;
+
+  @override
+  String? get idCardBackUrl;
+
   @override
   DateTime? get createdAt;
+
   @override
   DateTime? get updatedAt;
+
   @override
   @JsonKey(ignore: true)
   _$CustomerInputCopyWith<_CustomerInput> get copyWith =>

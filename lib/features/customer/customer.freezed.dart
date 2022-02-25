@@ -31,6 +31,9 @@ class _$CustomerTearOff {
           String? idCardFrontUrl,
       @JsonKey(name: 'id_card_back_url')
           String? idCardBackUrl,
+      String? email,
+      @JsonKey(name: 'email_password')
+          String? emailPassword,
       @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
           Color? tagColor,
       @JsonKey(name: 'date_of_birth')
@@ -48,6 +51,8 @@ class _$CustomerTearOff {
       hobbies: hobbies,
       idCardFrontUrl: idCardFrontUrl,
       idCardBackUrl: idCardBackUrl,
+      email: email,
+      emailPassword: emailPassword,
       tagColor: tagColor,
       dateOfBirth: dateOfBirth,
       lastContactDate: lastContactDate,
@@ -67,21 +72,36 @@ const $Customer = _$CustomerTearOff();
 /// @nodoc
 mixin _$Customer {
   String get id => throw _privateConstructorUsedError;
+
   String get name => throw _privateConstructorUsedError;
+
   String get phone => throw _privateConstructorUsedError;
+
   String? get hobbies => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'id_card_front_url')
   String? get idCardFrontUrl => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'id_card_back_url')
   String? get idCardBackUrl => throw _privateConstructorUsedError;
+
+  String? get email => throw _privateConstructorUsedError;
+
+  @JsonKey(name: 'email_password')
+  String? get emailPassword => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
   Color? get tagColor => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'date_of_birth')
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'last_contact_date')
   DateTime get lastContactDate => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
 
@@ -104,6 +124,9 @@ abstract class $CustomerCopyWith<$Res> {
           String? idCardFrontUrl,
       @JsonKey(name: 'id_card_back_url')
           String? idCardBackUrl,
+      String? email,
+      @JsonKey(name: 'email_password')
+          String? emailPassword,
       @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
           Color? tagColor,
       @JsonKey(name: 'date_of_birth')
@@ -132,6 +155,8 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
     Object? hobbies = freezed,
     Object? idCardFrontUrl = freezed,
     Object? idCardBackUrl = freezed,
+    Object? email = freezed,
+    Object? emailPassword = freezed,
     Object? tagColor = freezed,
     Object? dateOfBirth = freezed,
     Object? lastContactDate = freezed,
@@ -162,6 +187,14 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
       idCardBackUrl: idCardBackUrl == freezed
           ? _value.idCardBackUrl
           : idCardBackUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailPassword: emailPassword == freezed
+          ? _value.emailPassword
+          : emailPassword // ignore: cast_nullable_to_non_nullable
               as String?,
       tagColor: tagColor == freezed
           ? _value.tagColor
@@ -201,6 +234,9 @@ abstract class _$CustomerCopyWith<$Res> implements $CustomerCopyWith<$Res> {
           String? idCardFrontUrl,
       @JsonKey(name: 'id_card_back_url')
           String? idCardBackUrl,
+      String? email,
+      @JsonKey(name: 'email_password')
+          String? emailPassword,
       @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
           Color? tagColor,
       @JsonKey(name: 'date_of_birth')
@@ -230,6 +266,8 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
     Object? hobbies = freezed,
     Object? idCardFrontUrl = freezed,
     Object? idCardBackUrl = freezed,
+    Object? email = freezed,
+    Object? emailPassword = freezed,
     Object? tagColor = freezed,
     Object? dateOfBirth = freezed,
     Object? lastContactDate = freezed,
@@ -260,6 +298,14 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
       idCardBackUrl: idCardBackUrl == freezed
           ? _value.idCardBackUrl
           : idCardBackUrl // ignore: cast_nullable_to_non_nullable
+              as String?,
+      email: email == freezed
+          ? _value.email
+          : email // ignore: cast_nullable_to_non_nullable
+              as String?,
+      emailPassword: emailPassword == freezed
+          ? _value.emailPassword
+          : emailPassword // ignore: cast_nullable_to_non_nullable
               as String?,
       tagColor: tagColor == freezed
           ? _value.tagColor
@@ -298,6 +344,9 @@ class _$_Customer implements _Customer {
           this.idCardFrontUrl,
       @JsonKey(name: 'id_card_back_url')
           this.idCardBackUrl,
+      this.email,
+      @JsonKey(name: 'email_password')
+          this.emailPassword,
       @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
           this.tagColor,
       @JsonKey(name: 'date_of_birth')
@@ -327,6 +376,11 @@ class _$_Customer implements _Customer {
   @JsonKey(name: 'id_card_back_url')
   final String? idCardBackUrl;
   @override
+  final String? email;
+  @override
+  @JsonKey(name: 'email_password')
+  final String? emailPassword;
+  @override
   @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
   final Color? tagColor;
   @override
@@ -344,7 +398,7 @@ class _$_Customer implements _Customer {
 
   @override
   String toString() {
-    return 'Customer(id: $id, name: $name, phone: $phone, hobbies: $hobbies, idCardFrontUrl: $idCardFrontUrl, idCardBackUrl: $idCardBackUrl, tagColor: $tagColor, dateOfBirth: $dateOfBirth, lastContactDate: $lastContactDate, updatedAt: $updatedAt, createdAt: $createdAt)';
+    return 'Customer(id: $id, name: $name, phone: $phone, hobbies: $hobbies, idCardFrontUrl: $idCardFrontUrl, idCardBackUrl: $idCardBackUrl, email: $email, emailPassword: $emailPassword, tagColor: $tagColor, dateOfBirth: $dateOfBirth, lastContactDate: $lastContactDate, updatedAt: $updatedAt, createdAt: $createdAt)';
   }
 
   @override
@@ -360,6 +414,9 @@ class _$_Customer implements _Customer {
                 .equals(other.idCardFrontUrl, idCardFrontUrl) &&
             const DeepCollectionEquality()
                 .equals(other.idCardBackUrl, idCardBackUrl) &&
+            const DeepCollectionEquality().equals(other.email, email) &&
+            const DeepCollectionEquality()
+                .equals(other.emailPassword, emailPassword) &&
             const DeepCollectionEquality().equals(other.tagColor, tagColor) &&
             const DeepCollectionEquality()
                 .equals(other.dateOfBirth, dateOfBirth) &&
@@ -378,6 +435,8 @@ class _$_Customer implements _Customer {
       const DeepCollectionEquality().hash(hobbies),
       const DeepCollectionEquality().hash(idCardFrontUrl),
       const DeepCollectionEquality().hash(idCardBackUrl),
+      const DeepCollectionEquality().hash(email),
+      const DeepCollectionEquality().hash(emailPassword),
       const DeepCollectionEquality().hash(tagColor),
       const DeepCollectionEquality().hash(dateOfBirth),
       const DeepCollectionEquality().hash(lastContactDate),
@@ -405,6 +464,9 @@ abstract class _Customer implements Customer {
           String? idCardFrontUrl,
       @JsonKey(name: 'id_card_back_url')
           String? idCardBackUrl,
+      String? email,
+      @JsonKey(name: 'email_password')
+          String? emailPassword,
       @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
           Color? tagColor,
       @JsonKey(name: 'date_of_birth')
@@ -422,25 +484,40 @@ abstract class _Customer implements Customer {
   String get id;
   @override
   String get name;
+
   @override
   String get phone;
+
   @override
   String? get hobbies;
+
   @override
   @JsonKey(name: 'id_card_front_url')
   String? get idCardFrontUrl;
+
   @override
   @JsonKey(name: 'id_card_back_url')
   String? get idCardBackUrl;
+
+  @override
+  String? get email;
+
+  @override
+  @JsonKey(name: 'email_password')
+  String? get emailPassword;
+
   @override
   @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
   Color? get tagColor;
+
   @override
   @JsonKey(name: 'date_of_birth')
   DateTime get dateOfBirth;
+
   @override
   @JsonKey(name: 'last_contact_date')
   DateTime get lastContactDate;
+
   @override
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt;

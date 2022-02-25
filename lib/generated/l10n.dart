@@ -1,6 +1,7 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
 import 'intl/messages_all.dart';
 
 // **************************************************************************
@@ -183,6 +184,26 @@ class S {
     );
   }
 
+  /// `Email (Optional)`
+  String get email_optional {
+    return Intl.message(
+      'Email (Optional)',
+      name: 'email_optional',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Email's password (Optional)`
+  String get email_password_optional {
+    return Intl.message(
+      'Email\'s password (Optional)',
+      name: 'email_password_optional',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Fullname`
   String get fullname {
     return Intl.message(
@@ -203,11 +224,11 @@ class S {
     );
   }
 
-  /// `Hobbies`
-  String get hobbies {
+  /// `Hobbies (Optional)`
+  String get hobbies_optional {
     return Intl.message(
-      'Hobbies',
-      name: 'hobbies',
+      'Hobbies (Optional)',
+      name: 'hobbies_optional',
       desc: '',
       args: [],
     );
@@ -218,6 +239,36 @@ class S {
     return Intl.message(
       'Home',
       name: 'home',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// ``
+  String get id_card {
+    return Intl.message(
+      '',
+      name: 'id_card',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID Card - Back Side (Optional)`
+  String get id_card_back_side {
+    return Intl.message(
+      'ID Card - Back Side (Optional)',
+      name: 'id_card_back_side',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `ID Card - Front Side (Optional)`
+  String get id_card_front_side {
+    return Intl.message(
+      'ID Card - Front Side (Optional)',
+      name: 'id_card_front_side',
       desc: '',
       args: [],
     );

@@ -3,7 +3,6 @@ import 'dart:ui';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'customer.freezed.dart';
-
 part 'customer.g.dart';
 
 @freezed
@@ -16,9 +15,10 @@ class Customer with _$Customer {
     String? hobbies,
     @JsonKey(name: 'id_card_front_url') String? idCardFrontUrl,
     @JsonKey(name: 'id_card_back_url') String? idCardBackUrl,
-    @JsonKey(name: 'tag_color',
-        fromJson: fromHex,
-        toJson: toHex) Color? tagColor,
+    String? email,
+    @JsonKey(name: 'email_password') String? emailPassword,
+    @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
+        Color? tagColor,
     @JsonKey(name: 'date_of_birth') required DateTime dateOfBirth,
     @JsonKey(name: 'last_contact_date') required DateTime lastContactDate,
     @JsonKey(name: 'updated_at') required DateTime updatedAt,

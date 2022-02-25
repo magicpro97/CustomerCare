@@ -13,6 +13,10 @@ class CustomerInput with _$CustomerInput {
     String? hobbies,
     required DateTime lastContactDate,
     Color? tagColor,
+    String? email,
+    String? emailPassword,
+    String? idCardFrontUrl,
+    String? idCardBackUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _CustomerInput;

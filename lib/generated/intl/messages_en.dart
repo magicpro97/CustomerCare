@@ -50,10 +50,20 @@ class MessageLookup extends MessageLookupByLibrary {
         "day": m0,
         "edit_customer_information": MessageLookupByLibrary.simpleMessage(
             "Edit customer\'s information"),
+        "email_optional":
+            MessageLookupByLibrary.simpleMessage("Email (Optional)"),
+        "email_password_optional": MessageLookupByLibrary.simpleMessage(
+            "Email\'s password (Optional)"),
         "fullname": MessageLookupByLibrary.simpleMessage("Fullname"),
         "hello": m1,
-        "hobbies": MessageLookupByLibrary.simpleMessage("Hobbies"),
+        "hobbies_optional":
+            MessageLookupByLibrary.simpleMessage("Hobbies (Optional)"),
         "home": MessageLookupByLibrary.simpleMessage("Home"),
+        "id_card": MessageLookupByLibrary.simpleMessage(""),
+        "id_card_back_side": MessageLookupByLibrary.simpleMessage(
+            "ID Card - Back Side (Optional)"),
+        "id_card_front_side": MessageLookupByLibrary.simpleMessage(
+            "ID Card - Front Side (Optional)"),
         "id_number": MessageLookupByLibrary.simpleMessage("ID number"),
         "last_contact_date":
             MessageLookupByLibrary.simpleMessage("Last contact date"),

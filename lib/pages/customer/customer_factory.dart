@@ -15,6 +15,7 @@ class CustomerFactory {
       hobbies: customerInput.hobbies,
       updatedAt: DateTime.now(),
       createdAt: DateTime.now(),
+      email: customerInput.email,
     );
   }
 
@@ -28,6 +29,7 @@ class CustomerFactory {
       hobbies: customerInput.hobbies,
       updatedAt: DateTime.now(),
       createdAt: customerInput.createdAt!,
+      email: customerInput.email,
     );
   }
 
@@ -40,6 +42,7 @@ class CustomerFactory {
       hobbies: customer.hobbies,
       createdAt: customer.createdAt,
       updatedAt: customer.updatedAt,
+      email: customer.email,
     );
   }
 }

@@ -50,10 +50,21 @@ class MessageLookup extends MessageLookupByLibrary {
         "day": m0,
         "edit_customer_information":
             MessageLookupByLibrary.simpleMessage("Sửa thông tin khách hàng"),
-        "fullname": MessageLookupByLibrary.simpleMessage("Họ và tên"),
+        "email_optional":
+            MessageLookupByLibrary.simpleMessage("Email (Tùy chọn)"),
+        "email_password_optional":
+            MessageLookupByLibrary.simpleMessage("Mật khẩu email (Tùy chọn)"),
+        "fullname":
+            MessageLookupByLibrary.simpleMessage("Họ và tên (bắt buộc)"),
         "hello": m1,
-        "hobbies": MessageLookupByLibrary.simpleMessage("Sở thích"),
+        "hobbies_optional":
+            MessageLookupByLibrary.simpleMessage("Sở thích (Tùy chọn)"),
         "home": MessageLookupByLibrary.simpleMessage("Trang chủ\n"),
+        "id_card": MessageLookupByLibrary.simpleMessage(""),
+        "id_card_back_side": MessageLookupByLibrary.simpleMessage(
+            "CCCD/CMND - Mặt sau (Tùy chọn)"),
+        "id_card_front_side": MessageLookupByLibrary.simpleMessage(
+            "CCCD/CMND - Mặt trước (Tùy chọn)"),
         "id_number": MessageLookupByLibrary.simpleMessage("CMNN/CCCD"),
         "last_contact_date":
             MessageLookupByLibrary.simpleMessage("Ngày liên lạc cuối cùng"),
