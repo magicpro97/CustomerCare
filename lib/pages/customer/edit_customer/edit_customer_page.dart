@@ -29,7 +29,7 @@ class EditCustomerPage extends StatelessWidget implements AutoRouteWrapper {
       S.of(context).remove_customer_message,
     );
 
-    if (!result!) return;
+    if (result != true) return;
 
     context
         .read<EditCustomerBloc>()
@@ -53,6 +53,7 @@ class EditCustomerPage extends StatelessWidget implements AutoRouteWrapper {
       child: CustomerFormPage(
         onSubmitForm: (input) => _submitForm(context, input),
         title: S.of(context).edit_customer_information,
+        customerInput: customerInput,
         actions: [
           IconButton(
             icon: const Icon(Icons.delete),

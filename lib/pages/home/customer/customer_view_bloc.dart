@@ -14,7 +14,6 @@ import 'package:injectable/injectable.dart';
 import 'package:rxdart/rxdart.dart';
 
 part 'customer_view_event.dart';
-
 part 'customer_view_state.dart';
 
 @injectable
@@ -43,8 +42,7 @@ class CustomerViewBloc extends Bloc<CustomerViewEvent, CustomerViewState> {
         if (_user.setting.enableRemindContact &&
             lastContactDateDiff > remindContactDayAfterNumber) {
           final notificationId = _cacheNotification.get(customer.id);
-          final remindDate = customer.lastContactDate.add(Duration(
-              days: lastContactDateDiff - remindContactDayAfterNumber));
+          final remindDate = today.add(const Duration(minutes: 5));
           if (notificationId != null) {
             AppNotification.cancel(notificationId);
           }

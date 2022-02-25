@@ -80,7 +80,13 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
       _fullNameTextEditingController.text = input.fullname;
       _hobbiesTextEditingController.text = input.hobbies ?? '';
       _phoneTextEditingController.text = input.phone;
+      _lastContactDateTextEditingController.text =
+          formatter.format(input.lastContactDate);
+      _dateOfBirthTextEditingController.text =
+          formatter.format(input.dateOfBirth);
       _selectedColor = input.tagColor ?? Colors.white;
+      _dateOfBirth = input.dateOfBirth;
+      _lastContactDate = input.lastContactDate;
     } else {
       final today = DateTime.now();
       _lastContactDateTextEditingController.text = formatter.format(today);
@@ -149,7 +155,7 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(S.of(context).add_new_a_customer),
+        title: Text(widget.title),
         actions: widget.actions,
       ),
       body: Container(
