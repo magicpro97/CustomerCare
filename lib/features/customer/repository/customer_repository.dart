@@ -1,4 +1,7 @@
+import 'dart:typed_data';
+
 import 'package:customer_care/features/customer/service/customer_service.dart';
+import 'package:customer_care/features/file_remote_storage/file_remote_storage_task.dart';
 import 'package:injectable/injectable.dart';
 
 import '../customer.dart';
@@ -17,6 +20,10 @@ abstract class ICustomerRepository {
   Future<void> delete(String customerId);
 
   Future<void> update(Customer customer);
+
+  Stream<FileRemoteStorageTask> uploadIdCard(String filename, Uint8List data);
+
+  Future<String> getImageDownloadUrl(String filename);
 }
 
 @Singleton(as: ICustomerRepository)
@@ -70,5 +77,15 @@ class CustomerRepository implements ICustomerRepository {
         .orderBy('last_date_contact')
         .snapshots()
         .map((event) => event.docs.map((e) => e.data()).toList());
+  }
+
+  @override
+  Stream<FileRemoteStorageTask> uploadIdCard(String filename, Uint8List data) {
+    return _customerService.uploadIdCard(filename, data);
+  }
+
+  @override
+  Future<String> getImageDownloadUrl(String filename) {
+    return _customerService.getImageDownloadUrl(filename);
   }
 }

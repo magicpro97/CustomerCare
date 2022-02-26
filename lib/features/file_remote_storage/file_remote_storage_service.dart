@@ -32,14 +32,16 @@ mixin FileRemoteStorageService on AppService {
 
     return uploadTask.snapshotEvents.transform(StreamTransformer.fromHandlers(
       handleData: (task, sink) {
-        sink.add(FileRemoteStorageTask.processing(
-            progress: task.bytesTransferred / task.bytesTransferred));
+        final progress = task.bytesTransferred / task.totalBytes;
+        sink.add(FileRemoteStorageTask.processing(progress: progress));
+        if (progress == 1) {
+          sink.add(const FileRemoteStorageTask.success());
+        }
       },
       handleError: (error, stackTrace, sink) {
         sink.addError(FileRemoteStorageTask.failure(
             code: error.toString(), message: stackTrace.toString()));
       },
-      handleDone: (sink) => sink.add(const FileRemoteStorageTask.success()),
     ));
   }
 

@@ -3,7 +3,7 @@ import 'package:freezed_annotation/freezed_annotation.dart';
 part 'file_remote_storage_task.freezed.dart';
 
 @freezed
-class FileRemoteStorageTask {
+class FileRemoteStorageTask with _$FileRemoteStorageTask {
   factory FileRemoteStorageTask.processing({
     required double progress,
   }) = _ProcessingTask;

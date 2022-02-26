@@ -6,7 +6,6 @@ import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
 part 'edit_customer_event.dart';
-
 part 'edit_customer_state.dart';
 
 @injectable
@@ -18,25 +17,31 @@ class EditCustomerBloc extends Bloc<EditCustomerEvent, EditCustomerState> {
     this._customerRepository,
     this._customerFactory,
   ) : super(EditCustomerInitial()) {
-    on<EditCustomerEvent>((event, emit) async {
-      if (event is EditCustomerSaveEvent) {
-        emit(EditCustomerLoading());
-        try {
-          final customer = _customerFactory.updateCustomer(event.customerInput);
-          await _customerRepository.update(customer);
-          emit(EditCustomerLoadedSuccess());
-        } catch (e) {
-          emit(EditCustomerLoadedFailure());
-        }
-      } else if (event is EditCustomerDeleteCustomerEvent) {
-        emit(EditCustomerLoading());
-        try {
-          await _customerRepository.delete(event.customerId);
-          emit(EditCustomerLoadedSuccess());
-        } catch (e) {
-          emit(EditCustomerLoadedFailure());
-        }
-      }
-    });
+    on<EditCustomerSaveEvent>(_save);
+
+    on<EditCustomerDeleteCustomerEvent>(_delete);
+  }
+
+  Future<void> _save(
+      EditCustomerSaveEvent event, Emitter<EditCustomerState> emit) async {
+    emit(EditCustomerLoading());
+    try {
+      final customer = _customerFactory.updateCustomer(event.customerInput);
+      await _customerRepository.update(customer);
+      emit(EditCustomerLoadedSuccess());
+    } catch (e) {
+      emit(EditCustomerLoadedFailure());
+    }
+  }
+
+  Future<void> _delete(EditCustomerDeleteCustomerEvent event,
+      Emitter<EditCustomerState> emit) async {
+    emit(EditCustomerLoading());
+    try {
+      await _customerRepository.delete(event.customerId);
+      emit(EditCustomerLoadedSuccess());
+    } catch (e) {
+      emit(EditCustomerLoadedFailure());
+    }
   }
 }

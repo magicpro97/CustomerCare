@@ -16,6 +16,9 @@ class CustomerFactory {
       updatedAt: DateTime.now(),
       createdAt: DateTime.now(),
       email: customerInput.email,
+      idCardFrontSideUrl: customerInput.idCardFrontSideUrl,
+      idCardBackSideUrl: customerInput.idCardBackSideUrl,
+      tagColor: customerInput.tagColor,
     );
   }
 
@@ -30,11 +33,15 @@ class CustomerFactory {
       updatedAt: DateTime.now(),
       createdAt: customerInput.createdAt!,
       email: customerInput.email,
+      idCardFrontSideUrl: customerInput.idCardFrontSideUrl,
+      idCardBackSideUrl: customerInput.idCardBackSideUrl,
+      tagColor: customerInput.tagColor,
     );
   }
 
   CustomerInput generateCustomerInput(Customer customer) {
     return CustomerInput(
+      id: customer.id,
       fullname: customer.name,
       dateOfBirth: customer.dateOfBirth,
       phone: customer.phone,
@@ -43,6 +50,9 @@ class CustomerFactory {
       createdAt: customer.createdAt,
       updatedAt: customer.updatedAt,
       email: customer.email,
+      idCardBackSideUrl: customer.idCardBackSideUrl,
+      idCardFrontSideUrl: customer.idCardFrontSideUrl,
+      tagColor: customer.tagColor,
     );
   }
 }

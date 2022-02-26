@@ -15,15 +15,15 @@ class CustomerItemWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       child: Container(
-        decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              begin: Alignment.topRight,
-              end: Alignment.bottomLeft,
-              colors: [
-                Colors.red,
-                Colors.transparent,
-              ],
-            ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [
+              customerInput.tagColor ?? Colors.white,
+              Colors.transparent,
+            ],
+          ),
         ),
         child: ListTile(
           onTap: onTap,

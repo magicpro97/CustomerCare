@@ -9,7 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get_it/get_it.dart';
-import 'package:image_picker/image_picker.dart';
 
 class EditCustomerPage extends StatelessWidget implements AutoRouteWrapper {
   const EditCustomerPage({
@@ -20,7 +19,7 @@ class EditCustomerPage extends StatelessWidget implements AutoRouteWrapper {
   final CustomerInput customerInput;
 
   void _submitForm(BuildContext context, CustomerInput input) {
-    context.read<EditCustomerBloc>().add(EditCustomerSaveEvent(customerInput));
+    context.read<EditCustomerBloc>().add(EditCustomerSaveEvent(input));
   }
 
   void _removeCustomer(BuildContext context, String customerId) async {
@@ -36,10 +35,6 @@ class EditCustomerPage extends StatelessWidget implements AutoRouteWrapper {
         .read<EditCustomerBloc>()
         .add(EditCustomerDeleteCustomerEvent(customerId));
   }
-
-  void _onIdCardFrontSideTap(XFile? image) {}
-
-  void _onIdCardBackSideTap(XFile? image) {}
 
   @override
   Widget build(BuildContext context) {
@@ -57,8 +52,6 @@ class EditCustomerPage extends StatelessWidget implements AutoRouteWrapper {
       },
       child: CustomerFormPage(
         onSubmitForm: (input) => _submitForm(context, input),
-        onIdCardBackSideTap: _onIdCardBackSideTap,
-        onIdCardFrontSideTap: _onIdCardFrontSideTap,
         title: S.of(context).edit_customer_information,
         submitText: S.of(context).save,
         customerInput: customerInput,

@@ -1,14 +1,17 @@
 import 'package:customer_care/dimen.dart';
 import 'package:customer_care/generated/l10n.dart';
+import 'package:customer_care/pages/customer/upload_id_card/id_card_side.dart';
+import 'package:customer_care/pages/customer/upload_id_card/upload_id_card_bloc.dart';
 import 'package:customer_care/pages/customer/widgets/custom_text_field.dart';
 import 'package:customer_care/pages/customer/widgets/customer_color_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:image_picker/image_picker.dart';
+import 'package:get_it/get_it.dart';
 import 'package:intl/intl.dart';
 
+import '../../upload_id_card/id_card_widget.dart';
 import 'customer_input.dart';
-import 'id_card_widget.dart';
 
 class CustomerFormPage extends StatefulWidget {
   final String title;
@@ -16,8 +19,6 @@ class CustomerFormPage extends StatefulWidget {
   final CustomerInput? customerInput;
   final Function(CustomerInput) onSubmitForm;
   final List<Widget>? actions;
-  final Function(XFile?) onIdCardFrontSideTap;
-  final Function(XFile?) onIdCardBackSideTap;
 
   const CustomerFormPage({
     Key? key,
@@ -25,8 +26,6 @@ class CustomerFormPage extends StatefulWidget {
     required this.onSubmitForm,
     required this.title,
     this.actions,
-    required this.onIdCardFrontSideTap,
-    required this.onIdCardBackSideTap,
     required this.submitText,
   }) : super(key: key);
 
@@ -47,13 +46,18 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
   final _emailPasswordTextEditingController = TextEditingController();
   var _dateOfBirth = DateTime.now();
   var _lastContactDate = DateTime.now();
-  var _selectedColor = Colors.white;
+  Color? _selectedColor;
   final colors = [
     Colors.white,
     Colors.red,
     Colors.yellow,
     Colors.green,
   ];
+
+  bool isIdCardFrontSideUploading = false;
+  bool isIdCardBackSideUploading = false;
+  String? _idCardFrontSideUrl;
+  String? _idCardBackSideUrl;
 
   @override
   void initState() {
@@ -100,9 +104,11 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
       _selectedColor = input.tagColor ?? Colors.white;
       _dateOfBirth = input.dateOfBirth;
       _lastContactDate = input.lastContactDate;
+      _selectedColor = input.tagColor;
     } else {
       final today = DateTime.now();
       _lastContactDateTextEditingController.text = formatter.format(today);
+      _selectedColor = Colors.white;
     }
   }
 
@@ -148,11 +154,15 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
           hobbies: _hobbiesTextEditingController.text,
           email: _emailTextEditingController.text,
           emailPassword: _emailPasswordTextEditingController.text,
+          idCardFrontSideUrl: _idCardFrontSideUrl,
+          idCardBackSideUrl: _idCardBackSideUrl,
+          tagColor: _selectedColor,
         );
 
         widget.onSubmitForm(customer);
       } else {
         widget.onSubmitForm(input.copyWith(
+          id: input.id,
           fullname: _fullNameTextEditingController.text,
           phone: _phoneTextEditingController.text,
           lastContactDate: _lastContactDate,
@@ -160,6 +170,9 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
           hobbies: _hobbiesTextEditingController.text,
           email: _emailTextEditingController.text,
           emailPassword: _emailPasswordTextEditingController.text,
+          idCardFrontSideUrl: _idCardFrontSideUrl ?? input.idCardFrontSideUrl,
+          idCardBackSideUrl: _idCardBackSideUrl ?? input.idCardBackSideUrl,
+          tagColor: _selectedColor ?? input.tagColor,
         ));
       }
     }
@@ -171,12 +184,32 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
     });
   }
 
-  void _onIdCardFontSideTap(XFile? image) {
-    widget.onIdCardFrontSideTap(image);
+  void _onIdCardFrontSideUploadStarted() {
+    setState(() {
+      isIdCardFrontSideUploading = true;
+    });
   }
 
-  void _onIdCardBackSideTap(XFile? image) {
-    widget.onIdCardBackSideTap(image);
+  void _onIdCardBackSideUploadStarted() {
+    setState(() {
+      isIdCardBackSideUploading = true;
+    });
+  }
+
+  void _onIdCardFrontSideLoaded(String url) {
+    _idCardFrontSideUrl = url;
+
+    setState(() {
+      isIdCardFrontSideUploading = false;
+    });
+  }
+
+  void _onIdCardBackSideLoaded(String url) {
+    _idCardBackSideUrl = url;
+
+    setState(() {
+      isIdCardBackSideUploading = false;
+    });
   }
 
   @override
@@ -194,7 +227,7 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
             end: Alignment.bottomCenter,
             colors: [
               Colors.transparent,
-              _selectedColor,
+              _selectedColor!,
             ],
           ),
         ),
@@ -213,7 +246,7 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
                 CustomerColorBar(
                   onColorTap: _onColorTap,
                   colors: colors,
-                  selectedColor: _selectedColor,
+                  selectedColor: _selectedColor!,
                 ),
                 CustomTextField(
                   controller: _fullNameTextEditingController,
@@ -256,18 +289,28 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
                   controller: _hobbiesTextEditingController,
                   labelText: S.of(context).hobbies_optional,
                 ),
-                IDCardWidget(
-                  url: widget.customerInput?.idCardFrontUrl,
-                  title: S.of(context).id_card_front_side,
-                  onTap: _onIdCardFontSideTap,
+                BlocProvider(
+                  create: (context) => GetIt.I<UploadIdCardBloc>(),
+                  child: IDCardWidget(
+                    onIdCardLoaded: _onIdCardFrontSideLoaded,
+                    onIdCardUploadStarted: _onIdCardFrontSideUploadStarted,
+                    url: widget.customerInput?.idCardFrontSideUrl,
+                    title: S.of(context).id_card_front_side,
+                    side: IdCardSide.front,
+                  ),
                 ),
                 SizedBox(
                   height: 10.0.h,
                 ),
-                IDCardWidget(
-                  url: widget.customerInput?.idCardBackUrl,
-                  title: S.of(context).id_card_back_side,
-                  onTap: _onIdCardBackSideTap,
+                BlocProvider(
+                  create: (context) => GetIt.I<UploadIdCardBloc>(),
+                  child: IDCardWidget(
+                    onIdCardLoaded: _onIdCardBackSideLoaded,
+                    onIdCardUploadStarted: _onIdCardBackSideUploadStarted,
+                    url: widget.customerInput?.idCardBackSideUrl,
+                    title: S.of(context).id_card_back_side,
+                    side: IdCardSide.back,
+                  ),
                 ),
                 SizedBox(
                   height: 20.0.h,
@@ -277,7 +320,10 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
                   height: kButtonHeight,
                   child: ElevatedButton(
                     child: Text(widget.submitText),
-                    onPressed: _submitForm,
+                    onPressed:
+                        isIdCardFrontSideUploading || isIdCardBackSideUploading
+                            ? null
+                            : _submitForm,
                   ),
                 ),
                 SizedBox(

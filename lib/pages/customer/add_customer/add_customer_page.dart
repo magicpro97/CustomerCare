@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get_it/get_it.dart';
-import 'package:image_picker/image_picker.dart';
 
 import 'add_customer_bloc.dart';
 
@@ -26,10 +25,6 @@ class AddCustomerPage extends StatelessWidget with AutoRouteWrapper {
     context.read<AddCustomerBloc>().add(AddCustomerCreateEvent(input));
   }
 
-  void _onIdCardFrontSideTap(XFile? image) {}
-
-  void _onIdCardBackSideTap(XFile? image) {}
-
   @override
   Widget build(BuildContext context) {
     return BlocListener(
@@ -46,8 +41,6 @@ class AddCustomerPage extends StatelessWidget with AutoRouteWrapper {
       },
       child: CustomerFormPage(
         onSubmitForm: (input) => _submitForm(context, input),
-        onIdCardBackSideTap: _onIdCardBackSideTap,
-        onIdCardFrontSideTap: _onIdCardFrontSideTap,
         title: S.of(context).add_new_a_customer,
         submitText: S.of(context).create,
       ),

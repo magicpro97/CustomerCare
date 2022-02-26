@@ -15,8 +15,8 @@ class CustomerInput with _$CustomerInput {
     Color? tagColor,
     String? email,
     String? emailPassword,
-    String? idCardFrontUrl,
-    String? idCardBackUrl,
+    String? idCardFrontSideUrl,
+    String? idCardBackSideUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) = _CustomerInput;

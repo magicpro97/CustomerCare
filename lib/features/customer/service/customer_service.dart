@@ -1,7 +1,10 @@
+import 'dart:typed_data';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:customer_care/common/service.dart';
 import 'package:customer_care/features/customer/customer.dart';
 import 'package:customer_care/features/file_remote_storage/file_remote_storage_service.dart';
+import 'package:customer_care/features/file_remote_storage/file_remote_storage_task.dart';
 import 'package:injectable/injectable.dart';
 
 abstract class ICustomerService {
@@ -14,15 +17,17 @@ abstract class ICustomerService {
   Future<void> update(Customer data);
 
   Query<Customer> query([int limit = 15]);
+
+  Stream<FileRemoteStorageTask> uploadIdCard(String filename, Uint8List data);
+
+  Future<String> getImageDownloadUrl(String filename);
 }
 
 @Singleton(as: ICustomerService)
 class CustomerService extends CRUDService<Customer>
     with FileRemoteStorageService
     implements ICustomerService {
-  CustomerService(
-    FirebaseFirestore firebaseFirestore,
-  ) : super(firebaseFirestore);
+  CustomerService(FirebaseFirestore firebaseFirestore,) : super(firebaseFirestore);
 
   @override
   Future<void> insertOrReplace(Customer data) {
@@ -60,5 +65,15 @@ class CustomerService extends CRUDService<Customer>
   @override
   Future<void> update(Customer data) {
     return collectionReference.doc(data.id).update(data.toJson());
+  }
+
+  @override
+  Stream<FileRemoteStorageTask> uploadIdCard(String filename, Uint8List data) {
+    return uploadImageData(filename, data);
+  }
+
+  @override
+  Future<String> getImageDownloadUrl(String filename) {
+    return getImageDownloadURL(filename);
   }
 }

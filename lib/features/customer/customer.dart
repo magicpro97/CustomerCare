@@ -13,8 +13,8 @@ class Customer with _$Customer {
     required String name,
     required String phone,
     String? hobbies,
-    @JsonKey(name: 'id_card_front_url') String? idCardFrontUrl,
-    @JsonKey(name: 'id_card_back_url') String? idCardBackUrl,
+    @JsonKey(name: 'id_card_front_side_url') String? idCardFrontSideUrl,
+    @JsonKey(name: 'id_card_back_side_url') String? idCardBackSideUrl,
     String? email,
     @JsonKey(name: 'email_password') String? emailPassword,
     @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
