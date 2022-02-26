@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'customer_contact_item.freezed.dart';
@@ -8,5 +10,6 @@ class CustomerContactItem with _$CustomerContactItem {
     required String name,
     required String phone,
     required DateTime lastContactDate,
+    Color? tagColor,
   }) = _CustomerContactItem;
 }

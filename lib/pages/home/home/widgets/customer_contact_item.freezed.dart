@@ -21,11 +21,13 @@ class _$CustomerContactItemTearOff {
   _CustomerContactItem call(
       {required String name,
       required String phone,
-      required DateTime lastContactDate}) {
+      required DateTime lastContactDate,
+      Color? tagColor}) {
     return _CustomerContactItem(
       name: name,
       phone: phone,
       lastContactDate: lastContactDate,
+      tagColor: tagColor,
     );
   }
 }
@@ -37,7 +39,10 @@ const $CustomerContactItem = _$CustomerContactItemTearOff();
 mixin _$CustomerContactItem {
   String get name => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
+
   DateTime get lastContactDate => throw _privateConstructorUsedError;
+
+  Color? get tagColor => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CustomerContactItemCopyWith<CustomerContactItem> get copyWith =>
@@ -49,7 +54,9 @@ abstract class $CustomerContactItemCopyWith<$Res> {
   factory $CustomerContactItemCopyWith(
           CustomerContactItem value, $Res Function(CustomerContactItem) then) =
       _$CustomerContactItemCopyWithImpl<$Res>;
-  $Res call({String name, String phone, DateTime lastContactDate});
+
+  $Res call(
+      {String name, String phone, DateTime lastContactDate, Color? tagColor});
 }
 
 /// @nodoc
@@ -66,6 +73,7 @@ class _$CustomerContactItemCopyWithImpl<$Res>
     Object? name = freezed,
     Object? phone = freezed,
     Object? lastContactDate = freezed,
+    Object? tagColor = freezed,
   }) {
     return _then(_value.copyWith(
       name: name == freezed
@@ -80,6 +88,10 @@ class _$CustomerContactItemCopyWithImpl<$Res>
           ? _value.lastContactDate
           : lastContactDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      tagColor: tagColor == freezed
+          ? _value.tagColor
+          : tagColor // ignore: cast_nullable_to_non_nullable
+              as Color?,
     ));
   }
 }
@@ -90,8 +102,10 @@ abstract class _$CustomerContactItemCopyWith<$Res>
   factory _$CustomerContactItemCopyWith(_CustomerContactItem value,
           $Res Function(_CustomerContactItem) then) =
       __$CustomerContactItemCopyWithImpl<$Res>;
+
   @override
-  $Res call({String name, String phone, DateTime lastContactDate});
+  $Res call(
+      {String name, String phone, DateTime lastContactDate, Color? tagColor});
 }
 
 /// @nodoc
@@ -110,6 +124,7 @@ class __$CustomerContactItemCopyWithImpl<$Res>
     Object? name = freezed,
     Object? phone = freezed,
     Object? lastContactDate = freezed,
+    Object? tagColor = freezed,
   }) {
     return _then(_CustomerContactItem(
       name: name == freezed
@@ -124,6 +139,10 @@ class __$CustomerContactItemCopyWithImpl<$Res>
           ? _value.lastContactDate
           : lastContactDate // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      tagColor: tagColor == freezed
+          ? _value.tagColor
+          : tagColor // ignore: cast_nullable_to_non_nullable
+              as Color?,
     ));
   }
 }
@@ -132,7 +151,10 @@ class __$CustomerContactItemCopyWithImpl<$Res>
 
 class _$_CustomerContactItem implements _CustomerContactItem {
   _$_CustomerContactItem(
-      {required this.name, required this.phone, required this.lastContactDate});
+      {required this.name,
+      required this.phone,
+      required this.lastContactDate,
+      this.tagColor});
 
   @override
   final String name;
@@ -140,10 +162,12 @@ class _$_CustomerContactItem implements _CustomerContactItem {
   final String phone;
   @override
   final DateTime lastContactDate;
+  @override
+  final Color? tagColor;
 
   @override
   String toString() {
-    return 'CustomerContactItem(name: $name, phone: $phone, lastContactDate: $lastContactDate)';
+    return 'CustomerContactItem(name: $name, phone: $phone, lastContactDate: $lastContactDate, tagColor: $tagColor)';
   }
 
   @override
@@ -154,7 +178,8 @@ class _$_CustomerContactItem implements _CustomerContactItem {
             const DeepCollectionEquality().equals(other.name, name) &&
             const DeepCollectionEquality().equals(other.phone, phone) &&
             const DeepCollectionEquality()
-                .equals(other.lastContactDate, lastContactDate));
+                .equals(other.lastContactDate, lastContactDate) &&
+            const DeepCollectionEquality().equals(other.tagColor, tagColor));
   }
 
   @override
@@ -162,7 +187,8 @@ class _$_CustomerContactItem implements _CustomerContactItem {
       runtimeType,
       const DeepCollectionEquality().hash(name),
       const DeepCollectionEquality().hash(phone),
-      const DeepCollectionEquality().hash(lastContactDate));
+      const DeepCollectionEquality().hash(lastContactDate),
+      const DeepCollectionEquality().hash(tagColor));
 
   @JsonKey(ignore: true)
   @override
@@ -175,14 +201,21 @@ abstract class _CustomerContactItem implements CustomerContactItem {
   factory _CustomerContactItem(
       {required String name,
       required String phone,
-      required DateTime lastContactDate}) = _$_CustomerContactItem;
+      required DateTime lastContactDate,
+      Color? tagColor}) = _$_CustomerContactItem;
 
   @override
   String get name;
+
   @override
   String get phone;
+
   @override
   DateTime get lastContactDate;
+
+  @override
+  Color? get tagColor;
+
   @override
   @JsonKey(ignore: true)
   _$CustomerContactItemCopyWith<_CustomerContactItem> get copyWith =>

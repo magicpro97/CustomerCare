@@ -1,7 +1,6 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
-import 'package:customer_care/features/customer/customer.dart';
 import 'package:customer_care/features/customer/repository/customer_repository.dart';
 import 'package:customer_care/pages/home/home/customer_contact_factory.dart';
 import 'package:customer_care/pages/home/home/widgets/customer_contact_item.dart';
@@ -9,7 +8,6 @@ import 'package:equatable/equatable.dart';
 import 'package:injectable/injectable.dart';
 
 part 'home_view_event.dart';
-
 part 'home_view_state.dart';
 
 @injectable
@@ -24,17 +22,15 @@ class HomeViewBloc extends Bloc<HomeViewEvent, HomeViewState> {
     on<HomeViewEvent>((event, emit) {});
   }
 
-  Stream<List<CustomerContactItem>> remindCustomer$(int dayAfter) =>
-      _customerRepository.remindContactStream().transform(
-          StreamTransformer<List<Customer>, List<Customer>>.fromHandlers(
-              handleData: (customers, sink) {
+  Stream<List<CustomerContactItem>> remindCustomerItem$(int dayAfter) =>
+      _customerRepository.remindContact$().map((customers) {
         final today = DateTime.now();
-        sink.add(customers
-            .where((customer) =>
-                today.difference(customer.lastContactDate).inDays > dayAfter)
-            .toList());
-      })).map((customers) => customers
-          .map((customer) =>
-              _customerContactFactory.generateCustomerContactItem(customer))
+        final reminderCustomers = customers.where((customer) {
+          final diffDays = today.difference(customer.lastContactDate).inDays;
+          return diffDays > dayAfter;
+        }).toList();
+        return reminderCustomers;
+      }).map((customers) => customers
+          .map(_customerContactFactory.generateCustomerContactItem)
           .toList());
 }

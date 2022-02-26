@@ -11,7 +11,7 @@ abstract class ICustomerRepository {
 
   Stream<List<Customer>> queryStream();
 
-  Stream<List<Customer>> remindContactStream();
+  Stream<List<Customer>> remindContact$();
 
   Future<List<Customer>> startAfter(String customerId, [int limit = 15]);
 
@@ -71,10 +71,10 @@ class CustomerRepository implements ICustomerRepository {
   }
 
   @override
-  Stream<List<Customer>> remindContactStream() {
+  Stream<List<Customer>> remindContact$() {
     return _customerService
         .query()
-        .orderBy('last_date_contact')
+        .orderBy('last_contact_date')
         .snapshots()
         .map((event) => event.docs.map((e) => e.data()).toList());
   }

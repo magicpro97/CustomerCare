@@ -1,3 +1,4 @@
+import 'package:customer_care/dimen.dart';
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
@@ -15,13 +16,21 @@ class CustomerContactItemWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      contentPadding: EdgeInsets.zero,
-      title: Text(item.name),
-      subtitle: Text(timeago.format(item.lastContactDate)),
-      trailing: IconButton(
-        onPressed: _onPhoneCallPressed,
-        icon: const Icon(Icons.phone),
+    return Container(
+      padding: EdgeInsets.symmetric(horizontal: kPaddingTop),
+      decoration: BoxDecoration(
+          gradient: LinearGradient(colors: [
+        item.tagColor ?? Colors.white,
+        Colors.white,
+      ])),
+      child: ListTile(
+        contentPadding: EdgeInsets.zero,
+        title: Text(item.name),
+        subtitle: Text(timeago.format(item.lastContactDate)),
+        trailing: IconButton(
+          onPressed: _onPhoneCallPressed,
+          icon: const Icon(Icons.phone),
+        ),
       ),
     );
   }

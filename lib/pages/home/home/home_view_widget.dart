@@ -46,7 +46,7 @@ class HomeViewWidget extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
                   StreamBuilder<List<CustomerContactItem>>(
-                      stream: context.read<HomeViewBloc>().remindCustomer$(
+                      stream: context.read<HomeViewBloc>().remindCustomerItem$(
                           user.setting.remindContactDayAfterNumber),
                       builder: (context, snapshot) {
                         int count = 0;
@@ -66,7 +66,8 @@ class HomeViewWidget extends StatelessWidget {
                     style: textTheme.bodySmall,
                   ),
                   StreamBuilder<List<CustomerContactItem>>(
-                    stream: context.read<HomeViewBloc>().remindCustomer$(3),
+                    stream: context.read<HomeViewBloc>().remindCustomerItem$(
+                        user.setting.remindContactDayAfterNumber),
                     builder: (_, snapshot) {
                       if (!snapshot.hasData) {
                         return Container();

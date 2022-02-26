@@ -9,6 +9,7 @@ class CustomerContactFactory {
       name: customer.name,
       phone: customer.phone,
       lastContactDate: customer.lastContactDate,
+      tagColor: customer.tagColor,
     );
   }
 }

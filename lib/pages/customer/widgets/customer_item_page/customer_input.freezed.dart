@@ -56,29 +56,17 @@ const $CustomerInput = _$CustomerInputTearOff();
 /// @nodoc
 mixin _$CustomerInput {
   String? get id => throw _privateConstructorUsedError;
-
   String get fullname => throw _privateConstructorUsedError;
-
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
-
   String get phone => throw _privateConstructorUsedError;
-
   String? get hobbies => throw _privateConstructorUsedError;
-
   DateTime get lastContactDate => throw _privateConstructorUsedError;
-
   Color? get tagColor => throw _privateConstructorUsedError;
-
   String? get email => throw _privateConstructorUsedError;
-
   String? get emailPassword => throw _privateConstructorUsedError;
-
   String? get idCardFrontSideUrl => throw _privateConstructorUsedError;
-
   String? get idCardBackSideUrl => throw _privateConstructorUsedError;
-
   DateTime? get createdAt => throw _privateConstructorUsedError;
-
   DateTime? get updatedAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -426,16 +414,12 @@ abstract class _CustomerInput implements CustomerInput {
   Color? get tagColor;
   @override
   String? get email;
-
   @override
   String? get emailPassword;
-
   @override
   String? get idCardFrontSideUrl;
-
   @override
   String? get idCardBackSideUrl;
-
   @override
   DateTime? get createdAt;
   @override

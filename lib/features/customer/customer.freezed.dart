@@ -72,33 +72,22 @@ const $Customer = _$CustomerTearOff();
 /// @nodoc
 mixin _$Customer {
   String get id => throw _privateConstructorUsedError;
-
   String get name => throw _privateConstructorUsedError;
-
   String get phone => throw _privateConstructorUsedError;
-
   String? get hobbies => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'id_card_front_side_url')
   String? get idCardFrontSideUrl => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'id_card_back_side_url')
   String? get idCardBackSideUrl => throw _privateConstructorUsedError;
-
   String? get email => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'email_password')
   String? get emailPassword => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
   Color? get tagColor => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'date_of_birth')
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'last_contact_date')
   DateTime get lastContactDate => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt => throw _privateConstructorUsedError;
   @JsonKey(name: 'created_at')
@@ -485,18 +474,14 @@ abstract class _Customer implements Customer {
   String get name;
   @override
   String get phone;
-
   @override
   String? get hobbies;
-
   @override
   @JsonKey(name: 'id_card_front_side_url')
   String? get idCardFrontSideUrl;
-
   @override
   @JsonKey(name: 'id_card_back_side_url')
   String? get idCardBackSideUrl;
-
   @override
   String? get email;
   @override
