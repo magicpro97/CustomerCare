@@ -1,6 +1,9 @@
 import 'package:customer_care/dimen.dart';
+import 'package:customer_care/generated/l10n.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:timeago/timeago.dart' as timeago;
+import 'package:url_launcher/url_launcher.dart';
 
 import 'customer_contact_item.dart';
 
@@ -12,7 +15,13 @@ class CustomerContactItemWidget extends StatelessWidget {
     required this.item,
   }) : super(key: key);
 
-  void _onPhoneCallPressed() {}
+  void _onPhoneCallPressed() async {
+    try {
+      await launch('tel:${item.phone}');
+    } catch (e) {
+      EasyLoading.showError(S.current.common_error);
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
