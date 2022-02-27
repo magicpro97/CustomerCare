@@ -17,9 +17,9 @@ class SettingViewWidget extends StatefulWidget {
 }
 
 class _SettingViewWidgetState extends State<SettingViewWidget> {
-  final reminderDayNumber = List.generate(30, (index) => index + 1);
-
   late final SettingViewBloc settingBloc;
+
+  final reminderDayNumber = List.generate(30, (index) => index + 1);
 
   late final List<DropdownMenuItem<int>> reminderDayNumberDropdownMenuItems;
 
@@ -45,32 +45,28 @@ class _SettingViewWidgetState extends State<SettingViewWidget> {
       });
     reminderDayNumberDropdownMenuItems = reminderDayNumber
         .map((number) => DropdownMenuItem<int>(
-              child: Text('$number'),
-              value: number,
-            ))
+      child: Text('$number'),
+      value: number,
+    ))
         .toList();
     selectedReminderDayNumberDropdownMenuItems = reminderDayNumber
         .map((number) =>
-            SelectedReminderDayNumberDropdownMenuItemWidget(number: number))
+        SelectedReminderDayNumberDropdownMenuItemWidget(number: number))
         .toList();
   }
 
-  void _onRemindContactCustomerSwitchChange(
-    RemindContactCustomerSetting setting,
-    bool value,
-  ) {
+  void _onRemindContactCustomerSwitchChange(RemindContactCustomerSetting setting,
+      bool value,) {
     settingBloc.add(SettingViewUpdateRemindContactCustomerEvent(
         setting.copyWith(enableRemindContact: value)));
   }
 
-  void _onRemindContactCustomerDropdownChange(
-    RemindContactCustomerSetting setting,
-    int? value,
-  ) {
+  void _onRemindContactCustomerDropdownChange(RemindContactCustomerSetting setting,
+      int? value,) {
     settingBloc.add(SettingViewUpdateRemindContactCustomerEvent(
         setting.copyWith(
             remindContactDayAfterNumber:
-                value ?? setting.remindContactDayAfterNumber)));
+            value ?? setting.remindContactDayAfterNumber)));
   }
 
   void _signOut() {
@@ -121,16 +117,17 @@ class _SettingViewWidgetState extends State<SettingViewWidget> {
                             IgnorePointer(
                               ignoring: !snapshot.data!.enableRemindContact,
                               child: DropdownButtonHideUnderline(
-                                  child: DropdownButton<int>(
-                                onChanged: (value) =>
-                                    _onRemindContactCustomerDropdownChange(
-                                        snapshot.data!, value),
-                                value:
-                                    snapshot.data!.remindContactDayAfterNumber,
-                                items: reminderDayNumberDropdownMenuItems,
-                                selectedItemBuilder: (_) =>
-                                    selectedReminderDayNumberDropdownMenuItems,
-                              )),
+                                child: DropdownButton<int>(
+                                  onChanged: (value) =>
+                                      _onRemindContactCustomerDropdownChange(
+                                          snapshot.data!, value),
+                                  value: snapshot
+                                      .data!.remindContactDayAfterNumber,
+                                  items: reminderDayNumberDropdownMenuItems,
+                                  selectedItemBuilder: (_) =>
+                                      selectedReminderDayNumberDropdownMenuItems,
+                                ),
+                              ),
                             ),
                           ],
                         ),

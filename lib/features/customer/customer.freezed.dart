@@ -43,7 +43,11 @@ class _$CustomerTearOff {
       @JsonKey(name: 'updated_at')
           required DateTime updatedAt,
       @JsonKey(name: 'created_at')
-          required DateTime createdAt}) {
+          required DateTime createdAt,
+      @JsonKey(name: 'remind_contact_setting')
+          required RemindContactSetting remindContactSetting,
+      @JsonKey(name: 'remind_birthday_setting')
+          required RemindBirthdaySetting remindBirthdaySetting}) {
     return _Customer(
       id: id,
       name: name,
@@ -58,6 +62,8 @@ class _$CustomerTearOff {
       lastContactDate: lastContactDate,
       updatedAt: updatedAt,
       createdAt: createdAt,
+      remindContactSetting: remindContactSetting,
+      remindBirthdaySetting: remindBirthdaySetting,
     );
   }
 
@@ -80,7 +86,6 @@ mixin _$Customer {
   @JsonKey(name: 'id_card_back_side_url')
   String? get idCardBackSideUrl => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
-
   @JsonKey(name: 'email_password')
   String? get emailPassword => throw _privateConstructorUsedError;
 
@@ -89,14 +94,26 @@ mixin _$Customer {
 
   @JsonKey(name: 'date_of_birth')
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'last_contact_date')
   DateTime get lastContactDate => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'created_at')
   DateTime get createdAt => throw _privateConstructorUsedError;
 
+  @JsonKey(name: 'remind_contact_setting')
+  RemindContactSetting get remindContactSetting =>
+      throw _privateConstructorUsedError;
+
+  @JsonKey(name: 'remind_birthday_setting')
+  RemindBirthdaySetting get remindBirthdaySetting =>
+      throw _privateConstructorUsedError;
+
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
+
   @JsonKey(ignore: true)
   $CustomerCopyWith<Customer> get copyWith =>
       throw _privateConstructorUsedError;
@@ -127,7 +144,15 @@ abstract class $CustomerCopyWith<$Res> {
       @JsonKey(name: 'updated_at')
           DateTime updatedAt,
       @JsonKey(name: 'created_at')
-          DateTime createdAt});
+          DateTime createdAt,
+      @JsonKey(name: 'remind_contact_setting')
+          RemindContactSetting remindContactSetting,
+      @JsonKey(name: 'remind_birthday_setting')
+          RemindBirthdaySetting remindBirthdaySetting});
+
+  $RemindContactSettingCopyWith<$Res> get remindContactSetting;
+
+  $RemindBirthdaySettingCopyWith<$Res> get remindBirthdaySetting;
 }
 
 /// @nodoc
@@ -153,6 +178,8 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
     Object? lastContactDate = freezed,
     Object? updatedAt = freezed,
     Object? createdAt = freezed,
+    Object? remindContactSetting = freezed,
+    Object? remindBirthdaySetting = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -207,7 +234,31 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      remindContactSetting: remindContactSetting == freezed
+          ? _value.remindContactSetting
+          : remindContactSetting // ignore: cast_nullable_to_non_nullable
+              as RemindContactSetting,
+      remindBirthdaySetting: remindBirthdaySetting == freezed
+          ? _value.remindBirthdaySetting
+          : remindBirthdaySetting // ignore: cast_nullable_to_non_nullable
+              as RemindBirthdaySetting,
     ));
+  }
+
+  @override
+  $RemindContactSettingCopyWith<$Res> get remindContactSetting {
+    return $RemindContactSettingCopyWith<$Res>(_value.remindContactSetting,
+        (value) {
+      return _then(_value.copyWith(remindContactSetting: value));
+    });
+  }
+
+  @override
+  $RemindBirthdaySettingCopyWith<$Res> get remindBirthdaySetting {
+    return $RemindBirthdaySettingCopyWith<$Res>(_value.remindBirthdaySetting,
+        (value) {
+      return _then(_value.copyWith(remindBirthdaySetting: value));
+    });
   }
 }
 
@@ -237,7 +288,17 @@ abstract class _$CustomerCopyWith<$Res> implements $CustomerCopyWith<$Res> {
       @JsonKey(name: 'updated_at')
           DateTime updatedAt,
       @JsonKey(name: 'created_at')
-          DateTime createdAt});
+          DateTime createdAt,
+      @JsonKey(name: 'remind_contact_setting')
+          RemindContactSetting remindContactSetting,
+      @JsonKey(name: 'remind_birthday_setting')
+          RemindBirthdaySetting remindBirthdaySetting});
+
+  @override
+  $RemindContactSettingCopyWith<$Res> get remindContactSetting;
+
+  @override
+  $RemindBirthdaySettingCopyWith<$Res> get remindBirthdaySetting;
 }
 
 /// @nodoc
@@ -264,6 +325,8 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
     Object? lastContactDate = freezed,
     Object? updatedAt = freezed,
     Object? createdAt = freezed,
+    Object? remindContactSetting = freezed,
+    Object? remindBirthdaySetting = freezed,
   }) {
     return _then(_Customer(
       id: id == freezed
@@ -318,6 +381,14 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
           ? _value.createdAt
           : createdAt // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      remindContactSetting: remindContactSetting == freezed
+          ? _value.remindContactSetting
+          : remindContactSetting // ignore: cast_nullable_to_non_nullable
+              as RemindContactSetting,
+      remindBirthdaySetting: remindBirthdaySetting == freezed
+          ? _value.remindBirthdaySetting
+          : remindBirthdaySetting // ignore: cast_nullable_to_non_nullable
+              as RemindBirthdaySetting,
     ));
   }
 }
@@ -347,7 +418,11 @@ class _$_Customer implements _Customer {
       @JsonKey(name: 'updated_at')
           required this.updatedAt,
       @JsonKey(name: 'created_at')
-          required this.createdAt});
+          required this.createdAt,
+      @JsonKey(name: 'remind_contact_setting')
+          required this.remindContactSetting,
+      @JsonKey(name: 'remind_birthday_setting')
+          required this.remindBirthdaySetting});
 
   factory _$_Customer.fromJson(Map<String, dynamic> json) =>
       _$$_CustomerFromJson(json);
@@ -386,10 +461,16 @@ class _$_Customer implements _Customer {
   @override
   @JsonKey(name: 'created_at')
   final DateTime createdAt;
+  @override
+  @JsonKey(name: 'remind_contact_setting')
+  final RemindContactSetting remindContactSetting;
+  @override
+  @JsonKey(name: 'remind_birthday_setting')
+  final RemindBirthdaySetting remindBirthdaySetting;
 
   @override
   String toString() {
-    return 'Customer(id: $id, name: $name, phone: $phone, hobbies: $hobbies, idCardFrontSideUrl: $idCardFrontSideUrl, idCardBackSideUrl: $idCardBackSideUrl, email: $email, emailPassword: $emailPassword, tagColor: $tagColor, dateOfBirth: $dateOfBirth, lastContactDate: $lastContactDate, updatedAt: $updatedAt, createdAt: $createdAt)';
+    return 'Customer(id: $id, name: $name, phone: $phone, hobbies: $hobbies, idCardFrontSideUrl: $idCardFrontSideUrl, idCardBackSideUrl: $idCardBackSideUrl, email: $email, emailPassword: $emailPassword, tagColor: $tagColor, dateOfBirth: $dateOfBirth, lastContactDate: $lastContactDate, updatedAt: $updatedAt, createdAt: $createdAt, remindContactSetting: $remindContactSetting, remindBirthdaySetting: $remindBirthdaySetting)';
   }
 
   @override
@@ -414,7 +495,11 @@ class _$_Customer implements _Customer {
             const DeepCollectionEquality()
                 .equals(other.lastContactDate, lastContactDate) &&
             const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
-            const DeepCollectionEquality().equals(other.createdAt, createdAt));
+            const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
+            const DeepCollectionEquality()
+                .equals(other.remindContactSetting, remindContactSetting) &&
+            const DeepCollectionEquality()
+                .equals(other.remindBirthdaySetting, remindBirthdaySetting));
   }
 
   @override
@@ -432,7 +517,9 @@ class _$_Customer implements _Customer {
       const DeepCollectionEquality().hash(dateOfBirth),
       const DeepCollectionEquality().hash(lastContactDate),
       const DeepCollectionEquality().hash(updatedAt),
-      const DeepCollectionEquality().hash(createdAt));
+      const DeepCollectionEquality().hash(createdAt),
+      const DeepCollectionEquality().hash(remindContactSetting),
+      const DeepCollectionEquality().hash(remindBirthdaySetting));
 
   @JsonKey(ignore: true)
   @override
@@ -467,7 +554,11 @@ abstract class _Customer implements Customer {
       @JsonKey(name: 'updated_at')
           required DateTime updatedAt,
       @JsonKey(name: 'created_at')
-          required DateTime createdAt}) = _$_Customer;
+          required DateTime createdAt,
+      @JsonKey(name: 'remind_contact_setting')
+          required RemindContactSetting remindContactSetting,
+      @JsonKey(name: 'remind_birthday_setting')
+          required RemindBirthdaySetting remindBirthdaySetting}) = _$_Customer;
 
   factory _Customer.fromJson(Map<String, dynamic> json) = _$_Customer.fromJson;
 
@@ -487,27 +578,36 @@ abstract class _Customer implements Customer {
   String? get idCardBackSideUrl;
   @override
   String? get email;
-
   @override
   @JsonKey(name: 'email_password')
   String? get emailPassword;
-
   @override
   @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
   Color get tagColor;
-
   @override
   @JsonKey(name: 'date_of_birth')
   DateTime get dateOfBirth;
+
   @override
   @JsonKey(name: 'last_contact_date')
   DateTime get lastContactDate;
+
   @override
   @JsonKey(name: 'updated_at')
   DateTime get updatedAt;
+
   @override
   @JsonKey(name: 'created_at')
   DateTime get createdAt;
+
+  @override
+  @JsonKey(name: 'remind_contact_setting')
+  RemindContactSetting get remindContactSetting;
+
+  @override
+  @JsonKey(name: 'remind_birthday_setting')
+  RemindBirthdaySetting get remindBirthdaySetting;
+
   @override
   @JsonKey(ignore: true)
   _$CustomerCopyWith<_Customer> get copyWith =>

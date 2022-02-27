@@ -37,6 +37,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Add a new customer"),
         "after": MessageLookupByLibrary.simpleMessage("After"),
         "app_name": MessageLookupByLibrary.simpleMessage("Customer Care"),
+        "at": MessageLookupByLibrary.simpleMessage("At"),
         "blessing": MessageLookupByLibrary.simpleMessage("Have a good day!"),
         "cancel": MessageLookupByLibrary.simpleMessage("Cancel"),
         "common_error": MessageLookupByLibrary.simpleMessage(
@@ -75,6 +76,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "remind_contact_to_customer":
             MessageLookupByLibrary.simpleMessage("Remind contact to customer"),
         "remind_contact_to_customer_message": m2,
+        "remind_customer_birthday":
+            MessageLookupByLibrary.simpleMessage("Remind customer\'s birthday"),
         "remove_customer":
             MessageLookupByLibrary.simpleMessage("Remove customer information"),
         "remove_customer_message": MessageLookupByLibrary.simpleMessage(

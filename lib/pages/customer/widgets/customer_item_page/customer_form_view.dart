@@ -15,7 +15,6 @@ import 'package:intl/intl.dart';
 class CustomerFormView extends StatefulWidget {
   final CustomerInput? customerInput;
   final String submitText;
-  final GlobalKey<CustomerFormViewState> formKey;
   final Function(bool) onUploadIdCardFrontSideChange;
   final Function(bool) onUploadIdCardBackSideChange;
 
@@ -23,7 +22,6 @@ class CustomerFormView extends StatefulWidget {
     Key? key,
     this.customerInput,
     required this.submitText,
-    required this.formKey,
     required this.onUploadIdCardFrontSideChange,
     required this.onUploadIdCardBackSideChange,
   }) : super(key: key);
@@ -219,19 +217,19 @@ class CustomerFormViewState extends State<CustomerFormView>
 
   @override
   Widget build(BuildContext context) {
+    super.build(context);
     return Container(
-      height: MediaQuery.of(context).size.height,
       decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topCenter,
           end: Alignment.bottomCenter,
           colors: [
-            Colors.transparent,
+            _selectedColor == Colors.white ? Colors.transparent : Colors.white,
             _selectedColor!,
           ],
         ),
       ),
-      child: SingleChildScrollView(
+      child: Padding(
         padding: EdgeInsets.fromLTRB(
           kPaddingLeft,
           kPaddingTop,
@@ -242,6 +240,7 @@ class CustomerFormViewState extends State<CustomerFormView>
           key: _formKey,
           autovalidateMode: AutovalidateMode.onUserInteraction,
           child: Column(
+            mainAxisSize: MainAxisSize.min,
             children: [
               CustomerColorBar(
                 onColorTap: _onColorTap,

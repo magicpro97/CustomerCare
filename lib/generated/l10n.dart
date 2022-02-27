@@ -81,6 +81,16 @@ class S {
     );
   }
 
+  /// `At`
+  String get at {
+    return Intl.message(
+      'At',
+      name: 'at',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Have a good day!`
   String get blessing {
     return Intl.message(
@@ -351,6 +361,16 @@ class S {
       name: 'remind_contact_to_customer_message',
       desc: '',
       args: [customerName],
+    );
+  }
+
+  /// `Remind customer's birthday`
+  String get remind_customer_birthday {
+    return Intl.message(
+      'Remind customer\'s birthday',
+      name: 'remind_customer_birthday',
+      desc: '',
+      args: [],
     );
   }
 

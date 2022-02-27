@@ -8,6 +8,8 @@
   "@app_name": {
     "description": "App's name"
   },
+  "at": "Tại",
+  "@at": {},
   "blessing": "Chúc một ngày vui vẻ!",
   "@blessing": {},
   "cancel": "Hủy",
@@ -64,6 +66,8 @@
   "@remind_contact_to_customer": {},
   "remind_contact_to_customer_message": "Đừng quên gọi cho {customerName} nhé!",
   "@remind_contact_to_customer_message": {},
+  "remind_customer_birthday": "Nhắc nhở sinh nhật khách hàng",
+  "@remind_customer_birthday": {},
   "remove_customer": "Xóa thông tin khách hàng",
   "@remove_customer": {},
   "remove_customer_message": "Bạn có chắc rằng muốn xóa khách hàng này?",

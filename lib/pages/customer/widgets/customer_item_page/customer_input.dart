@@ -19,5 +19,9 @@ class CustomerInput with _$CustomerInput {
     String? idCardBackSideUrl,
     DateTime? createdAt,
     DateTime? updatedAt,
+    bool? enableRemindContact,
+    int? remindContactDayAfter,
+    bool? enableRemindBirthday,
+    TimeOfDay? remindBirthdayAt,
   }) = _CustomerInput;
 }

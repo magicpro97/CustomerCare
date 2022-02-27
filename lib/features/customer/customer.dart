@@ -1,8 +1,12 @@
 import 'dart:ui';
 
+import 'package:customer_care/features/customer/remind_birthday_setting.dart';
+import 'package:customer_care/features/customer/remind_contact_setting.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'customer.freezed.dart';
+
 part 'customer.g.dart';
 
 @freezed
@@ -23,6 +27,10 @@ class Customer with _$Customer {
     @JsonKey(name: 'last_contact_date') required DateTime lastContactDate,
     @JsonKey(name: 'updated_at') required DateTime updatedAt,
     @JsonKey(name: 'created_at') required DateTime createdAt,
+    @JsonKey(name: 'remind_contact_setting')
+        required RemindContactSetting remindContactSetting,
+    @JsonKey(name: 'remind_birthday_setting')
+        required RemindBirthdaySetting remindBirthdaySetting,
   }) = _Customer;
 
   factory Customer.fromJson(Map<String, dynamic> json) =>

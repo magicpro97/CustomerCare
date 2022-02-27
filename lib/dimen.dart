@@ -5,3 +5,5 @@ final kPaddingRight = 10.0.w;
 final kPaddingTop = 10.0.h;
 final kPaddingBottom = 10.0.h;
 final kButtonHeight = 40.0.h;
+final kSettingPaddingHorizontal = 10.0.w;
+final kSettingPaddingVertical = 10.0.h;

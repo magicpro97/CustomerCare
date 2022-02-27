@@ -36,6 +36,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Thêm khách hàng mới"),
         "after": MessageLookupByLibrary.simpleMessage("Sau"),
         "app_name": MessageLookupByLibrary.simpleMessage("Chăm sóc khách hàng"),
+        "at": MessageLookupByLibrary.simpleMessage("Tại"),
         "blessing":
             MessageLookupByLibrary.simpleMessage("Chúc một ngày vui vẻ!"),
         "cancel": MessageLookupByLibrary.simpleMessage("Hủy"),
@@ -76,6 +77,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "remind_contact_to_customer":
             MessageLookupByLibrary.simpleMessage("Liên lạc với khách hàng"),
         "remind_contact_to_customer_message": m2,
+        "remind_customer_birthday": MessageLookupByLibrary.simpleMessage(
+            "Nhắc nhở sinh nhật khách hàng"),
         "remove_customer":
             MessageLookupByLibrary.simpleMessage("Xóa thông tin khách hàng"),
         "remove_customer_message": MessageLookupByLibrary.simpleMessage(

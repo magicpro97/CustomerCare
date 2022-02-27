@@ -31,7 +31,11 @@ class _$CustomerInputTearOff {
       String? idCardFrontSideUrl,
       String? idCardBackSideUrl,
       DateTime? createdAt,
-      DateTime? updatedAt}) {
+      DateTime? updatedAt,
+      bool? enableRemindContact,
+      int? remindContactDayAfter,
+      bool? enableRemindBirthday,
+      TimeOfDay? remindBirthdayAt}) {
     return _CustomerInput(
       id: id,
       fullname: fullname,
@@ -46,6 +50,10 @@ class _$CustomerInputTearOff {
       idCardBackSideUrl: idCardBackSideUrl,
       createdAt: createdAt,
       updatedAt: updatedAt,
+      enableRemindContact: enableRemindContact,
+      remindContactDayAfter: remindContactDayAfter,
+      enableRemindBirthday: enableRemindBirthday,
+      remindBirthdayAt: remindBirthdayAt,
     );
   }
 }
@@ -58,7 +66,9 @@ mixin _$CustomerInput {
   String? get id => throw _privateConstructorUsedError;
   String get fullname => throw _privateConstructorUsedError;
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
+
   String get phone => throw _privateConstructorUsedError;
+
   String? get hobbies => throw _privateConstructorUsedError;
 
   DateTime get lastContactDate => throw _privateConstructorUsedError;
@@ -66,11 +76,24 @@ mixin _$CustomerInput {
   Color get tagColor => throw _privateConstructorUsedError;
 
   String? get email => throw _privateConstructorUsedError;
+
   String? get emailPassword => throw _privateConstructorUsedError;
+
   String? get idCardFrontSideUrl => throw _privateConstructorUsedError;
+
   String? get idCardBackSideUrl => throw _privateConstructorUsedError;
+
   DateTime? get createdAt => throw _privateConstructorUsedError;
+
   DateTime? get updatedAt => throw _privateConstructorUsedError;
+
+  bool? get enableRemindContact => throw _privateConstructorUsedError;
+
+  int? get remindContactDayAfter => throw _privateConstructorUsedError;
+
+  bool? get enableRemindBirthday => throw _privateConstructorUsedError;
+
+  TimeOfDay? get remindBirthdayAt => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
   $CustomerInputCopyWith<CustomerInput> get copyWith =>
@@ -95,7 +118,11 @@ abstract class $CustomerInputCopyWith<$Res> {
       String? idCardFrontSideUrl,
       String? idCardBackSideUrl,
       DateTime? createdAt,
-      DateTime? updatedAt});
+      DateTime? updatedAt,
+      bool? enableRemindContact,
+      int? remindContactDayAfter,
+      bool? enableRemindBirthday,
+      TimeOfDay? remindBirthdayAt});
 }
 
 /// @nodoc
@@ -122,6 +149,10 @@ class _$CustomerInputCopyWithImpl<$Res>
     Object? idCardBackSideUrl = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? enableRemindContact = freezed,
+    Object? remindContactDayAfter = freezed,
+    Object? enableRemindBirthday = freezed,
+    Object? remindBirthdayAt = freezed,
   }) {
     return _then(_value.copyWith(
       id: id == freezed
@@ -176,6 +207,22 @@ class _$CustomerInputCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      enableRemindContact: enableRemindContact == freezed
+          ? _value.enableRemindContact
+          : enableRemindContact // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      remindContactDayAfter: remindContactDayAfter == freezed
+          ? _value.remindContactDayAfter
+          : remindContactDayAfter // ignore: cast_nullable_to_non_nullable
+              as int?,
+      enableRemindBirthday: enableRemindBirthday == freezed
+          ? _value.enableRemindBirthday
+          : enableRemindBirthday // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      remindBirthdayAt: remindBirthdayAt == freezed
+          ? _value.remindBirthdayAt
+          : remindBirthdayAt // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
     ));
   }
 }
@@ -200,7 +247,11 @@ abstract class _$CustomerInputCopyWith<$Res>
       String? idCardFrontSideUrl,
       String? idCardBackSideUrl,
       DateTime? createdAt,
-      DateTime? updatedAt});
+      DateTime? updatedAt,
+      bool? enableRemindContact,
+      int? remindContactDayAfter,
+      bool? enableRemindBirthday,
+      TimeOfDay? remindBirthdayAt});
 }
 
 /// @nodoc
@@ -229,6 +280,10 @@ class __$CustomerInputCopyWithImpl<$Res>
     Object? idCardBackSideUrl = freezed,
     Object? createdAt = freezed,
     Object? updatedAt = freezed,
+    Object? enableRemindContact = freezed,
+    Object? remindContactDayAfter = freezed,
+    Object? enableRemindBirthday = freezed,
+    Object? remindBirthdayAt = freezed,
   }) {
     return _then(_CustomerInput(
       id: id == freezed
@@ -283,6 +338,22 @@ class __$CustomerInputCopyWithImpl<$Res>
           ? _value.updatedAt
           : updatedAt // ignore: cast_nullable_to_non_nullable
               as DateTime?,
+      enableRemindContact: enableRemindContact == freezed
+          ? _value.enableRemindContact
+          : enableRemindContact // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      remindContactDayAfter: remindContactDayAfter == freezed
+          ? _value.remindContactDayAfter
+          : remindContactDayAfter // ignore: cast_nullable_to_non_nullable
+              as int?,
+      enableRemindBirthday: enableRemindBirthday == freezed
+          ? _value.enableRemindBirthday
+          : enableRemindBirthday // ignore: cast_nullable_to_non_nullable
+              as bool?,
+      remindBirthdayAt: remindBirthdayAt == freezed
+          ? _value.remindBirthdayAt
+          : remindBirthdayAt // ignore: cast_nullable_to_non_nullable
+              as TimeOfDay?,
     ));
   }
 }
@@ -303,7 +374,11 @@ class _$_CustomerInput implements _CustomerInput {
       this.idCardFrontSideUrl,
       this.idCardBackSideUrl,
       this.createdAt,
-      this.updatedAt});
+      this.updatedAt,
+      this.enableRemindContact,
+      this.remindContactDayAfter,
+      this.enableRemindBirthday,
+      this.remindBirthdayAt});
 
   @override
   final String? id;
@@ -331,10 +406,18 @@ class _$_CustomerInput implements _CustomerInput {
   final DateTime? createdAt;
   @override
   final DateTime? updatedAt;
+  @override
+  final bool? enableRemindContact;
+  @override
+  final int? remindContactDayAfter;
+  @override
+  final bool? enableRemindBirthday;
+  @override
+  final TimeOfDay? remindBirthdayAt;
 
   @override
   String toString() {
-    return 'CustomerInput(id: $id, fullname: $fullname, dateOfBirth: $dateOfBirth, phone: $phone, hobbies: $hobbies, lastContactDate: $lastContactDate, tagColor: $tagColor, email: $email, emailPassword: $emailPassword, idCardFrontSideUrl: $idCardFrontSideUrl, idCardBackSideUrl: $idCardBackSideUrl, createdAt: $createdAt, updatedAt: $updatedAt)';
+    return 'CustomerInput(id: $id, fullname: $fullname, dateOfBirth: $dateOfBirth, phone: $phone, hobbies: $hobbies, lastContactDate: $lastContactDate, tagColor: $tagColor, email: $email, emailPassword: $emailPassword, idCardFrontSideUrl: $idCardFrontSideUrl, idCardBackSideUrl: $idCardBackSideUrl, createdAt: $createdAt, updatedAt: $updatedAt, enableRemindContact: $enableRemindContact, remindContactDayAfter: $remindContactDayAfter, enableRemindBirthday: $enableRemindBirthday, remindBirthdayAt: $remindBirthdayAt)';
   }
 
   @override
@@ -359,7 +442,15 @@ class _$_CustomerInput implements _CustomerInput {
             const DeepCollectionEquality()
                 .equals(other.idCardBackSideUrl, idCardBackSideUrl) &&
             const DeepCollectionEquality().equals(other.createdAt, createdAt) &&
-            const DeepCollectionEquality().equals(other.updatedAt, updatedAt));
+            const DeepCollectionEquality().equals(other.updatedAt, updatedAt) &&
+            const DeepCollectionEquality()
+                .equals(other.enableRemindContact, enableRemindContact) &&
+            const DeepCollectionEquality()
+                .equals(other.remindContactDayAfter, remindContactDayAfter) &&
+            const DeepCollectionEquality()
+                .equals(other.enableRemindBirthday, enableRemindBirthday) &&
+            const DeepCollectionEquality()
+                .equals(other.remindBirthdayAt, remindBirthdayAt));
   }
 
   @override
@@ -377,7 +468,11 @@ class _$_CustomerInput implements _CustomerInput {
       const DeepCollectionEquality().hash(idCardFrontSideUrl),
       const DeepCollectionEquality().hash(idCardBackSideUrl),
       const DeepCollectionEquality().hash(createdAt),
-      const DeepCollectionEquality().hash(updatedAt));
+      const DeepCollectionEquality().hash(updatedAt),
+      const DeepCollectionEquality().hash(enableRemindContact),
+      const DeepCollectionEquality().hash(remindContactDayAfter),
+      const DeepCollectionEquality().hash(enableRemindBirthday),
+      const DeepCollectionEquality().hash(remindBirthdayAt));
 
   @JsonKey(ignore: true)
   @override
@@ -399,7 +494,11 @@ abstract class _CustomerInput implements CustomerInput {
       String? idCardFrontSideUrl,
       String? idCardBackSideUrl,
       DateTime? createdAt,
-      DateTime? updatedAt}) = _$_CustomerInput;
+      DateTime? updatedAt,
+      bool? enableRemindContact,
+      int? remindContactDayAfter,
+      bool? enableRemindBirthday,
+      TimeOfDay? remindBirthdayAt}) = _$_CustomerInput;
 
   @override
   String? get id;
@@ -411,25 +510,40 @@ abstract class _CustomerInput implements CustomerInput {
   String get phone;
   @override
   String? get hobbies;
-
   @override
   DateTime get lastContactDate;
-
   @override
   Color get tagColor;
-
   @override
   String? get email;
+
   @override
   String? get emailPassword;
+
   @override
   String? get idCardFrontSideUrl;
+
   @override
   String? get idCardBackSideUrl;
+
   @override
   DateTime? get createdAt;
+
   @override
   DateTime? get updatedAt;
+
+  @override
+  bool? get enableRemindContact;
+
+  @override
+  int? get remindContactDayAfter;
+
+  @override
+  bool? get enableRemindBirthday;
+
+  @override
+  TimeOfDay? get remindBirthdayAt;
+
   @override
   @JsonKey(ignore: true)
   _$CustomerInputCopyWith<_CustomerInput> get copyWith =>

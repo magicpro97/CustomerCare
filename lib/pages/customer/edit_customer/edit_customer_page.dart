@@ -4,6 +4,7 @@ import 'package:customer_care/generated/l10n.dart';
 import 'package:customer_care/pages/customer/edit_customer/edit_customer_bloc.dart';
 import 'package:customer_care/pages/customer/edit_customer/setting/edit_seting_view.dart';
 import 'package:customer_care/pages/customer/widgets/customer_item_page/customer_form_view.dart';
+import 'package:customer_care/pages/customer/widgets/customer_item_page/customer_input.dart';
 import 'package:customer_care/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -35,6 +36,7 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
 
   bool _isIdCardFrontSideUploading = false;
   bool _isIdCardBackSideUploading = false;
+  CustomerInput? _customerInput;
 
   void _onUploadIdCardFrontSideChange(bool isUploading) {
     setState(() {
@@ -76,6 +78,12 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
         .add(EditCustomerSaveCustomerInfoEvent(customerInput));
   }
 
+  void _onSettingChange(CustomerInput customerInput) {
+    setState(() {
+      _customerInput = customerInput;
+    });
+  }
+
   @override
   void initState() {
     context
@@ -95,6 +103,9 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
           await EasyLoading.dismiss();
           context.navigateTo(HomeRoute());
         } else if (state is EditCustomerFetchedSuccess) {
+          setState(() {
+            _customerInput = state.customerInput;
+          });
           EasyLoading.dismiss();
         } else if (state is EditCustomerLoadedFailure ||
             state is EditCustomerFetchedFailure) {
@@ -105,6 +116,7 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
         return DefaultTabController(
           length: 2,
           child: Scaffold(
+            backgroundColor: Colors.white,
             appBar: AppBar(
               title: Text(S.of(context).edit_customer_information),
               actions: [
@@ -128,33 +140,49 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
               children: [
                 BlocBuilder<EditCustomerBloc, EditCustomerState>(
                     builder: (context, state) {
-                  if (state is EditCustomerFetchedSuccess) {
-                    return CustomerFormView(
-                      customerInput: state.customerInput,
+                      if (state is EditCustomerFetchedSuccess) {
+                    return SingleChildScrollView(
+                      child: CustomerFormView(
+                        customerInput: _customerInput,
+                        submitText: S.of(context).save,
+                        key: _formKey,
+                        onUploadIdCardBackSideChange:
+                            _onUploadIdCardBackSideChange,
+                        onUploadIdCardFrontSideChange:
+                            _onUploadIdCardFrontSideChange,
+                      ),
+                    );
+                  }
+                  return SingleChildScrollView(
+                    child: CustomerFormView(
                       submitText: S.of(context).save,
-                      formKey: _formKey,
+                      key: _formKey,
                       onUploadIdCardBackSideChange:
                           _onUploadIdCardBackSideChange,
                       onUploadIdCardFrontSideChange:
                           _onUploadIdCardFrontSideChange,
-                    );
-                  }
-                  return CustomerFormView(
-                    submitText: S.of(context).save,
-                    formKey: _formKey,
-                    onUploadIdCardBackSideChange: _onUploadIdCardBackSideChange,
-                    onUploadIdCardFrontSideChange:
-                        _onUploadIdCardFrontSideChange,
+                    ),
                   );
                 }),
-                const EditSettingView(),
+                BlocBuilder<EditCustomerBloc, EditCustomerState>(
+                    builder: (context, state) {
+                  if (state is EditCustomerFetchedSuccess) {
+                    return EditSettingView(
+                      customerInput: _customerInput,
+                      onSettingChanged: _onSettingChange,
+                    );
+                  }
+                  return EditSettingView(
+                    onSettingChanged: _onSettingChange,
+                  );
+                }),
               ],
             ),
             floatingActionButton: FloatingActionButton(
               onPressed:
-                  _isIdCardFrontSideUploading || _isIdCardBackSideUploading
-                      ? null
-                      : () => _submitForm(context),
+              _isIdCardFrontSideUploading || _isIdCardBackSideUploading
+                  ? null
+                  : () => _submitForm(context),
               child: const Icon(Icons.save),
             ),
           ),

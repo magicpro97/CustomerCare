@@ -30,6 +30,7 @@ class EditCustomerBloc extends Bloc<EditCustomerEvent, EditCustomerState> {
     try {
       final customer =
           await _customerRepository.getCustomerById(event.customerId);
+
       emit(EditCustomerFetchedSuccess(
           _customerFactory.generateCustomerInput(customer!)));
     } catch (e) {

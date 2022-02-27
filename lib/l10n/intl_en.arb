@@ -8,6 +8,8 @@
   "@app_name": {
     "description": "App's name"
   },
+  "at": "At",
+  "@at": {},
   "blessing": "Have a good day!",
   "@blessing": {},
   "cancel": "Cancel",
@@ -64,6 +66,8 @@
   "@remind_contact_to_customer": {},
   "remind_contact_to_customer_message": "Don't forget to make a call to {customerName}!",
   "@remind_contact_to_customer_message": {},
+  "remind_customer_birthday": "Remind customer's birthday",
+  "@remind_customer_birthday": {},
   "remove_customer": "Remove customer information",
   "@remove_customer": {},
   "remove_customer_message": "Do you want to remove this customer?",

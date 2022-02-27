@@ -38,11 +38,8 @@ const $CustomerItem = _$CustomerItemTearOff();
 /// @nodoc
 mixin _$CustomerItem {
   String get id => throw _privateConstructorUsedError;
-
   String get name => throw _privateConstructorUsedError;
-
   String get phone => throw _privateConstructorUsedError;
-
   Color get tagColor => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -55,7 +52,6 @@ abstract class $CustomerItemCopyWith<$Res> {
   factory $CustomerItemCopyWith(
           CustomerItem value, $Res Function(CustomerItem) then) =
       _$CustomerItemCopyWithImpl<$Res>;
-
   $Res call({String id, String name, String phone, Color tagColor});
 }
 
@@ -64,7 +60,6 @@ class _$CustomerItemCopyWithImpl<$Res> implements $CustomerItemCopyWith<$Res> {
   _$CustomerItemCopyWithImpl(this._value, this._then);
 
   final CustomerItem _value;
-
   // ignore: unused_field
   final $Res Function(CustomerItem) _then;
 
@@ -102,7 +97,6 @@ abstract class _$CustomerItemCopyWith<$Res>
   factory _$CustomerItemCopyWith(
           _CustomerItem value, $Res Function(_CustomerItem) then) =
       __$CustomerItemCopyWithImpl<$Res>;
-
   @override
   $Res call({String id, String name, String phone, Color tagColor});
 }
@@ -202,16 +196,12 @@ abstract class _CustomerItem implements CustomerItem {
 
   @override
   String get id;
-
   @override
   String get name;
-
   @override
   String get phone;
-
   @override
   Color get tagColor;
-
   @override
   @JsonKey(ignore: true)
   _$CustomerItemCopyWith<_CustomerItem> get copyWith =>

@@ -21,7 +21,7 @@ class CustomerItemWidget extends StatelessWidget {
             end: Alignment.bottomLeft,
             colors: [
               customerItem.tagColor,
-              Colors.transparent,
+              Colors.white,
             ],
           ),
         ),

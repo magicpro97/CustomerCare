@@ -20,6 +20,10 @@ _$_Customer _$$_CustomerFromJson(Map<String, dynamic> json) => _$_Customer(
       lastContactDate: DateTime.parse(json['last_contact_date'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),
       createdAt: DateTime.parse(json['created_at'] as String),
+      remindContactSetting: RemindContactSetting.fromJson(
+          json['remind_contact_setting'] as Map<String, dynamic>),
+      remindBirthdaySetting: RemindBirthdaySetting.fromJson(
+          json['remind_birthday_setting'] as Map<String, dynamic>),
     );
 
 Map<String, dynamic> _$$_CustomerToJson(_$_Customer instance) =>
@@ -37,4 +41,6 @@ Map<String, dynamic> _$$_CustomerToJson(_$_Customer instance) =>
       'last_contact_date': instance.lastContactDate.toIso8601String(),
       'updated_at': instance.updatedAt.toIso8601String(),
       'created_at': instance.createdAt.toIso8601String(),
+      'remind_contact_setting': instance.remindContactSetting.toJson(),
+      'remind_birthday_setting': instance.remindBirthdaySetting.toJson(),
     };

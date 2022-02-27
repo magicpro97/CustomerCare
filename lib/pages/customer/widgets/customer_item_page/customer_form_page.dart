@@ -57,28 +57,31 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
         title: Text(widget.title),
         actions: widget.actions,
       ),
-      body: Column(
-        children: [
-          CustomerFormView(
-            submitText: widget.submitText,
-            formKey: _formKey,
-            onUploadIdCardFrontSideChange: _onUploadIdCardFrontSideChange,
-            onUploadIdCardBackSideChange: _onUploadIdCardBackSideChange,
-          ),
-          SizedBox(
-            width: double.infinity,
-            height: kButtonHeight,
-            child: ElevatedButton(
-              child: Text(widget.submitText),
-              onPressed: isIdCardFrontSideUploading || isIdCardBackSideUploading
-                  ? null
-                  : _submitForm,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            CustomerFormView(
+              key: _formKey,
+              submitText: widget.submitText,
+              onUploadIdCardFrontSideChange: _onUploadIdCardFrontSideChange,
+              onUploadIdCardBackSideChange: _onUploadIdCardBackSideChange,
             ),
-          ),
-          SizedBox(
-            height: 20.0.h,
-          ),
-        ],
+            SizedBox(
+              width: double.infinity,
+              height: kButtonHeight,
+              child: ElevatedButton(
+                child: Text(widget.submitText),
+                onPressed:
+                    isIdCardFrontSideUploading || isIdCardBackSideUploading
+                        ? null
+                        : _submitForm,
+              ),
+            ),
+            SizedBox(
+              height: 20.0.h,
+            ),
+          ],
+        ),
       ),
     );
   }
