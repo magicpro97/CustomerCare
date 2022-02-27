@@ -12,7 +12,7 @@ class CustomerInput with _$CustomerInput {
     required String phone,
     String? hobbies,
     required DateTime lastContactDate,
-    Color? tagColor,
+    required Color tagColor,
     String? email,
     String? emailPassword,
     String? idCardFrontSideUrl,

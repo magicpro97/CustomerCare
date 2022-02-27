@@ -35,7 +35,7 @@ class _$CustomerTearOff {
       @JsonKey(name: 'email_password')
           String? emailPassword,
       @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
-          Color? tagColor,
+          required Color tagColor,
       @JsonKey(name: 'date_of_birth')
           required DateTime dateOfBirth,
       @JsonKey(name: 'last_contact_date')
@@ -80,10 +80,13 @@ mixin _$Customer {
   @JsonKey(name: 'id_card_back_side_url')
   String? get idCardBackSideUrl => throw _privateConstructorUsedError;
   String? get email => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'email_password')
   String? get emailPassword => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
-  Color? get tagColor => throw _privateConstructorUsedError;
+  Color get tagColor => throw _privateConstructorUsedError;
+
   @JsonKey(name: 'date_of_birth')
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
   @JsonKey(name: 'last_contact_date')
@@ -116,7 +119,7 @@ abstract class $CustomerCopyWith<$Res> {
       @JsonKey(name: 'email_password')
           String? emailPassword,
       @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
-          Color? tagColor,
+          Color tagColor,
       @JsonKey(name: 'date_of_birth')
           DateTime dateOfBirth,
       @JsonKey(name: 'last_contact_date')
@@ -187,7 +190,7 @@ class _$CustomerCopyWithImpl<$Res> implements $CustomerCopyWith<$Res> {
       tagColor: tagColor == freezed
           ? _value.tagColor
           : tagColor // ignore: cast_nullable_to_non_nullable
-              as Color?,
+              as Color,
       dateOfBirth: dateOfBirth == freezed
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
@@ -226,7 +229,7 @@ abstract class _$CustomerCopyWith<$Res> implements $CustomerCopyWith<$Res> {
       @JsonKey(name: 'email_password')
           String? emailPassword,
       @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
-          Color? tagColor,
+          Color tagColor,
       @JsonKey(name: 'date_of_birth')
           DateTime dateOfBirth,
       @JsonKey(name: 'last_contact_date')
@@ -298,7 +301,7 @@ class __$CustomerCopyWithImpl<$Res> extends _$CustomerCopyWithImpl<$Res>
       tagColor: tagColor == freezed
           ? _value.tagColor
           : tagColor // ignore: cast_nullable_to_non_nullable
-              as Color?,
+              as Color,
       dateOfBirth: dateOfBirth == freezed
           ? _value.dateOfBirth
           : dateOfBirth // ignore: cast_nullable_to_non_nullable
@@ -336,7 +339,7 @@ class _$_Customer implements _Customer {
       @JsonKey(name: 'email_password')
           this.emailPassword,
       @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
-          this.tagColor,
+          required this.tagColor,
       @JsonKey(name: 'date_of_birth')
           required this.dateOfBirth,
       @JsonKey(name: 'last_contact_date')
@@ -370,7 +373,7 @@ class _$_Customer implements _Customer {
   final String? emailPassword;
   @override
   @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
-  final Color? tagColor;
+  final Color tagColor;
   @override
   @JsonKey(name: 'date_of_birth')
   final DateTime dateOfBirth;
@@ -456,7 +459,7 @@ abstract class _Customer implements Customer {
       @JsonKey(name: 'email_password')
           String? emailPassword,
       @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
-          Color? tagColor,
+          required Color tagColor,
       @JsonKey(name: 'date_of_birth')
           required DateTime dateOfBirth,
       @JsonKey(name: 'last_contact_date')
@@ -484,12 +487,15 @@ abstract class _Customer implements Customer {
   String? get idCardBackSideUrl;
   @override
   String? get email;
+
   @override
   @JsonKey(name: 'email_password')
   String? get emailPassword;
+
   @override
   @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
-  Color? get tagColor;
+  Color get tagColor;
+
   @override
   @JsonKey(name: 'date_of_birth')
   DateTime get dateOfBirth;

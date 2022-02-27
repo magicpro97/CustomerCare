@@ -18,7 +18,7 @@ class Customer with _$Customer {
     String? email,
     @JsonKey(name: 'email_password') String? emailPassword,
     @JsonKey(name: 'tag_color', fromJson: fromHex, toJson: toHex)
-        Color? tagColor,
+        required Color tagColor,
     @JsonKey(name: 'date_of_birth') required DateTime dateOfBirth,
     @JsonKey(name: 'last_contact_date') required DateTime lastContactDate,
     @JsonKey(name: 'updated_at') required DateTime updatedAt,
@@ -29,15 +29,14 @@ class Customer with _$Customer {
       _$CustomerFromJson(json);
 }
 
-Color? fromHex(String? hexString) {
-  if (hexString == null) return null;
+Color fromHex(String hexString) {
   final buffer = StringBuffer();
   if (hexString.length == 6 || hexString.length == 7) buffer.write('ff');
   buffer.write(hexString.replaceFirst('#', ''));
   return Color(int.parse(buffer.toString(), radix: 16));
 }
 
-String toHex(Color? color) => color == null ? '#fff' : '#'
+String toHex(Color color) => '#'
     '${color.alpha.toRadixString(16).padLeft(2, '0')}'
     '${color.red.toRadixString(16).padLeft(2, '0')}'
     '${color.green.toRadixString(16).padLeft(2, '0')}'

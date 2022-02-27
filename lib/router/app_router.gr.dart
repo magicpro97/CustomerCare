@@ -36,8 +36,7 @@ class _$AppRouter extends RootStackRouter {
       final args = routeData.argsAs<EditCustomerRouteArgs>();
       return MaterialPageX<dynamic>(
           routeData: routeData,
-          child: EditCustomerPage(
-              key: args.key, customerInput: args.customerInput));
+          child: EditCustomerPage(key: args.key, customerId: args.customerId));
     },
     SignInRoute.name: (routeData) {
       return MaterialPageX<dynamic>(
@@ -99,25 +98,24 @@ class AddCustomerRoute extends PageRouteInfo<void> {
 /// generated route for
 /// [EditCustomerPage]
 class EditCustomerRoute extends PageRouteInfo<EditCustomerRouteArgs> {
-  EditCustomerRoute({Key? key, required CustomerInput customerInput})
+  EditCustomerRoute({Key? key, required String customerId})
       : super(EditCustomerRoute.name,
             path: '/edit-customer-page',
-            args:
-                EditCustomerRouteArgs(key: key, customerInput: customerInput));
+            args: EditCustomerRouteArgs(key: key, customerId: customerId));
 
   static const String name = 'EditCustomerRoute';
 }
 
 class EditCustomerRouteArgs {
-  const EditCustomerRouteArgs({this.key, required this.customerInput});
+  const EditCustomerRouteArgs({this.key, required this.customerId});
 
   final Key? key;
 
-  final CustomerInput customerInput;
+  final String customerId;
 
   @override
   String toString() {
-    return 'EditCustomerRouteArgs{key: $key, customerInput: $customerInput}';
+    return 'EditCustomerRouteArgs{key: $key, customerId: $customerId}';
   }
 }
 

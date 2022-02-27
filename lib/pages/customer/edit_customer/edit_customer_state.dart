@@ -23,3 +23,17 @@ class EditCustomerLoadedFailure extends EditCustomerState {
   @override
   List<Object> get props => [];
 }
+
+class EditCustomerFetchedSuccess extends EditCustomerState {
+  final CustomerInput customerInput;
+
+  const EditCustomerFetchedSuccess(this.customerInput);
+
+  @override
+  List<Object> get props => [customerInput];
+}
+
+class EditCustomerFetchedFailure extends EditCustomerState {
+  @override
+  List<Object> get props => [];
+}

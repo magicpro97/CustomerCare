@@ -15,6 +15,8 @@ abstract class ICustomerRepository {
 
   Future<List<Customer>> startAfter(String customerId, [int limit = 15]);
 
+  Future<Customer?> getCustomerById(String id);
+
   Future<void> add(Customer customer);
 
   Future<void> delete(String customerId);
@@ -87,5 +89,10 @@ class CustomerRepository implements ICustomerRepository {
   @override
   Future<String> getImageDownloadUrl(String filename) {
     return _customerService.getImageDownloadUrl(filename);
+  }
+
+  @override
+  Future<Customer?> getCustomerById(String id) {
+    return _customerService.getCustomerById(id);
   }
 }

@@ -21,13 +21,17 @@ abstract class ICustomerService {
   Stream<FileRemoteStorageTask> uploadIdCard(String filename, Uint8List data);
 
   Future<String> getImageDownloadUrl(String filename);
+
+  Future<Customer?> getCustomerById(String id);
 }
 
 @Singleton(as: ICustomerService)
 class CustomerService extends CRUDService<Customer>
     with FileRemoteStorageService
     implements ICustomerService {
-  CustomerService(FirebaseFirestore firebaseFirestore,) : super(firebaseFirestore);
+  CustomerService(
+    FirebaseFirestore firebaseFirestore,
+  ) : super(firebaseFirestore);
 
   @override
   Future<void> insertOrReplace(Customer data) {
@@ -75,5 +79,10 @@ class CustomerService extends CRUDService<Customer>
   @override
   Future<String> getImageDownloadUrl(String filename) {
     return getImageDownloadURL(filename);
+  }
+
+  @override
+  Future<Customer?> getCustomerById(String id) {
+    return findById(id);
   }
 }

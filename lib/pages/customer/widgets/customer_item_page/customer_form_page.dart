@@ -88,6 +88,12 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
     });
   }
 
+  @override
+  void didUpdateWidget(covariant CustomerFormPage oldWidget) {
+    _initForm();
+    super.didUpdateWidget(oldWidget);
+  }
+
   void _initForm() {
     final input = widget.customerInput;
     final formatter = DateFormat('dd/MM/yyyy');
@@ -101,7 +107,7 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
           formatter.format(input.dateOfBirth);
       _emailTextEditingController.text = input.email ?? '';
       _emailPasswordTextEditingController.text = input.emailPassword ?? '';
-      _selectedColor = input.tagColor ?? Colors.white;
+      _selectedColor = input.tagColor;
       _dateOfBirth = input.dateOfBirth;
       _lastContactDate = input.lastContactDate;
       _selectedColor = input.tagColor;
@@ -156,7 +162,7 @@ class _CustomerFormPageState extends State<CustomerFormPage> {
           emailPassword: _emailPasswordTextEditingController.text,
           idCardFrontSideUrl: _idCardFrontSideUrl,
           idCardBackSideUrl: _idCardBackSideUrl,
-          tagColor: _selectedColor,
+          tagColor: _selectedColor ?? Colors.white,
         );
 
         widget.onSubmitForm(customer);

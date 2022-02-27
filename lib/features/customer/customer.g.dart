@@ -15,7 +15,7 @@ _$_Customer _$$_CustomerFromJson(Map<String, dynamic> json) => _$_Customer(
       idCardBackSideUrl: json['id_card_back_side_url'] as String?,
       email: json['email'] as String?,
       emailPassword: json['email_password'] as String?,
-      tagColor: fromHex(json['tag_color'] as String?),
+      tagColor: fromHex(json['tag_color'] as String),
       dateOfBirth: DateTime.parse(json['date_of_birth'] as String),
       lastContactDate: DateTime.parse(json['last_contact_date'] as String),
       updatedAt: DateTime.parse(json['updated_at'] as String),

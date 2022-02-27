@@ -1,14 +1,14 @@
-import 'package:customer_care/pages/customer/widgets/customer_item_page/customer_input.dart';
+import 'package:customer_care/pages/home/customer/widgets/customer_item.dart';
 import 'package:flutter/material.dart';
 
 class CustomerItemWidget extends StatelessWidget {
   const CustomerItemWidget({
     Key? key,
-    required this.customerInput,
+    required this.customerItem,
     this.onTap,
   }) : super(key: key);
 
-  final CustomerInput customerInput;
+  final CustomerItem customerItem;
   final Function()? onTap;
 
   @override
@@ -20,15 +20,15 @@ class CustomerItemWidget extends StatelessWidget {
             begin: Alignment.topRight,
             end: Alignment.bottomLeft,
             colors: [
-              customerInput.tagColor ?? Colors.white,
+              customerItem.tagColor,
               Colors.transparent,
             ],
           ),
         ),
         child: ListTile(
           onTap: onTap,
-          title: Text(customerInput.fullname),
-          subtitle: Text(customerInput.phone),
+          title: Text(customerItem.name),
+          subtitle: Text(customerItem.phone),
         ),
       ),
     );

@@ -10,16 +10,31 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:get_it/get_it.dart';
 
-class EditCustomerPage extends StatelessWidget implements AutoRouteWrapper {
+class EditCustomerPage extends StatefulWidget implements AutoRouteWrapper {
   const EditCustomerPage({
     Key? key,
-    required this.customerInput,
+    required this.customerId,
   }) : super(key: key);
 
-  final CustomerInput customerInput;
+  final String customerId;
 
+  @override
+  State<EditCustomerPage> createState() => _EditCustomerPageState();
+
+  @override
+  Widget wrappedRoute(BuildContext context) {
+    return BlocProvider(
+      create: (_) => GetIt.I<EditCustomerBloc>(),
+      child: this,
+    );
+  }
+}
+
+class _EditCustomerPageState extends State<EditCustomerPage> {
   void _submitForm(BuildContext context, CustomerInput input) {
-    context.read<EditCustomerBloc>().add(EditCustomerSaveEvent(input));
+    context
+        .read<EditCustomerBloc>()
+        .add(EditCustomerSaveCustomerInfoEvent(input));
   }
 
   void _removeCustomer(BuildContext context, String customerId) async {
@@ -33,12 +48,20 @@ class EditCustomerPage extends StatelessWidget implements AutoRouteWrapper {
 
     context
         .read<EditCustomerBloc>()
-        .add(EditCustomerDeleteCustomerEvent(customerId));
+        .add(EditCustomerDeleteCustomerInfoEvent(customerId));
+  }
+
+  @override
+  void initState() {
+    context
+        .read<EditCustomerBloc>()
+        .add(EditCustomerFetchCustomerInfoEvent(widget.customerId));
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    return BlocListener(
+    return BlocConsumer<EditCustomerBloc, EditCustomerState>(
       bloc: context.read<EditCustomerBloc>(),
       listener: (BuildContext context, state) async {
         if (state is EditCustomerLoading) {
@@ -46,30 +69,43 @@ class EditCustomerPage extends StatelessWidget implements AutoRouteWrapper {
         } else if (state is EditCustomerLoadedSuccess) {
           await EasyLoading.dismiss();
           context.navigateTo(HomeRoute());
-        } else if (state is EditCustomerLoadedFailure) {
+        } else if (state is EditCustomerFetchedSuccess) {
+          EasyLoading.dismiss();
+        } else if (state is EditCustomerLoadedFailure ||
+            state is EditCustomerFetchedFailure) {
           EasyLoading.showError(S.of(context).common_error);
         }
       },
-      child: CustomerFormPage(
-        onSubmitForm: (input) => _submitForm(context, input),
-        title: S.of(context).edit_customer_information,
-        submitText: S.of(context).save,
-        customerInput: customerInput,
-        actions: [
-          IconButton(
-            icon: const Icon(Icons.delete),
-            onPressed: () => _removeCustomer(context, customerInput.id!),
-          ),
-        ],
-      ),
-    );
-  }
+      builder: (context, state) {
+        if (state is EditCustomerFetchedSuccess) {
+          return CustomerFormPage(
+            onSubmitForm: (input) => _submitForm(context, input),
+            title: S.of(context).edit_customer_information,
+            submitText: S.of(context).save,
+            customerInput: state.customerInput,
+            actions: [
+              IconButton(
+                icon: const Icon(Icons.delete),
+                onPressed: () =>
+                    _removeCustomer(context, state.customerInput.id!),
+              ),
+            ],
+          );
+        }
 
-  @override
-  Widget wrappedRoute(BuildContext context) {
-    return BlocProvider(
-      create: (_) => GetIt.I<EditCustomerBloc>(),
-      child: this,
+        return CustomerFormPage(
+          onSubmitForm: (input) => _submitForm(context, input),
+          title: S.of(context).edit_customer_information,
+          submitText: S.of(context).save,
+          customerInput: null,
+          actions: const [
+            IconButton(
+              icon: Icon(Icons.delete),
+              onPressed: null,
+            ),
+          ],
+        );
+      },
     );
   }
 }

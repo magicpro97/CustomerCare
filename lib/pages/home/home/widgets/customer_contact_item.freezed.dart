@@ -39,9 +39,7 @@ const $CustomerContactItem = _$CustomerContactItemTearOff();
 mixin _$CustomerContactItem {
   String get name => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
-
   DateTime get lastContactDate => throw _privateConstructorUsedError;
-
   Color? get tagColor => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -54,7 +52,6 @@ abstract class $CustomerContactItemCopyWith<$Res> {
   factory $CustomerContactItemCopyWith(
           CustomerContactItem value, $Res Function(CustomerContactItem) then) =
       _$CustomerContactItemCopyWithImpl<$Res>;
-
   $Res call(
       {String name, String phone, DateTime lastContactDate, Color? tagColor});
 }
@@ -102,7 +99,6 @@ abstract class _$CustomerContactItemCopyWith<$Res>
   factory _$CustomerContactItemCopyWith(_CustomerContactItem value,
           $Res Function(_CustomerContactItem) then) =
       __$CustomerContactItemCopyWithImpl<$Res>;
-
   @override
   $Res call(
       {String name, String phone, DateTime lastContactDate, Color? tagColor});
@@ -206,16 +202,12 @@ abstract class _CustomerContactItem implements CustomerContactItem {
 
   @override
   String get name;
-
   @override
   String get phone;
-
   @override
   DateTime get lastContactDate;
-
   @override
   Color? get tagColor;
-
   @override
   @JsonKey(ignore: true)
   _$CustomerContactItemCopyWith<_CustomerContactItem> get copyWith =>

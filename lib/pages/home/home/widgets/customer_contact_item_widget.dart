@@ -28,10 +28,13 @@ class CustomerContactItemWidget extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: kPaddingTop),
       decoration: BoxDecoration(
-          gradient: LinearGradient(colors: [
-        item.tagColor ?? Colors.white,
-        Colors.white,
-      ])),
+        gradient: LinearGradient(
+          colors: [
+            item.tagColor ?? Colors.white,
+            Colors.white,
+          ],
+        ),
+      ),
       child: ListTile(
         contentPadding: EdgeInsets.zero,
         title: Text(item.name),

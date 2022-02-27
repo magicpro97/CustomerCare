@@ -17,13 +17,28 @@ class EditCustomerBloc extends Bloc<EditCustomerEvent, EditCustomerState> {
     this._customerRepository,
     this._customerFactory,
   ) : super(EditCustomerInitial()) {
-    on<EditCustomerSaveEvent>(_save);
+    on<EditCustomerSaveCustomerInfoEvent>(_save);
 
-    on<EditCustomerDeleteCustomerEvent>(_delete);
+    on<EditCustomerDeleteCustomerInfoEvent>(_delete);
+
+    on<EditCustomerFetchCustomerInfoEvent>(_fetch);
   }
 
-  Future<void> _save(
-      EditCustomerSaveEvent event, Emitter<EditCustomerState> emit) async {
+  Future<void> _fetch(EditCustomerFetchCustomerInfoEvent event,
+      Emitter<EditCustomerState> emit) async {
+    emit(EditCustomerLoading());
+    try {
+      final customer =
+          await _customerRepository.getCustomerById(event.customerId);
+      emit(EditCustomerFetchedSuccess(
+          _customerFactory.generateCustomerInput(customer!)));
+    } catch (e) {
+      emit(EditCustomerLoadedFailure());
+    }
+  }
+
+  Future<void> _save(EditCustomerSaveCustomerInfoEvent event,
+      Emitter<EditCustomerState> emit) async {
     emit(EditCustomerLoading());
     try {
       final customer = _customerFactory.updateCustomer(event.customerInput);
@@ -34,7 +49,7 @@ class EditCustomerBloc extends Bloc<EditCustomerEvent, EditCustomerState> {
     }
   }
 
-  Future<void> _delete(EditCustomerDeleteCustomerEvent event,
+  Future<void> _delete(EditCustomerDeleteCustomerInfoEvent event,
       Emitter<EditCustomerState> emit) async {
     emit(EditCustomerLoading());
     try {

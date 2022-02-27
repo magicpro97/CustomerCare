@@ -1,8 +1,8 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:customer_care/dimen.dart';
-import 'package:customer_care/pages/customer/widgets/customer_item_page/customer_input.dart';
-import 'package:customer_care/pages/customer/widgets/customer_list_widget.dart';
 import 'package:customer_care/pages/home/customer/customer_view_bloc.dart';
+import 'package:customer_care/pages/home/customer/widgets/customer_item.dart';
+import 'package:customer_care/pages/home/customer/widgets/customer_list_widget.dart';
 import 'package:customer_care/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -12,10 +12,10 @@ class CustomerViewWidget extends StatelessWidget {
 
   void _onCustomerItemTapped(
     BuildContext context,
-    List<CustomerInput> customers,
+    List<CustomerItem> customers,
     int index,
   ) {
-    context.navigateTo(EditCustomerRoute(customerInput: customers[index]));
+    context.navigateTo(EditCustomerRoute(customerId: customers[index].id));
   }
 
   @override
@@ -26,8 +26,8 @@ class CustomerViewWidget extends StatelessWidget {
         BlocBuilder<CustomerViewBloc, CustomerViewState>(
           bloc: context.read<CustomerViewBloc>(),
           builder: (_, state) {
-            return StreamBuilder<List<CustomerInput>>(
-              stream: context.read<CustomerViewBloc>().customerInputs$,
+            return StreamBuilder<List<CustomerItem>>(
+              stream: context.read<CustomerViewBloc>().customerItems$,
               builder: (context, snapshot) {
                 if (!snapshot.hasData) {
                   return const CircularProgressIndicator.adaptive();

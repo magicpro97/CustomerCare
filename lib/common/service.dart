@@ -33,4 +33,10 @@ abstract class CRUDService<T> extends AppService {
             fromFirestore: (doc, _) => fromJson(doc.data()!),
             toFirestore: (data, _) => toJson(data),
           );
+
+  Future<T?> findById(String id) async {
+    final result = await collectionReference.doc(id).get();
+
+    return result.data();
+  }
 }

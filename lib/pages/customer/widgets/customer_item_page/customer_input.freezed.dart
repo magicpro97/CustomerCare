@@ -25,7 +25,7 @@ class _$CustomerInputTearOff {
       required String phone,
       String? hobbies,
       required DateTime lastContactDate,
-      Color? tagColor,
+      required Color tagColor,
       String? email,
       String? emailPassword,
       String? idCardFrontSideUrl,
@@ -60,8 +60,11 @@ mixin _$CustomerInput {
   DateTime get dateOfBirth => throw _privateConstructorUsedError;
   String get phone => throw _privateConstructorUsedError;
   String? get hobbies => throw _privateConstructorUsedError;
+
   DateTime get lastContactDate => throw _privateConstructorUsedError;
-  Color? get tagColor => throw _privateConstructorUsedError;
+
+  Color get tagColor => throw _privateConstructorUsedError;
+
   String? get email => throw _privateConstructorUsedError;
   String? get emailPassword => throw _privateConstructorUsedError;
   String? get idCardFrontSideUrl => throw _privateConstructorUsedError;
@@ -86,7 +89,7 @@ abstract class $CustomerInputCopyWith<$Res> {
       String phone,
       String? hobbies,
       DateTime lastContactDate,
-      Color? tagColor,
+      Color tagColor,
       String? email,
       String? emailPassword,
       String? idCardFrontSideUrl,
@@ -148,7 +151,7 @@ class _$CustomerInputCopyWithImpl<$Res>
       tagColor: tagColor == freezed
           ? _value.tagColor
           : tagColor // ignore: cast_nullable_to_non_nullable
-              as Color?,
+              as Color,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -191,7 +194,7 @@ abstract class _$CustomerInputCopyWith<$Res>
       String phone,
       String? hobbies,
       DateTime lastContactDate,
-      Color? tagColor,
+      Color tagColor,
       String? email,
       String? emailPassword,
       String? idCardFrontSideUrl,
@@ -255,7 +258,7 @@ class __$CustomerInputCopyWithImpl<$Res>
       tagColor: tagColor == freezed
           ? _value.tagColor
           : tagColor // ignore: cast_nullable_to_non_nullable
-              as Color?,
+              as Color,
       email: email == freezed
           ? _value.email
           : email // ignore: cast_nullable_to_non_nullable
@@ -294,7 +297,7 @@ class _$_CustomerInput implements _CustomerInput {
       required this.phone,
       this.hobbies,
       required this.lastContactDate,
-      this.tagColor,
+      required this.tagColor,
       this.email,
       this.emailPassword,
       this.idCardFrontSideUrl,
@@ -315,7 +318,7 @@ class _$_CustomerInput implements _CustomerInput {
   @override
   final DateTime lastContactDate;
   @override
-  final Color? tagColor;
+  final Color tagColor;
   @override
   final String? email;
   @override
@@ -390,7 +393,7 @@ abstract class _CustomerInput implements CustomerInput {
       required String phone,
       String? hobbies,
       required DateTime lastContactDate,
-      Color? tagColor,
+      required Color tagColor,
       String? email,
       String? emailPassword,
       String? idCardFrontSideUrl,
@@ -408,10 +411,13 @@ abstract class _CustomerInput implements CustomerInput {
   String get phone;
   @override
   String? get hobbies;
+
   @override
   DateTime get lastContactDate;
+
   @override
-  Color? get tagColor;
+  Color get tagColor;
+
   @override
   String? get email;
   @override

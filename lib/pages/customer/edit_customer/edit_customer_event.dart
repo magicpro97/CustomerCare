@@ -4,19 +4,28 @@ abstract class EditCustomerEvent extends Equatable {
   const EditCustomerEvent();
 }
 
-class EditCustomerSaveEvent extends EditCustomerEvent {
+class EditCustomerFetchCustomerInfoEvent extends EditCustomerEvent {
+  final String customerId;
+
+  const EditCustomerFetchCustomerInfoEvent(this.customerId);
+
+  @override
+  List<Object?> get props => [customerId];
+}
+
+class EditCustomerSaveCustomerInfoEvent extends EditCustomerEvent {
   final CustomerInput customerInput;
 
-  const EditCustomerSaveEvent(this.customerInput);
+  const EditCustomerSaveCustomerInfoEvent(this.customerInput);
 
   @override
   List<Object?> get props => [customerInput];
 }
 
-class EditCustomerDeleteCustomerEvent extends EditCustomerEvent {
+class EditCustomerDeleteCustomerInfoEvent extends EditCustomerEvent {
   final String customerId;
 
-  const EditCustomerDeleteCustomerEvent(this.customerId);
+  const EditCustomerDeleteCustomerInfoEvent(this.customerId);
 
   @override
   List<Object?> get props => [customerId];
