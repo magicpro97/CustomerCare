@@ -2,8 +2,8 @@ import 'package:auto_route/auto_route.dart';
 import 'package:customer_care/common/dialog.dart';
 import 'package:customer_care/generated/l10n.dart';
 import 'package:customer_care/pages/customer/edit_customer/edit_customer_bloc.dart';
-import 'package:customer_care/pages/customer/widgets/customer_item_page/customer_form_page.dart';
-import 'package:customer_care/pages/customer/widgets/customer_item_page/customer_input.dart';
+import 'package:customer_care/pages/customer/edit_customer/setting/edit_seting_view.dart';
+import 'package:customer_care/pages/customer/widgets/customer_item_page/customer_form_view.dart';
 import 'package:customer_care/router/app_router.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -31,13 +31,24 @@ class EditCustomerPage extends StatefulWidget implements AutoRouteWrapper {
 }
 
 class _EditCustomerPageState extends State<EditCustomerPage> {
-  void _submitForm(BuildContext context, CustomerInput input) {
-    context
-        .read<EditCustomerBloc>()
-        .add(EditCustomerSaveCustomerInfoEvent(input));
+  final _formKey = GlobalKey<CustomerFormViewState>();
+
+  bool _isIdCardFrontSideUploading = false;
+  bool _isIdCardBackSideUploading = false;
+
+  void _onUploadIdCardFrontSideChange(bool isUploading) {
+    setState(() {
+      _isIdCardFrontSideUploading = isUploading;
+    });
   }
 
-  void _removeCustomer(BuildContext context, String customerId) async {
+  void _onUploadIdCardBackSideChange(bool isUploading) {
+    setState(() {
+      _isIdCardBackSideUploading = isUploading;
+    });
+  }
+
+  void _removeCustomer(BuildContext context) async {
     final result = await showDeleteDialog(
       context,
       S.of(context).remove_customer,
@@ -46,9 +57,23 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
 
     if (result != true) return;
 
+    final customerInput = _formKey.currentState!.validateAndGetFormValue();
+
+    if (customerInput == null) return;
+
     context
         .read<EditCustomerBloc>()
-        .add(EditCustomerDeleteCustomerInfoEvent(customerId));
+        .add(EditCustomerDeleteCustomerInfoEvent(customerInput.id!));
+  }
+
+  void _submitForm(BuildContext context) {
+    final customerInput = _formKey.currentState!.validateAndGetFormValue();
+
+    if (customerInput == null) return;
+
+    context
+        .read<EditCustomerBloc>()
+        .add(EditCustomerSaveCustomerInfoEvent(customerInput));
   }
 
   @override
@@ -77,33 +102,62 @@ class _EditCustomerPageState extends State<EditCustomerPage> {
         }
       },
       builder: (context, state) {
-        if (state is EditCustomerFetchedSuccess) {
-          return CustomerFormPage(
-            onSubmitForm: (input) => _submitForm(context, input),
-            title: S.of(context).edit_customer_information,
-            submitText: S.of(context).save,
-            customerInput: state.customerInput,
-            actions: [
-              IconButton(
-                icon: const Icon(Icons.delete),
-                onPressed: () =>
-                    _removeCustomer(context, state.customerInput.id!),
+        return DefaultTabController(
+          length: 2,
+          child: Scaffold(
+            appBar: AppBar(
+              title: Text(S.of(context).edit_customer_information),
+              actions: [
+                IconButton(
+                  icon: const Icon(Icons.delete),
+                  onPressed: () => _removeCustomer(context),
+                ),
+              ],
+              bottom: const TabBar(
+                tabs: [
+                  Tab(
+                    icon: Icon(Icons.info),
+                  ),
+                  Tab(
+                    icon: Icon(Icons.settings),
+                  )
+                ],
               ),
-            ],
-          );
-        }
-
-        return CustomerFormPage(
-          onSubmitForm: (input) => _submitForm(context, input),
-          title: S.of(context).edit_customer_information,
-          submitText: S.of(context).save,
-          customerInput: null,
-          actions: const [
-            IconButton(
-              icon: Icon(Icons.delete),
-              onPressed: null,
             ),
-          ],
+            body: TabBarView(
+              children: [
+                BlocBuilder<EditCustomerBloc, EditCustomerState>(
+                    builder: (context, state) {
+                  if (state is EditCustomerFetchedSuccess) {
+                    return CustomerFormView(
+                      customerInput: state.customerInput,
+                      submitText: S.of(context).save,
+                      formKey: _formKey,
+                      onUploadIdCardBackSideChange:
+                          _onUploadIdCardBackSideChange,
+                      onUploadIdCardFrontSideChange:
+                          _onUploadIdCardFrontSideChange,
+                    );
+                  }
+                  return CustomerFormView(
+                    submitText: S.of(context).save,
+                    formKey: _formKey,
+                    onUploadIdCardBackSideChange: _onUploadIdCardBackSideChange,
+                    onUploadIdCardFrontSideChange:
+                        _onUploadIdCardFrontSideChange,
+                  );
+                }),
+                const EditSettingView(),
+              ],
+            ),
+            floatingActionButton: FloatingActionButton(
+              onPressed:
+                  _isIdCardFrontSideUploading || _isIdCardBackSideUploading
+                      ? null
+                      : () => _submitForm(context),
+              child: const Icon(Icons.save),
+            ),
+          ),
         );
       },
     );
