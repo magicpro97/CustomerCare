@@ -80,61 +80,64 @@ class _SettingViewWidgetState extends State<SettingViewWidget> {
       width: double.infinity,
       child: Column(
         children: [
-          Card(
-            child: StreamBuilder<RemindContactCustomerSetting>(
-                stream: settingBloc.reminderContactCustomerSetting$,
-                builder: (context, snapshot) {
-                  if (!snapshot.hasData) {
-                    return Container();
-                  }
+          Visibility(
+            visible: false,
+            child: Card(
+              child: StreamBuilder<RemindContactCustomerSetting>(
+                  stream: settingBloc.reminderContactCustomerSetting$,
+                  builder: (context, snapshot) {
+                    if (!snapshot.hasData) {
+                      return Container();
+                    }
 
-                  return Column(
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: kPaddingTop),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(S.of(context).remind_contact_to_customer),
-                            Switch.adaptive(
-                              value: snapshot.data!.enableRemindContact,
-                              onChanged: (value) =>
-                                  _onRemindContactCustomerSwitchChange(
-                                      snapshot.data!, value),
-                            ),
-                          ],
+                    return Column(
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: kPaddingTop),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(S.of(context).remind_contact_to_customer),
+                              Switch.adaptive(
+                                value: snapshot.data!.enableRemindContact,
+                                onChanged: (value) =>
+                                    _onRemindContactCustomerSwitchChange(
+                                        snapshot.data!, value),
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                      Container(
-                        color: snapshot.data!.enableRemindContact
-                            ? Colors.transparent
-                            : Colors.grey[100],
-                        padding: EdgeInsets.symmetric(horizontal: kPaddingTop),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(S.of(context).after),
-                            IgnorePointer(
-                              ignoring: !snapshot.data!.enableRemindContact,
-                              child: DropdownButtonHideUnderline(
-                                child: DropdownButton<int>(
-                                  onChanged: (value) =>
-                                      _onRemindContactCustomerDropdownChange(
-                                          snapshot.data!, value),
-                                  value: snapshot
-                                      .data!.remindContactDayAfterNumber,
-                                  items: reminderDayNumberDropdownMenuItems,
-                                  selectedItemBuilder: (_) =>
-                                      selectedReminderDayNumberDropdownMenuItems,
+                        Container(
+                          color: snapshot.data!.enableRemindContact
+                              ? Colors.transparent
+                              : Colors.grey[100],
+                          padding: EdgeInsets.symmetric(horizontal: kPaddingTop),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Text(S.of(context).after),
+                              IgnorePointer(
+                                ignoring: !snapshot.data!.enableRemindContact,
+                                child: DropdownButtonHideUnderline(
+                                  child: DropdownButton<int>(
+                                    onChanged: (value) =>
+                                        _onRemindContactCustomerDropdownChange(
+                                            snapshot.data!, value),
+                                    value: snapshot
+                                        .data!.remindContactDayAfterNumber,
+                                    items: reminderDayNumberDropdownMenuItems,
+                                    selectedItemBuilder: (_) =>
+                                        selectedReminderDayNumberDropdownMenuItems,
+                                  ),
                                 ),
                               ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
-                      ),
-                    ],
-                  );
-                }),
+                      ],
+                    );
+                  }),
+            ),
           ),
           ElevatedButton(
             onPressed: _signOut,
